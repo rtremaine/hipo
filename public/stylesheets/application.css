@@ -6,6 +6,7 @@ a {
 body{
   color:#686868;
   padding-top:50px;
+  padding-left: 30px;
 }
 
 .alert-message.success {
