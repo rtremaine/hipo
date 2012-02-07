@@ -1,0 +1,32 @@
+<h1>Dentists</h1>
+
+<table>
+  <tr>
+    <th>Dentist</th>
+    <th>Address1</th>
+    <th>Email</th>
+    <th>City</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dentists.each do |dentist| %>
+  <tr>
+    <td><%= dentist.last + ', ' + dentist.first + ' ' + dentist.middle + 
+      ', ' + dentist.title %></td>
+    <td><%= dentist.address1 %></td>
+    <td><%= dentist.email %></td>
+    <td><%= dentist.city %></td>
+    <td><%= dentist.state %></td>
+    <td><%= link_to 'Show', dentist %></td>
+    <td><%= link_to 'Edit', edit_dentist_path(dentist) %></td>
+    <td><%= link_to 'Destroy', dentist, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dentist', new_dentist_path %>

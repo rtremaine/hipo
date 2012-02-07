@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First:</b>
+  <%= @dentist.first %>
+</p>
+
+<p>
+  <b>Last:</b>
+  <%= @dentist.last %>
+</p>
+
+<p>
+  <b>Middle:</b>
+  <%= @dentist.middle %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%= @dentist.address1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%= @dentist.address2 %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @dentist.user_id %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @dentist.email %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @dentist.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @dentist.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @dentist.zip %>
+</p>
+
+
+<%= link_to 'Edit', edit_dentist_path(@dentist) %> |
+<%= link_to 'Back', dentists_path %>

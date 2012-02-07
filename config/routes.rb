@@ -1,4 +1,6 @@
 Hippo::Application.routes.draw do
+  resources :dentists
+
   resources :companies
 
   devise_for :users
