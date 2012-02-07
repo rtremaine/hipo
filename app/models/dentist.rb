@@ -29,7 +29,7 @@ require 'csv'
       d = Dentist.new
       d.first = name[:first]
       d.last = name[:last]
-      d.middle = name[:middle]
+      d.middle = name[:middle] + '.'
       d.city = towns[rand(0..towns.size)]
       d.address1 = rand(0..100).to_i.to_s + ' ' + streets[0]
       d.state = 'Massachusetts'

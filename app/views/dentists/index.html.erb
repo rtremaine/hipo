@@ -1,9 +1,9 @@
 <h1>Dentists</h1>
 
-<table>
+<table width='100%'>
   <tr>
     <th>Dentist</th>
-    <th>Address1</th>
+    <th>Address</th>
     <th>Email</th>
     <th>City</th>
     <th>State</th>
@@ -14,15 +14,12 @@
 
 <% @dentists.each do |dentist| %>
   <tr>
-    <td><%= dentist.last + ', ' + dentist.first + ' ' + dentist.middle + 
-      ', ' + dentist.title %></td>
+    <td><%= link_to dentist.last + ', ' + dentist.first + ' ' + dentist.middle + 
+      ', ' + dentist.title, dentist %></td>
     <td><%= dentist.address1 %></td>
     <td><%= dentist.email %></td>
     <td><%= dentist.city %></td>
     <td><%= dentist.state %></td>
-    <td><%= link_to 'Show', dentist %></td>
-    <td><%= link_to 'Edit', edit_dentist_path(dentist) %></td>
-    <td><%= link_to 'Destroy', dentist, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
