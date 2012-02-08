@@ -69,7 +69,7 @@ class Dentist < ActiveRecord::Base
       puts counter
       counter = counter + 1
     end
-
+    Dentist.assign_patients_to_dentists
   end
 
   def self.assign_patients_to_dentists
