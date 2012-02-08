@@ -66,7 +66,7 @@ class Dentist < ActiveRecord::Base
         p.ssn = Dentist.fake_ssn
         p.save
       end
-      puts counter
+      puts counter if counter % 1000 == 0
       counter = counter + 1
     end
     Dentist.assign_patients_to_dentists
@@ -77,7 +77,7 @@ class Dentist < ActiveRecord::Base
     ds = Dentist.all
     ps.each do |p|
       unless rand(0..3) == 1
-        p.dentist_id = ds[rand(1..ds.size)].id
+        p.dentist_id = ds[rand(1..ds.size - 1)].id
         p.save
       end
     end
