@@ -15,6 +15,12 @@
           <li>
             <a class='brand' href="#" >Hippo</a>
           </li>
+              <li>
+                <%= form_tag(:searchall, :method => "get") do %>
+                  <%= text_field_tag :q,'',:size=>40 %>
+                  <%= submit_tag("Search", :class=>'btn small info') %>
+                <% end %>
+              </li>
         </ul>
       </div>
     </div>

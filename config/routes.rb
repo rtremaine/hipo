@@ -1,6 +1,7 @@
 Hippo::Application.routes.draw do
-  resources :dentists
 
+  match "searchall" => "dentists#searchall"
+  resources :dentists
   resources :companies
 
   devise_for :users

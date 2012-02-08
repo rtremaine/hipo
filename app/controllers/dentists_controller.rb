@@ -10,6 +10,9 @@ class DentistsController < ApplicationController
     end
   end
 
+  def searchall
+  end
+
   # GET /dentists/1
   # GET /dentists/1.json
   def show
