@@ -10,3 +10,21 @@
   <%= link_to 'Edit', edit_dentist_path(@dentist) %> |
   <%= link_to 'Back', dentists_path %>
 </p>
+
+<h2>
+  <%= pluralize @dentist.patients.size.to_s, 'patient' %>
+</h2>
+
+<% if @dentist.patients.size > 0 %>
+  <table>
+
+
+    <% @dentist.patients.each do |patient| %>
+      <tr>
+        <td>
+          <%= link_to patient.name, patient %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

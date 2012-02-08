@@ -1,20 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>First:</b>
-  <%= @patient.first %>
-</p>
-
-<p>
-  <b>Last:</b>
-  <%= @patient.last %>
-</p>
+<h2>
+  <%= @patient.last + ', ' + @patient.first %>
+</h2>
 
 <p>
   <b>Ssn:</b>
   <%= @patient.ssn %>
 </p>
 
+Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist %>
 
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>
+<p>
+  <%= link_to 'Edit', edit_patient_path(@patient) %> |
+  <%= link_to 'Back', patients_path %>
+</p>

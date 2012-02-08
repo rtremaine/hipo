@@ -1,8 +1,32 @@
 class Dentist < ActiveRecord::Base
-require 'csv'
+  require 'csv'
+  has_many    :patients
 
-  def self.make_pretend_dentists
+  def name
+    self.last + ', ' + self.first + ' ' + self.title
+  end
+
+  def self.fake_ssn
+    ssn = ''
+    3.times do
+      ssn = ssn + rand(1..9).to_s
+    end
+    ssn = ssn + '-'
+
+    2.times do
+      ssn = ssn + rand(1..9).to_s
+    end
+    ssn = ssn + '-'
+
+    4.times do
+      ssn = ssn + rand(1..9).to_s
+    end
+    ssn
+  end
+
+  def self.make_pretend_people
     self.delete_all
+    Patient.delete_all
 
     towns = Array.new
     names = Array.new
@@ -23,8 +47,6 @@ require 'csv'
     #TODO get the street names going
     streets << 'Main St'
 
-    #TODO dedupe the names
-
     counter = 0
     names.each do |name|
       if rand(2) == 0
@@ -40,11 +62,24 @@ require 'csv'
       else
         p = Patient.new
         p.first = name[:first]
+        p.last = name[:last]
+        p.ssn = Dentist.fake_ssn
+        p.save
       end
       puts counter
       counter = counter + 1
     end
 
-    towns
+  end
+
+  def self.assign_patients_to_dentists
+    ps = Patient.all
+    ds = Dentist.all
+    ps.each do |p|
+      unless rand(0..3) == 1
+        p.dentist_id = ds[rand(1..ds.size)].id
+        p.save
+      end
+    end
   end
 end

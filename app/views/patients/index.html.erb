@@ -1,26 +1,22 @@
-<h1>Listing patients</h1>
+<h1>Patients</h1>
 
-<table>
+<table width='80%'>
   <tr>
-    <th>First</th>
-    <th>Last</th>
-    <th>Ssn</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Name</th>
+    <th>SSN</th>
+    <th>Dentist</th>
   </tr>
 
 <% @patients.each do |patient| %>
   <tr>
-    <td><%= patient.first %></td>
-    <td><%= patient.last %></td>
+    <td><%= link_to patient.first + ', ' + patient.last, patient %></td>
     <td><%= patient.ssn %></td>
-    <td><%= link_to 'Show', patient %></td>
-    <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-    <td><%= link_to 'Destroy', patient, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to patient.dentist.name, patient.dentist if patient.dentist %></td>
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate(@patients) %>
 
 <br />
 
