@@ -40,6 +40,10 @@ gem 'devise'
 gem 'will_paginate'
 
 # this is a little sketchy. Work around for ruby-debug19 not working with 1.9.3
-gem 'linecache19',       '>= 0.5.13'
-gem 'ruby-debug-base19', '>= 0.11.26'
-gem 'ruby-debug19'
+
+#This didnt help.. even when you are in a different environment.. bundle still wants all gems.
+group :development do
+  #gem 'linecache19',       '>= 0.5.13'
+  #gem 'ruby-debug-base19', '>= 0.11.26'
+  #gem 'ruby-debug19'
+end
