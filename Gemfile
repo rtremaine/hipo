@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'https://gems.gemfury.com/8n1rdTK8pezvcsyVmmgJ/'
 
 gem 'rails', '3.2.1'
 
@@ -21,7 +22,7 @@ gem 'mysql2'
 #end
 
 gem 'jquery-rails'
-#gem 'ruby-debug19', :require => 'ruby-debug'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -37,3 +38,7 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'devise'
 gem 'will_paginate'
+
+gem 'linecache19',       '>= 0.5.13'
+gem 'ruby-debug-base19', '>= 0.11.26'
+gem 'ruby-debug19'
