@@ -9,6 +9,11 @@ body{
   padding-left: 80px;
 }
 
+a.brand {
+  font-family: 'Allura', cursive;
+  font-size: 120%;
+}
+
 .alert-message.success {
   text-shadow: none;
   line-height:2;
