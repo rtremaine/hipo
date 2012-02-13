@@ -3,6 +3,7 @@
 <table width='80%'>
   <tr>
     <th>Dentist</th>
+    <th>Patients</th>
     <th>Address</th>
     <th>Email</th>
     <th>City</th>
@@ -16,6 +17,7 @@
   <tr>
     <td><%= link_to dentist.last + ', ' + dentist.first + ' ' + dentist.middle + 
       ', ' + dentist.title, dentist %></td>
+    <td><%= dentist.patients.size.to_s %></td>
     <td><%= dentist.address1 %></td>
     <td><%= dentist.email %></td>
     <td><%= dentist.city %></td>
