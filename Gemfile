@@ -21,7 +21,7 @@ gem 'mysql2'
 #end
 
 gem 'jquery-rails'
-
+gem 'ruby-debug19', :require => 'ruby-debug'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
