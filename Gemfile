@@ -37,6 +37,7 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'devise'
 gem 'will_paginate'
+gem 'carrierwave'
 
 source 'https://gems.gemfury.com/8n1rdTK8pezvcsyVmmgJ/'
 # this is a little sketchy. Work around for ruby-debug19 not working with 1.9.3
