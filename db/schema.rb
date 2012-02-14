@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20120214215703) do
     t.string   "file_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "file"
+    t.string   "record"
   end
 
   create_table "users", :force => true do |t|
