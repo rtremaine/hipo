@@ -1,5 +1,4 @@
-#source 'https://rubygems.org'
-source 'https://gems.gemfury.com/8n1rdTK8pezvcsyVmmgJ/'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
 
@@ -39,11 +38,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'will_paginate'
 
+source 'https://gems.gemfury.com/8n1rdTK8pezvcsyVmmgJ/'
 # this is a little sketchy. Work around for ruby-debug19 not working with 1.9.3
-
-#This didnt help.. even when you are in a different environment.. bundle still wants all gems.
-group :development do
-  #gem 'linecache19',       '>= 0.5.13'
-  #gem 'ruby-debug-base19', '>= 0.11.26'
-  #gem 'ruby-debug19'
-end
+gem 'linecache19',       '>= 0.5.13'
+gem 'ruby-debug-base19', '>= 0.11.26'
+gem 'ruby-debug19'
