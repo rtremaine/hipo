@@ -9,7 +9,7 @@
   <% csrf_meta_tags %>
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
+  <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
         <ul class="nav">
@@ -22,6 +22,12 @@
           <li>
             <%= link_to 'Patients', :patients %>
           </li>
+          <% if current_user %>
+            <li><%=  link_to(current_user.name, current_user) %></li>
+            <li><%= link_to "Logout", '/logout' %></li>
+          <% else %>
+            <li><%= link_to("Login", '/login' ) %></li>
+          <% end %>
         </ul>
       </div>
     </div>
