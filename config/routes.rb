@@ -1,5 +1,7 @@
 Hippo::Application.routes.draw do
 
+  resources :records
+
   resources :patients
 
   match "searchall" => "dentists#searchall"
