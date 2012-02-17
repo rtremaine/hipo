@@ -10,9 +10,23 @@ body{
   padding-right: 80px;
 }
 
-a.brand {
+a.brand, .brand {
   font-family: 'Allura', cursive;
   font-size: 120%;
+}
+
+.brandbig {
+  font-family: 'Allura', cursive;
+  font-size: 200%;
+}
+
+.headersub {
+  font-family: 'Allura', cursive;
+  font-size: 160%;
+}
+
+.brandheader {
+  padding-bottom: 90px;
 }
 
 .alert-message.success {
