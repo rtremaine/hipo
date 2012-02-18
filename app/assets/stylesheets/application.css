@@ -16,16 +16,18 @@ a.brand, .brand {
 
 .brandbig {
   font-family: 'Allura', cursive;
-  font-size: 200%;
+  font-size: 360%;
 }
 
 .headersub {
   font-family: 'Allura', cursive;
+  padding-top: 40px;
   font-size: 160%;
 }
 
 .brandheader {
-  padding-bottom: 90px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .alert-message.success {

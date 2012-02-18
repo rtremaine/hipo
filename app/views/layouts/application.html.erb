@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Hippo</title>
-  <%= stylesheet_link_tag "bootstrap/css/bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap/css/bootstrap.min", :media => "all" %>
   <%= stylesheet_link_tag "jquery.fileupload-ui.css" %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%#= javascript_include_tag 'bootstrap.min.js' %>
@@ -31,7 +31,7 @@
             <li><%=  link_to(current_user.name, current_user) %></li>
             <li><%= link_to "Logout", '/logout' %></li>
           <% else %>
-            <li><%= link_to("Login", '/login' ) %></li>
+            <li><%= link_to("Login", new_user_session_path ) %></li>
           <% end %>
         </ul>
       </div>
@@ -44,9 +44,11 @@
     </div>
   <% end %>
 
-  <div class='alert alert-info'>
-    Using machine generated patient and doctor information.
-  </div>
+  <% if current_user %>
+    <div class='alert alert-info'>
+      Using machine generated patient and doctor information.
+    </div>
+  <% end %>
 
   <%= yield %>
 
