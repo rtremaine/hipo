@@ -19,6 +19,11 @@ a.brand, .brand {
   font-size: 360%;
 }
 
+.navbar .nav > li > a {
+  border-right: none;
+  border-left: none;
+}
+
 .headersub {
   font-family: 'Allura', cursive;
   padding-top: 40px;

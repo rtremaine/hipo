@@ -1,4 +1,6 @@
 class DentistsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /dentists
   # GET /dentists.json
   def index
