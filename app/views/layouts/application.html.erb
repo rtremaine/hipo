@@ -8,8 +8,7 @@
   <%#= javascript_include_tag 'bootstrap.min.js' %>
   <%= javascript_include_tag 'jquery-1.7.1.min.js' %>
   <%= javascript_include_tag 'jquery-ui-1.8.17.custom.min.js' %>
-
-
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
   <% csrf_meta_tags %>
 </head>
@@ -31,9 +30,9 @@
           <ul class='nav pull-right'>
           <% if current_user %>
             <li><%=  link_to current_user.email, '/' %></li>
-            <li><%= link_to "Logout", '/logout' %></li>
+            <li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
           <% else %>
-            <li><%= link_to("Login", new_user_session_path ) %></li>
+            <li><%= link_to("Sign in", new_user_session_path ) %></li>
           <% end %>
         </ul>
         </ul>

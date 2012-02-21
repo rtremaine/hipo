@@ -38,6 +38,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
+gem 'stripe'
 
 # for all you ruby-debug haters out there
 begin
