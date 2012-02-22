@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /subscriptions
   # GET /subscriptions.json
   def index
@@ -43,7 +45,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(params[:subscription])
 
     respond_to do |format|
-      if @subscription.save
+      if @subscription.save_with_payment
         format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
         format.json { render json: @subscription, status: :created, location: @subscription }
       else
