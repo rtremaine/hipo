@@ -1,8 +1,5 @@
-<%= content_for :head do %>
-<% end %>
-
-  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css", :id => "theme" %>
-  <%= javascript_include_tag "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" %>
+<%#= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css", :id => "theme" %>
+<%= javascript_include_tag "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" %>
 <div id="fileupload"> 
   <%= form_for @record, :html=> { :multipart => true } do |f| %>
     <% if @record.errors.any? %>
@@ -25,28 +22,25 @@
       <%= f.label :file_name %><br />
       <%= f.text_field :file_name %>
     </div>
-    <!--div class="field">
-      <%= f.file_field :record %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-    <br /-->
-    <br />
-    <div class="fileupload-buttonbar">
-      <label class="fileinput-button">
-        <span>Add files...</span>
-        <%= f.file_field :file %>
+  <br />
+  <div class="row fileupload-buttonbar">
+    <div id="span7">
+      <label class="btn btn-success fileinput-button">
+        <span><i class="icon-plus icon-white"></i> add files...</span>
+        <%= f.file_field :record %>
       </label>
-      <button type="submit" class="start">Start upload</button>
-      <button type="reset" class="cancel">Cancel upload</button>
-      <button type="button" class="delete">Delete files</button>
+      <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
+      <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
+      <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
     </div>
-  <% end %>
-  <div class="fileupload-content">
-    <table class="files"></table>
-    <div class="fileupload-progressbar"></div>
+    <div class="span5">
+      <div class="fileupload-content">
+        <table class="files"></table>
+        <div class="fileupload-progressbar"></div>
+      </div>
+    </div>
   </div>
+<% end %>
 </div>
 <%= render :partial => "template-upload" %>
-<%= render :partial => "template-download" %>
+<%#= render :partial => "template-download" %>

@@ -121,8 +121,7 @@
 
 
 $(function () {
-
-    $('.fileupload-content').append('<div id="loading"></div>');
+    //$('.fileupload-content').append('<div id="loading"></div>');
 
     var inputs = $('#new_picture :input[type=text]');
     
@@ -146,6 +145,7 @@ $(function () {
     
     // 
     // Load existing files:
+    /*
     $.getJSON($('#fileupload form').prop('action'), function (files) {
         var fu = $('#fileupload').data('fileupload');
         //fu._adjustMaxNumberOfFiles(-files.length);
@@ -169,7 +169,7 @@ $(function () {
             .prop('src', this.href)
             .appendTo('body');
     });
-    
+    */
     
     $('#fileupload').bind('fileuploadsend', function (e, data) {
       
