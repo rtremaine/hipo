@@ -1,4 +1,4 @@
-<!--script id="template-upload" type="text/x-jquery-tmpl">
+<script id="template-upload" type="text/x-jquery-tmpl">
   <tr class="template-upload{{if error}} ui-state-error{{/if}}">
       <td class="preview"></td>
       <td class="name">${name}</td>
@@ -14,36 +14,8 @@
           </td>
       {{else}}
           <td class="progress"><div></div></td>
-          <td class="start"><button>Start</button></td>
+          <td class="start"><button>ddd Start</button></td>
       {{/if}}
-      <td class="cancel"><button>Cancel</button></td>
+      <td class="cancel"><button>ddd Cancel</button></td>
   </tr>
-</script-->
-<script id="template-upload" type="text/x-tmpl">
-{% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-    <tr class="template-upload fade">
-        <td class="preview"><span class="fade"></span></td>
-        <td class="name">{%=file.name%}</td>
-        <td class="size">{%=o.formatFileSize(file.size)%}</td>
-        {% if (file.error) { %}
-            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-        {% } else if (o.files.valid && !i) { %}
-            <td>
-                <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
-            </td>
-            <td class="start">{% if (!o.options.autoUpload) { %}
-                <button class="btn btn-primary">
-                    <i class="icon-upload icon-white"></i> {%=locale.fileupload.start%}
-                </button>
-            {% } %}</td>
-        {% } else { %}
-            <td colspan="2"></td>
-        {% } %}
-        <td class="cancel">{% if (!i) { %}
-            <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i> {%=locale.fileupload.cancel%}
-            </button>
-        {% } %}</td>
-    </tr>
-{% } %}
 </script>

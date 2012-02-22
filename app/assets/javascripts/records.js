@@ -4,7 +4,6 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require jquery.fileupload-ui
-//= require shadowbox
 //
 
 (function ($) {
