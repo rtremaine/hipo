@@ -15,8 +15,16 @@
   <%= f.hidden_field :stripe_card_token %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="field">
+      <%= label_tag :name, "Credit Card Holder's Name " %>
+      <%= text_field_tag :name, nil, name: nil %>
+  </div>
+  <div class="field">
       <%= label_tag :card_number, "Credit Card Number " %>
       <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+  <div class="field">
+      <%= label_tag :address_zip, "Zip code"%>
+      <%= text_field_tag :address_zip, nil, name: nil %>
   </div>
   <div class="field">
       <%= label_tag :card_code, "Security Code on Card (CVV)" %>
