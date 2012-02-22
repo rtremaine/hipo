@@ -2,12 +2,17 @@
 
 <p>
   <b>User:</b>
-  <%= @subscription.user_id %>
+  <%= @subscription.user.email %>
 </p>
 
 <p>
-  <b>Active:</b>
-  <%= @subscription.active %>
+  <b>Plan:</b>
+  <%= @subscription.plan.name %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= @subscription.stripe_customer_token %>
 </p>
 
 
