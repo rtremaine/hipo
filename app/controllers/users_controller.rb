@@ -8,4 +8,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def cancel
+    @user = User.find(params[:id])
+    if @user
+      @user.stripe_cancel_subscription
+      @user.subscription.active = false
+      @user.subscription.save
+    end
+  end
 end

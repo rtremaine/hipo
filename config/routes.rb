@@ -9,9 +9,14 @@ Hippo::Application.routes.draw do
   resources :patients
 
   match "searchall" => "dentists#searchall"
+  #match "cancel" => "users#cancel_subscription"
   resources :dentists
   resources :companies
-
+  resources :users do
+    member do
+      get 'cancel'
+    end
+  end
   devise_for :users
   resources :users, :only => [:show]
 
