@@ -3,13 +3,14 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_one :subscription
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   def stripe_token
-    if s = Subscription.find_by_user_id(self.id)
-      return s.stripe_customer_token
+    if self.subscription
+      return self.subscription.stripe_customer_token
     else
       return nil
     end
