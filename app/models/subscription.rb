@@ -5,7 +5,20 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :user_id
   
   attr_accessor :stripe_card_token
-  
+
+  def refresh
+    s = self.user.stripe_subscription
+
+    if s
+      self.current_period_start = Time.at(s.current_period_start).to_datetime
+      self.current_period_end = Time.at(s.current_period_end).to_datetime
+      self.trial_start = Time.at(s.trial_start).to_datetime
+      self.trial_end = Time.at(s.trial_end).to_datetime
+      self.status = s.status
+      self.save
+    end
+  end
+
   def save_with_payment
     if valid?
       customer = Stripe::Customer.create(email: self.user.email, plan: plan_id, card: stripe_card_token)

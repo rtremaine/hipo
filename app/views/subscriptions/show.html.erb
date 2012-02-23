@@ -15,6 +15,9 @@
   <%= @subscription.stripe_customer_token %>
 </p>
 
+<% @user = @subscription.user %>
+
+<%= render 'user' %>
 
 <%= link_to 'Edit', edit_subscription_path(@subscription) %> |
 <%= link_to 'Back', subscriptions_path %>
