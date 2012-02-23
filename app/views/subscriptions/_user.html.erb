@@ -1,0 +1,30 @@
+<% s = @user.subscription %>
+
+<div class='row'>
+  <div class='span6'>
+    <h2>
+      <%= s.status %> user.
+    </h2>
+
+    <p>
+      Your next invoice will be on <span class='big'><%= Time.at(@user.stripe_upcoming.next_payment_attempt).to_date.to_s(:long) %></span> for 
+      <span class='big'><%= number_to_currency(@user.stripe_upcoming.amount_due  / 100) %></span>
+    </p>
+  </div>
+  <div class='span6'>
+    <h2>
+      Invoices
+    </h2>
+    <ul>
+      <% invoices = @user.stripe_invoices.first %> 
+      <% invoices.each do |invoice| %>
+        <li>
+          <%= Time.at(invoice['date']).to_date.to_s(:long) %>
+          <%= invoice['paid'] ? ' paid ' : ' billed ' %> 
+          <%= invoice['amount_due'] ? number_to_currency(invoice['amount_due'] / 100) : '$0.00' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
