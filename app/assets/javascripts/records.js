@@ -50,8 +50,7 @@ $(function () {
         // Load existing files:
         $('#fileupload').each(function () {
             var that = this;
-            return;
-            $.getJSON(this.action, function (result) {
+            $.getJSON(this.action + '?format=json', function (result) {
                 if (result && result.length) {
                     $(that).fileupload('option', 'done')
                         .call(that, null, {result: result});
