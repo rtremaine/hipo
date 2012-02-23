@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222164622) do
+ActiveRecord::Schema.define(:version => 20120222163942) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -63,10 +63,14 @@ ActiveRecord::Schema.define(:version => 20120222164622) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "active"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "plan_id"
-    t.string   "stripe_customer_token"
+    t.datetime "current_period_end"
+    t.datetime "current_period_start"
+    t.string   "status"
+    t.datetime "trial_end"
+    t.datetime "trial_start"
   end
 
   create_table "users", :force => true do |t|

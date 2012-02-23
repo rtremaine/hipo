@@ -1,2 +1,32 @@
-<%= @user.email %>
+<h1>
+  <%= @user.email %>
+</h1>
+
+<h2>
+  Subscription
+</h3>
+<table>
+  <tr>
+    <th>
+      Starts
+    </th>
+    <th>
+      Ends
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+      Trial Start
+    </th>
+    <th>
+      Trial End
+    </th>
+  </tr>
+  <tr>
+    <td>
+</table>
+
 <%= @user.stripe_invoices %>
+<hr/>
+<%= @user.stripe_upcoming %>

@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     Stripe::Customer.retrieve(self.stripe_token) if self.stripe_token
   end
 
+  def stripe_subscription
+    Stripe::Customer.retrieve(self.stripe_token).subscription if self.stripe_token
+  end
+
   def stripe_upcoming
     Stripe::Invoice.upcoming(:customer => self.stripe_token)
   end
