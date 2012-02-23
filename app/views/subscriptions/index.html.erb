@@ -3,7 +3,9 @@
 <table>
   <tr>
     <th>User</th>
+    <th>Plan</th>
     <th>Active</th>
+    <th>Token</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +15,7 @@
   <tr>
     <td><%= subscription.user.email %></td>
     <td><%= subscription.plan.name %></td>
+    <td><%= subscription.active ? 'yes' : 'no' %></td>
     <td><%= subscription.stripe_customer_token %></td>
     <td><%= link_to 'Show', subscription %></td>
     <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
