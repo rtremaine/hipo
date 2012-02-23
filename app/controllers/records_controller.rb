@@ -43,11 +43,9 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render json: @record, status: :created, location: @record }
+        format.json { render :json => [ @record.to_jq_upload ].to_json }
       else
-        format.html { render action: "new" }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
+        format.json { render :json => [ @record.to_jq_upload.merge({ :error => "custom_failure" }) ].to_json }
       end
     end
   end
@@ -76,7 +74,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to records_url }
-      format.json { head :no_content }
+      format.json { render :json => true }
     end
   end
 end
