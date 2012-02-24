@@ -1,5 +1,6 @@
 Hippo::Application.routes.draw do
 
+  devise_for :users
   resources :plans
 
   resources :subscriptions
@@ -17,7 +18,6 @@ Hippo::Application.routes.draw do
       get 'cancel'
     end
   end
-  devise_for :users
   resources :users, :only => [:show]
 
   # The priority is based upon order of creation:

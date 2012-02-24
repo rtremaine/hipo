@@ -40,6 +40,12 @@ gem 'will_paginate'
 gem 'carrierwave'
 gem 'stripe'
 
+group :development do
+  gem 'guard'
+  gem 'guard-rake'
+  gem 'ruby_gntp' 
+end
+
 # for all you ruby-debug haters out there
 begin
   if (Gem::Specification::find_by_name "ruby-debug-base19", ">= 0.11.26")

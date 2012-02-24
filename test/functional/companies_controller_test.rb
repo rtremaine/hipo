@@ -2,6 +2,10 @@ require 'test_helper'
 
 class CompaniesControllerTest < ActionController::TestCase
   setup do
+    @user = users(:one)
+    #sign_in @user 
+    #sign_out @user 
+
     @company = companies(:one)
   end
 
@@ -18,7 +22,9 @@ class CompaniesControllerTest < ActionController::TestCase
 
   test "should create company" do
     assert_difference('Company.count') do
+      sign_in @user 
       post :create, company: @company.attributes
+      sign_out @user 
     end
 
     assert_redirected_to company_path(assigns(:company))
@@ -30,18 +36,24 @@ class CompaniesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    sign_in @user 
     get :edit, id: @company
+    sign_out @user 
     assert_response :success
   end
 
   test "should update company" do
+    sign_in @user 
     put :update, id: @company, company: @company.attributes
+    sign_out @user 
     assert_redirected_to company_path(assigns(:company))
   end
 
   test "should destroy company" do
     assert_difference('Company.count', -1) do
+      sign_in @user 
       delete :destroy, id: @company
+      sign_out @user 
     end
 
     assert_redirected_to companies_path

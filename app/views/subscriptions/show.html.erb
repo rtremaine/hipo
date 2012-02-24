@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>User:</b>
-  <%= @subscription.user.email %>
-</p>
+<center>
+  <h1>
+    <%= @subscription.user.email %>
+  </h1>
+</center>
 
 <p>
   <b>Plan:</b>
@@ -13,6 +12,11 @@
 <p>
   <b>Token:</b>
   <%= @subscription.stripe_customer_token %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @subscription.active ? 'yes' : 'no' %>
 </p>
 
 <% @user = @subscription.user %>
