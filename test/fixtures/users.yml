@@ -7,9 +7,7 @@
 one:
   id: 1
   email: t@t.com
-  encrypted_password: $2a$10$Bb5vJkS8An0J/GiHD0AecOUcaT9nbrnPBDrpExtEuWw2G1SJ.hFTS
 
 two:
   id: 2
-  email: g@gcom
-  encrypted_password: abcdef1
+  email: g@g.com
