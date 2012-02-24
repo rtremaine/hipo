@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   patient_id: 1
   file_name: MyString
 
 two:
+  id: 2
   patient_id: 1
   file_name: MyString

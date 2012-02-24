@@ -24,6 +24,7 @@ class Subscription < ActiveRecord::Base
       customer = Stripe::Customer.create(email: self.user.email, plan: plan_id, card: stripe_card_token)
       self.stripe_customer_token = customer.id
       save!
+      self.refresh
     end
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"

@@ -3,24 +3,21 @@ Hippo::Application.routes.draw do
   resources :record_sets
 
   resources :plans
-
   resources :subscriptions
-
   resources :records
-
   resources :patients
-
   match "searchall" => "dentists#searchall"
-  #match "cancel" => "users#cancel_subscription"
   resources :dentists
   resources :companies
-  resources :users do
-    member do
-      get 'cancel'
-    end
-  end
   devise_for :users
-  resources :users, :only => [:show]
+  #
+  #match "cancel" => "users#cancel_subscription"
+  #resources :users do
+  #  member do
+  #    get 'cancel'
+  #  end
+  #end
+  #resources :users, :only => [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
