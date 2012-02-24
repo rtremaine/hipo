@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222163942) do
+ActiveRecord::Schema.define(:version => 20120224153157) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -52,20 +52,30 @@ ActiveRecord::Schema.define(:version => 20120222163942) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "record_sets", :force => true do |t|
+    t.integer  "patient_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "records", :force => true do |t|
     t.integer  "patient_id"
-    t.string   "file_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "description"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "record"
+    t.integer  "record_set_id"
   end
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "active"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "plan_id"
+    t.string   "stripe_customer_token"
     t.datetime "current_period_end"
     t.datetime "current_period_start"
     t.string   "status"

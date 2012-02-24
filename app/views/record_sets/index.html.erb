@@ -1,0 +1,27 @@
+<h1>Listing record_sets</h1>
+
+<table>
+  <tr>
+    <th>Patient</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @record_sets.each do |record_set| %>
+  <tr>
+    <td><%= record_set.patient_id %></td>
+    <td><%= record_set.name %></td>
+    <td><%= record_set.description %></td>
+    <td><%= link_to 'Show', record_set %></td>
+    <td><%= link_to 'Edit', edit_record_set_path(record_set) %></td>
+    <td><%= link_to 'Destroy', record_set, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Record set', new_record_set_path %>

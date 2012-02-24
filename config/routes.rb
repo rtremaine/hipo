@@ -1,5 +1,7 @@
 Hippo::Application.routes.draw do
 
+  resources :record_sets
+
   resources :plans
 
   resources :subscriptions
