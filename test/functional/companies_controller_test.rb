@@ -10,14 +10,18 @@ class CompaniesControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
+    sign_in @user
     get :index
     assert_response :success
     assert_not_nil assigns(:companies)
+    sign_out @user
   end
 
   test "should get new" do
+    sign_in @user
     get :new
     assert_response :success
+    sign_out @user
   end
 
   test "should create company" do
@@ -31,8 +35,10 @@ class CompaniesControllerTest < ActionController::TestCase
   end
 
   test "should show company" do
+    sign_in @user
     get :show, id: @company
     assert_response :success
+    sign_out @user
   end
 
   test "should get edit" do

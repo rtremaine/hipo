@@ -9,14 +9,18 @@ class DentistsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
+    sign_in @user
     get :index
     assert_response :success
     assert_not_nil assigns(:dentists)
+    sign_out @user
   end
 
   test "should get new" do
+    sign_in @user
     get :new
     assert_response :success
+    sign_out @user
   end
 
   test "should create dentist" do
@@ -30,8 +34,10 @@ class DentistsControllerTest < ActionController::TestCase
   end
 
   test "should show dentist" do
+    sign_in @user
     get :show, id: @dentist
     assert_response :success
+    sign_out @user
   end
 
   test "should get edit" do
@@ -54,8 +60,6 @@ class DentistsControllerTest < ActionController::TestCase
       delete :destroy, id: @dentist
       sign_out @user
     end
-
-
     assert_redirected_to dentists_path
   end
 end

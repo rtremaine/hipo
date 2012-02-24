@@ -40,9 +40,11 @@ gem 'will_paginate'
 gem 'carrierwave'
 gem 'stripe'
 
-group :development do
+group :development, :testing do
+  gem 'capybara'
   gem 'guard'
   gem 'guard-rake'
+  gem 'launchy'
   gem 'ruby_gntp' 
 end
 

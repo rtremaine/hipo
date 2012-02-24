@@ -6,7 +6,7 @@
 
 <p>
   <b>Plan:</b>
-  <%= @subscription.plan.name %>
+  <%= @subscription.plan.name if @subscription.plan %>
 </p>
 
 <p>

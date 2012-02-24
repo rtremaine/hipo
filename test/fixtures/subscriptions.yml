@@ -3,7 +3,9 @@
 one:
   user_id: 1
   active: false
+  plan_id: 1
 
 two:
   user_id: 1
   active: false
+  plan_id: 2
