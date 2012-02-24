@@ -11,4 +11,3 @@ u.password = 'bondaxe'
 u.password_confirmation = 'bondaxe'
 u.save!
 puts u.to_yaml
-
