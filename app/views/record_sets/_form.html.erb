@@ -27,3 +27,52 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= form_for @record, :html=> { :multipart => true, :id => 'fileupload' } do |f| %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+        <% @record.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :patient_id %><br />
+    <%= f.number_field :patient_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <br />
+  <div class="row fileupload-buttonbar">
+    <div id="span7">
+      <label class="btn btn-success fileinput-button">
+        <span><i class="icon-plus icon-white"></i> add files...</span>
+        <%= f.file_field :record %>
+      </label>
+      <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
+      <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
+      <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
+      <input type="checkbox" class="toggle">
+    </div>
+    <div class="span5">
+      <!-- The global progress bar -->
+      <div class="progress progress-success progress-striped active fade">
+        <div class="bar" style="width:0%;"></div>
+      </div>
+    </div>
+  </div>
+  <!-- The loading indicator is shown during image processing -->
+  <div class="fileupload-loading"></div>
+  <br>
+  <!-- The table listing the files available for upload/download -->
+  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+<% end %>
+<%= render :partial => "/records/template-upload" %>
+<%= render :partial => "/records/template-download" %>

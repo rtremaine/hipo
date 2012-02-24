@@ -35,6 +35,7 @@ class RecordSetsController < ApplicationController
   # GET /record_sets/1/edit
   def edit
     @record_set = RecordSet.find(params[:id])
+    @record = Record.new
   end
 
   # POST /record_sets
