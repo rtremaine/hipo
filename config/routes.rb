@@ -11,13 +11,14 @@ Hippo::Application.routes.draw do
   resources :companies
   devise_for :users
   #
+  resources :users do
+    member do
+      get 'cancel'
+    end
+  end
+
   #match "cancel" => "users#cancel_subscription"
-  #resources :users do
-  #  member do
-  #    get 'cancel'
-  #  end
-  #end
-  #resources :users, :only => [:show]
+  resources :users, :only => [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
