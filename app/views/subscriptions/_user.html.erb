@@ -1,35 +1,41 @@
-<% s = @user.subscription %>
+<% if @user.active_subscription %>
+  <% s = @user.active_subscription %>
 
-<div class='row'>
-  <div class='span6'>
-    <h2>
-      Subscription is <%= s.active ? " active " : " inactive" %>
-    </h2>
-    <strong><%= s.status %></strong> user.
+  <div class='row'>
+    <div class='span6'>
+      <h2>
+        Subscription is <%= s.active ? " active " : " inactive" %>
+      </h2>
+      <strong><%= s.status %></strong> user.
 
-    <p>
-      <% if @user.stripe_upcoming.amount_due > 0 %>
-      Your next invoice will be on <span class='big'><%= Time.at(@user.stripe_upcoming.next_payment_attempt).to_date.to_s(:long) %></span> for 
-      <span class='big'><%= number_to_currency(@user.stripe_upcoming.amount_due  / 100) %></span>
-    <% else %>
-      No upcoming invoices.
-    <% end %>
-    </p>
+      <p>
+        <% if @user.stripe_upcoming.amount_due > 0 %>
+          Your next invoice will be on <span class='big'><%= Time.at(@user.stripe_upcoming.next_payment_attempt).to_date.to_s(:long) %></span> for 
+          <span class='big'><%= number_to_currency(@user.stripe_upcoming.amount_due  / 100) %></span>
+        <% else %>
+          No upcoming invoices.
+        <% end %>
+      </p>
+    </div>
+    <div class='span6'>
+      <h2>
+        Invoices
+      </h2>
+      <ul>
+        <% invoices = @user.stripe_invoices.first %> 
+        <% invoices.each do |invoice| %>
+          <li>
+            <%= Time.at(invoice['date']).to_date.to_s(:long) %>
+            <%= invoice['paid'] ? ' paid ' : ' billed ' %> 
+            <%= invoice['amount_due'] ? number_to_currency(invoice['amount_due'] / 100) : '$0.00' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  <div class='span6'>
-    <h2>
-      Invoices
-    </h2>
-    <ul>
-      <% invoices = @user.stripe_invoices.first %> 
-      <% invoices.each do |invoice| %>
-        <li>
-          <%= Time.at(invoice['date']).to_date.to_s(:long) %>
-          <%= invoice['paid'] ? ' paid ' : ' billed ' %> 
-          <%= invoice['amount_due'] ? number_to_currency(invoice['amount_due'] / 100) : '$0.00' %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<% else %>
+  <p>
+  No active subscription.
+</p>
+<% end %>
 

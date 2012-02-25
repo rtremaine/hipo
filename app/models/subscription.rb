@@ -33,6 +33,7 @@ class Subscription < ActiveRecord::Base
       self.trial_start = Time.at(s.trial_start).to_datetime
       self.trial_end = Time.at(s.trial_end).to_datetime
       self.status = s.status
+      self.active = s.status == 'trialing' or s.status == 'active' ? true : false
       self.save
   end
 

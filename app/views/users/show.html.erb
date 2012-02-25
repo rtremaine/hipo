@@ -9,4 +9,6 @@
 
 <%= render 'subscriptions/user' %>
 
-<%= link_to 'Cancel subscription', cancel_user_path %>
+<% if @user.active_subscription %>
+  <%= link_to 'Cancel subscription', cancel_user_path %>
+<% end %>

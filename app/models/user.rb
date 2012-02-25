@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :stripe_customer_token
 
+  def active_subscription
+    Subscription.where(:user_id => self.id, :active => true).first
+  end
+
   def stripe_customer
     Stripe::Customer.retrieve(self.stripe_customer_token) if self.stripe_customer_token
   end
@@ -18,9 +22,10 @@ class User < ActiveRecord::Base
   end
 
   def stripe_cancel_subscription
-    self.stripe_customer.cancel_subscription
-    self.subscription.active = false
-    self.subscription.save!
+    s = self.stripe_customer.cancel_subscription
+    if self.active_subscription
+      self.active_subscription.refresh_subscription(s)
+    end
   end
 
   def stripe_delete

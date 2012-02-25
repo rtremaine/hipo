@@ -13,5 +13,6 @@ class UsersController < ApplicationController
     if @user
       @user.stripe_cancel_subscription
     end
+    redirect_to current_user, notice: 'Subscription cancelled.'
   end
 end
