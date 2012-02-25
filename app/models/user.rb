@@ -6,30 +6,13 @@ class User < ActiveRecord::Base
   has_one :subscription
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-
-  def stripe_token
-    if self.subscription
-      return self.subscription.stripe_customer_token
-    else
-      return nil
-    end
-  end
+  attr_accessible :email, :password, :password_confirmation, 
+    :remember_me, :stripe_customer_token
 
   def stripe_customer
-    Stripe::Customer.retrieve(self.stripe_token) if self.stripe_token
+    Stripe::Customer.retrieve(self.stripe_customer_token) if self.stripe_customer_token
   end
 
-  def stripe_subscription
-    c = Stripe::Customer.retrieve(self.stripe_token) if self.stripe_token
-    begin 
-      if c.subscription
-        return c.subscription
-      end
-    rescue
-      return nil
-    end
-  end
 
   def stripe_upcoming
     Stripe::Invoice.upcoming(:customer => self.stripe_token)
@@ -37,6 +20,11 @@ class User < ActiveRecord::Base
 
   def stripe_cancel_subscription
     self.stripe_customer.cancel_subscription
+    self.subscription.delete
+  end
+
+  def stripe_delete
+    self.stripe_customer.delete
   end
 
   def stripe_invoices
