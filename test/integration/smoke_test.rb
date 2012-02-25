@@ -27,11 +27,20 @@ class SmokeTest < ActionController::IntegrationTest
     fill_in "address_zip", :with=> '02043'
     fill_in "card_number", :with=> '4242424242424242'
     select "January", :from=> 'card_month'
-    select "2014", :from=> 'card_year'
-    fill_in "card_code", :with=> '111'
+    select "2015", :from=> 'card_year'
+    fill_in "card_code", :with=> '123'
     click_button "Subscribe"
 
-#    assert page.has_content?('Subscription was successfully created.')
- #   assert page.has_content?('Plan: Basic')
+    print page.html
+    assert page.has_content?('Subscription was successfully created.')
+    assert page.has_content?('Plan: Basic')
+    assert page.has_content?('Subscription is active')
+    assert page.has_content?('99.00')
+
+    visit '/users/1/'
+    assert page.has_content?('Cancel subscription')
+    click_link 'Cancel subscription'
+    assert page.has_content?('Subscription cancelled.')
+    assert page.has_content?('No active subscription.')
   end
 end

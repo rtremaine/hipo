@@ -3,9 +3,9 @@
 one:
   id: 1
   patient_id: 1
-  file_name: MyString
+  description: MyString
 
 two:
   id: 2
   patient_id: 1
-  file_name: MyString
+  description: MyString
