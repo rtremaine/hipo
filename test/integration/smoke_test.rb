@@ -31,6 +31,7 @@ class SmokeTest < ActionController::IntegrationTest
     fill_in "card_code", :with=> '111'
     click_button "Subscribe"
 
-
+#    assert page.has_content?('Subscription was successfully created.')
+ #   assert page.has_content?('Plan: Basic')
   end
 end
