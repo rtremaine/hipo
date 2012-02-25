@@ -13,14 +13,14 @@ class User < ActiveRecord::Base
     Stripe::Customer.retrieve(self.stripe_customer_token) if self.stripe_customer_token
   end
 
-
   def stripe_upcoming
-    Stripe::Invoice.upcoming(:customer => self.stripe_token)
+    Stripe::Invoice.upcoming(:customer => self.stripe_customer_token)
   end
 
   def stripe_cancel_subscription
     self.stripe_customer.cancel_subscription
-    self.subscription.delete
+    self.subscription.active = false
+    self.subscription.save!
   end
 
   def stripe_delete
@@ -34,7 +34,8 @@ class User < ActiveRecord::Base
     has_more = true
 
     while has_more
-      is = Stripe::Invoice.all(:customer => self.stripe_token, :count => count, :offset => offset)
+      is = Stripe::Invoice.all(:customer => self.stripe_customer_token, 
+                               :count => count, :offset => offset)
       if is.count == count 
         offset = offset + 10
         invoices << is.data

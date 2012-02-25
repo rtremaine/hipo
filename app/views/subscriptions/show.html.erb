@@ -11,12 +11,7 @@
 
 <p>
   <b>Token:</b>
-  <%= @subscription.stripe_customer_token %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%= @subscription.active ? 'yes' : 'no' %>
+  <%= @subscription.user.stripe_customer_token %>
 </p>
 
 <% @user = @subscription.user %>
