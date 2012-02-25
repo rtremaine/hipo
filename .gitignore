@@ -16,5 +16,4 @@
 web.sh
 Gemfile
 Gemfile.lock
-config/initializers/stripe.rb
 public/uploads
