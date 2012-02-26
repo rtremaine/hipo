@@ -2,6 +2,8 @@ require 'integration_test_helper'
 
 class SmokeTest < ActionController::IntegrationTest
   require 'capybara/rails'
+  Capybara.default_driver = :selenium
+
   test 'sign up' do
     visit '/users/sign_up'
     assert page.has_content?('Forgot your password?')
@@ -32,12 +34,10 @@ class SmokeTest < ActionController::IntegrationTest
     click_button "Subscribe"
 
     print page.html
-    assert page.has_content?('Subscription was successfully created.')
-    assert page.has_content?('Plan: Basic')
     assert page.has_content?('Subscription is active')
     assert page.has_content?('99.00')
 
-    visit '/users/1/'
+    visit '/users/3/'
     assert page.has_content?('Cancel subscription')
     click_link 'Cancel subscription'
     assert page.has_content?('Subscription cancelled.')
