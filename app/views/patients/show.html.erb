@@ -52,7 +52,7 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     var template = tmpl('template-record-set');
     var html = template();
 
-    var children = $('#foo').html(html).children();
+    $('#foo').prepend(html);
     //children[0].toggleClass('in');
   }
 </script>
