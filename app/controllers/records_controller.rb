@@ -3,10 +3,12 @@ class RecordsController < ApplicationController
   # GET /records.json
   def index
     #TODO add security here
-    @records = Record.find_all_by_record_set_id(params[:record_set_id].to_i)
+    record_set = RecordSet.find_by_id(params[:record_set_id].to_i)
+    records = Record.find_all_by_record_set_id(record_set.id)
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @records.collect {|r| r.to_jq_upload }.to_json }
+      format.json { render json: records.collect {|r| r.to_jq_upload }.to_json }
     end
   end
 
@@ -41,6 +43,8 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(params[:record])
+    record_set = RecordSet.find_by_id(params[:record][:record_set_id])
+    @record.patient_id = record_set.patient_id
 
     respond_to do |format|
       if @record.save
