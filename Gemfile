@@ -44,6 +44,7 @@ group :development, :testing do
   gem 'capybara'
   gem 'guard'
   gem 'guard-rake'
+  gem 'growl'
   gem 'launchy'
   gem 'ruby_gntp' 
 end
