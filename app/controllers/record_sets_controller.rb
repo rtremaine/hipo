@@ -25,6 +25,7 @@ class RecordSetsController < ApplicationController
   # GET /record_sets/new.json
   def new
     @record_set = RecordSet.new
+    @record = Record.new
 
     respond_to do |format|
       format.html # new.html.erb
