@@ -50,7 +50,12 @@ $(function () {
         // Load existing files:
         $('#fileupload').each(function () {
             var that = this;
-            $.getJSON(this.action + '?format=json', function (result) {
+            var recordSetId = $('#record_record_set_id');
+            if (!recordSetId.length) {
+              alert('invalid record set id');
+            }
+
+            $.getJSON(this.action + '?format=json&record_set_id=' + recordSetId.val(), function (result) {
                 if (result && result.length) {
                     $(that).fileupload('option', 'done')
                         .call(that, null, {result: result});

@@ -2,7 +2,8 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    #TODO add security here
+    @records = Record.find_all_by_record_set_id(params[:record_set_id].to_i)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @records.collect {|r| r.to_jq_upload }.to_json }
