@@ -29,7 +29,7 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     <td class="description"><%= record_set.description %></td>
     <td class="date"><%= record_set.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
     <td><%= record_set.records.count %></td>
-    <td><%= link_to 'Show', record_set, :class => 'btn btn-success start' %></td>
+    <td><%#= link_to 'Show', record_set, :class => 'btn btn-success start' %></td>
     <td><%= link_to 'Edit', edit_record_set_path(record_set), :class => 'btn btn-primary start' %></td>
     <td><%= link_to 'Destroy', record_set, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger delete' %></td>
   </tr>
