@@ -13,15 +13,22 @@ class SmokeTest < ActionController::IntegrationTest
     click_button "Sign up"
     assert page.has_content?('Welcome! You have signed up successfully.')
     assert page.has_content?('thealey@gmail.com')
+  end
+
+  test 'sign out' do
     click_link_or_button "Sign out"
     assert page.has_content?('You need to sign in')
+  end
 
-    visit '/users/sign_in'
-    fill_in "user_email", :with=> "thealey@gmail.com"
-    fill_in "user_password", :with=> "bondaxe"
-    click_button "Sign in"
+  test 'sign in' do
+  visit '/users/sign_in'
+  fill_in "user_email", :with=> "thealey@gmail.com"
+  fill_in "user_password", :with=> "bondaxe"
+  click_button "Sign in"
     assert page.has_content?('Signed in successfully.')
-
+  end
+  
+  test 'subscribe' do 
     visit '/subscriptions'
     assert page.has_content?('New Subscription')
     click_link 'New Subscription'
@@ -33,10 +40,6 @@ class SmokeTest < ActionController::IntegrationTest
     select "2015", :from=> 'card_year'
     click_button "Subscribe"
 
-    #assert page.has_content?('Subscription is active')
-    #assert page.has_content?('99.00')
-
-    #visit '/users/3/'
     assert page.has_content?('Cancel subscription')
     click_link 'Cancel subscription'
     assert page.has_content?('Subscription cancelled.')

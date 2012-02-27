@@ -5,12 +5,6 @@ class RecordSetsControllerTest < ActionController::TestCase
     @record_set = record_sets(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:record_sets)
-  end
-
   test "should get new" do
     get :new
     assert_response :success

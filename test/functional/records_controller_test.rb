@@ -8,14 +8,6 @@ class RecordsControllerTest < ActionController::TestCase
     #sign_out @user 
   end
 
-  test "should get index" do
-    sign_in @user
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:records)
-    sign_out @user 
-  end
-
   test "should get new" do
     sign_in @user
     get :new
