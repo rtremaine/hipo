@@ -25,6 +25,6 @@ class Record < ActiveRecord::Base
   end
 
   def is_image?
-    [".jpg", ".png", ".gif"].include?(File.extname(record.to_s).downcase)
+    %w(.png .jpg .jpeg .bmp .gif .tif .tiff).include?(File.extname(record.to_s).downcase)
   end
 end

@@ -34,7 +34,7 @@
           <% if r.is_image? %>
             <center>
               <br>
-              <%= image_tag(r.record, :width => 100) %>
+              <%= image_tag(r.record.thumb.url) %>
               </br>
               <small>
                 <%= r.name %>
