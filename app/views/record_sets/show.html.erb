@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
-
 <center>
   <h1>
-    <%= @record_set.patient.name %>
+    <%= link_to @record_set.patient.name, @record_set.patient %>
   </h1>
+
+  <% if @record_set.patient.dentist %>
+    <h2>
+      <small>
+        Patient of: <%= link_to @record_set.patient.dentist.name, @record_set.patient.dentist %> 
+      </small>
+    </h2>
+  <% end %>
 
   <h2>
     <small>
@@ -28,14 +34,14 @@
           <% if r.is_image? %>
             <center>
               <br>
-              <%= image_tag(r.record, :width => 50) %>
+              <%= image_tag(r.record, :width => 100) %>
               </br>
               <small>
-                <%= r.record.to_s %>
+                <%= r.name %>
               </small>
             </center>
           <% else %>
-            <%= r.record.to_s %>
+            <%= r.name %>
           <% end %>
         </div>
         <% if counter == 2 %>
