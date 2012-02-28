@@ -41,6 +41,7 @@ class AdminTest < ActionController::IntegrationTest
     visit '/subscriptions'
     #TODO: should put strings like this in i8n files
     assert page.has_content?('You must be an administrator to access this section')
+    click_link "Sign out"
   end
 
 end

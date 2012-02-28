@@ -11,4 +11,7 @@
 
 <% if @user.active_subscription %>
   <%= link_to 'Cancel subscription', cancel_user_path %>
+<% else %>
+  <%= link_to 'Subscribe', new_subscription_path %>
 <% end %>
+

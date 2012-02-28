@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin
 
   # GET /subscriptions
   # GET /subscriptions.json
@@ -8,19 +7,26 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Subscription.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @subscriptions }
+      if current_user.is_admin
+        format.html
+        format.json
+      else
+        format.html { redirect_to root_url, :notice => 'You must be an administrator to access this section' }
+        format.json { redirect_to json: @root_url }
+      end
     end
   end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @subscription = Subscription.find(params[:id])
+    if false
+      @subscription = Subscription.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @subscription }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @subscription }
+      end
     end
   end
 
