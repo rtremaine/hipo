@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :patient_id %><br />
-    <%= f.number_field :patient_id %>
+  <div>
+    <h3><%= @record_set.patient.name %></h3>
   </div>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
