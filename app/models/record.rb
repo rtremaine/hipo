@@ -20,6 +20,10 @@ class Record < ActiveRecord::Base
    }
   end
 
+  def name
+     File.basename(self.record.to_s)
+  end
+
   def is_image?
     [".jpg", ".png", ".gif"].include?(File.extname(record.to_s).downcase)
   end
