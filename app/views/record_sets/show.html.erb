@@ -1,20 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Patient:</b>
-  <%= @record_set.patient_id %>
-</p>
+<center>
+<h1>
+<%= @record_set.patient.name %>
+</h1>
+
+<h2>
+  <small>
+    Records: <%= @record_set.name %> - Created <%= @record_set.created_at.to_s(:long) %>
+  </small>
+</h2>
 
 <p>
-  <b>Name:</b>
-  <%= @record_set.name %>
-</p>
-
-<p>
-  <b>Description:</b>
   <%= @record_set.description %>
 </p>
-
+</center>
 
 <%= link_to 'Edit', edit_record_set_path(@record_set) %> |
 <%= link_to 'Back', record_sets_path %>
