@@ -11,3 +11,11 @@ one:
 two:
   id: 2
   email: g@g.com
+
+user:
+  id: 4
+  email: user123@g.com
+
+admin:
+  id: 5
+  email: admin@g.com

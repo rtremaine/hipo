@@ -28,11 +28,13 @@
           <li>
             <%= link_to 'Patients', :patients %>
           </li>
-          <li>
-            <%= link_to 'Subscriptions', :subscriptions %>
-          </li>
+          <% if current_user and current_user.is_admin %>
+            <li>
+              <%= link_to 'Subscriptions', :subscriptions %>
+            </li>
+          <% end %>
         </ul>
-          <ul class='nav pull-right'>
+        <ul class='nav pull-right'>
           <% if current_user %>
             <li><%=  link_to current_user.email, current_user %></li>
             <li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>

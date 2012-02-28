@@ -21,13 +21,13 @@ class SmokeTest < ActionController::IntegrationTest
   end
 
   test 'sign in' do
-  visit '/users/sign_in'
-  fill_in "user_email", :with=> "thealey@gmail.com"
-  fill_in "user_password", :with=> "bondaxe"
-  click_button "Sign in"
+    visit '/users/sign_in'
+    fill_in "user_email", :with=> "thealey@gmail.com"
+    fill_in "user_password", :with=> "bondaxe"
+    click_button "Sign in"
     assert page.has_content?('Signed in successfully.')
   end
-  
+
   test 'subscribe' do 
     visit '/subscriptions'
     assert page.has_content?('New Subscription')
