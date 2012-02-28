@@ -13,7 +13,7 @@ class Record < ActiveRecord::Base
     "name" => read_attribute(:record),
     "size" => record.size,
     "url" => record.url,
-    "thumbnail_url" => "/assets/icon_file_lock_24.png", #record.thumb.url,
+    "thumbnail_url" => record.thumb.url,
     "delete_url" => records_path.to_s + "/" + self.id.to_s,
     "delete_type" => "DELETE" 
    }

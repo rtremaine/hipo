@@ -1,1 +1,7 @@
 The dental community is not even going to know what hit them.
+
+
+Setup:
+
+  pre-reqs:
+    sudo apt-get imagemagick

@@ -39,6 +39,8 @@ gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
 gem 'stripe'
+gem 'mini_magick'
+gem "best_in_place", :git => 'git://github.com/proton/best_in_place.git'
 
 group :development, :testing do
   gem 'capybara'
