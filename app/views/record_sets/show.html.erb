@@ -1,20 +1,54 @@
 <p id="notice"><%= notice %></p>
 
 <center>
-<h1>
-<%= @record_set.patient.name %>
-</h1>
+  <h1>
+    <%= @record_set.patient.name %>
+  </h1>
 
-<h2>
-  <small>
-    Records: <%= @record_set.name %> - Created <%= @record_set.created_at.to_s(:long) %>
-  </small>
-</h2>
+  <h2>
+    <small>
+      Records: <%= @record_set.name %> - Created <%= @record_set.created_at.to_s(:long) %>
+    </small>
+  </h2>
 
-<p>
-  <%= @record_set.description %>
-</p>
+  <p>
+    <%= @record_set.description %>
+  </p>
+
+  <p>
+    <%= (rs = @record_set.records.size).to_s %> records.
+  </p>
 </center>
+
+  <% if rs > 0 %>
+    <div class='row'>
+      <% counter = 0 %>
+      <% @record_set.records.each do |r| %>
+        <div class = 'span4'>
+          <% if r.is_image? %>
+            <center>
+              <br>
+              <%= image_tag(r.record, :width => 50) %>
+              </br>
+              <small>
+                <%= r.record.to_s %>
+              </small>
+            </center>
+          <% else %>
+            <%= r.record.to_s %>
+          <% end %>
+        </div>
+        <% if counter == 2 %>
+        </div><!-- /row -->
+        <div class='row'>
+          <% counter = 0 %>
+        <% else %>
+          <% counter = counter + 1 %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
 
 <%= link_to 'Edit', edit_record_set_path(@record_set) %> |
 <%= link_to 'Back', record_sets_path %>

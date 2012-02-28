@@ -18,4 +18,8 @@ class Record < ActiveRecord::Base
     "delete_type" => "DELETE" 
    }
   end
+
+  def is_image?
+    [".jpg", ".png", ".gif"].include?(File.extname(record.to_s))
+  end
 end
