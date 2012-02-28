@@ -5,3 +5,4 @@ Setup:
 
   pre-reqs:
     sudo apt-get imagemagick
+    sudo apt-get minimagick
