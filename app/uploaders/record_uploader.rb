@@ -47,11 +47,11 @@ class RecordUploader < CarrierWave::Uploader::Base
 
   #process :resize_to_fit => [800, 600]
 
-  version :thumb do
+  version :thumb, :if => :image? do
     process :resize_to_fit => [80, 80]
   end
   
-  version :medium do
+  version :medium, :if => :image? do
     process :resize_to_fit => [200, 200]
   end
  
@@ -59,4 +59,10 @@ class RecordUploader < CarrierWave::Uploader::Base
     "#{Rails.root}/tmp/uploads"
   end 
 
+protected
+
+  def image?(new_file)
+    extension = new_file.extension.to_s
+    %w(png jpg jpeg bmp gif tif tiff).include?(extension.downcase)
+  end
 end
