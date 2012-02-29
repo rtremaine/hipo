@@ -4,7 +4,7 @@
 
 <p>
   <b>Ssn:</b>
-  <%= @patient.ssn %>
+  <%= best_in_place @patient, :ssn %>
 </p>
 
 Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist %>

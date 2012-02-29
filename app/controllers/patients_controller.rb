@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+  respond_to :html, :json
   before_filter :authenticate_user!
 
   # GET /patients
@@ -61,7 +62,7 @@ class PatientsController < ApplicationController
   # PUT /patients/1.json
   def update
     @patient = Patient.find(params[:id])
-
+    #@patient.update_attributes(params[:patient])
     respond_to do |format|
       if @patient.update_attributes(params[:patient])
         format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
