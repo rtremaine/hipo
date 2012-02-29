@@ -62,16 +62,8 @@ class PatientsController < ApplicationController
   # PUT /patients/1.json
   def update
     @patient = Patient.find(params[:id])
-    #@patient.update_attributes(params[:patient])
-    respond_to do |format|
-      if @patient.update_attributes(params[:patient])
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
-      end
-    end
+    @patient.update_attributes(params[:patient])
+    respond_with @patient
   end
 
   # DELETE /patients/1

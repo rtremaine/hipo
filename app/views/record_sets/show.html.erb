@@ -13,48 +13,58 @@
 
   <h2>
     <small>
-      Records: <%= @record_set.name %> - Created <%= @record_set.created_at.to_s(:long) %>
+      Records: <%= best_in_place @record_set, :name %> - Created <%= @record_set.created_at.to_s(:long) %>
     </small>
   </h2>
 
   <p>
-    <%= @record_set.description %>
-  </p>
-
-  <p>
-    <%= (rs = @record_set.records.size).to_s %> records.
+    Description: 
+    <%= best_in_place @record_set, :description %>
   </p>
 </center>
 
-  <% if rs > 0 %>
-    <div class='row'>
-      <% counter = 0 %>
-      <% @record_set.records.each do |r| %>
-        <div class = 'span4'>
-          <% if r.is_image? %>
-            <center>
-              <br>
-              <%= image_tag(r.record.thumb.url) %>
-              </br>
-              <small>
-                <%= r.name %>
-              </small>
-            </center>
-          <% else %>
-            <%= r.name %>
-          <% end %>
-        </div>
-        <% if counter == 2 %>
-        </div><!-- /row -->
-        <div class='row'>
-          <% counter = 0 %>
-        <% else %>
-          <% counter = counter + 1 %>
+
+<%= form_for @record, :html=> { :multipart => true, :id => 'fileupload' } do |f| %>
+  <%= f.hidden_field :record_set_id, :value => @record_set.id %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+        <% @record.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-      <% end %>
+      </ul>
     </div>
   <% end %>
 
+  <br />
+  <div class="row fileupload-buttonbar">
+    <div id="span7">
+      <label class="btn btn-success fileinput-button">
+        <span><i class="icon-plus icon-white"></i> add files...</span>
+        <%= f.file_field :record %>
+      </label>
+      <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
+      <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
+      <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
+      <input type="checkbox" class="toggle">
+    </div>
+    <div class="span5">
+      <!-- The global progress bar -->
+      <div class="progress progress-success progress-striped active fade">
+        <div class="bar" style="width:0%;"></div>
+      </div>
+    </div>
+  </div>
+  <!-- The loading indicator is shown during image processing -->
+  <div class="fileupload-loading"></div>
+  <br>
+  <!-- The table listing the files available for upload/download -->
+  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+<% end %>
+<%= render :partial => "/records/template-upload" %>
+<%= render :partial => "/records/template-download" %>
 
 <%= link_to 'Edit', edit_record_set_path(@record_set) %> |
 <%= link_to 'Back', record_sets_path %>

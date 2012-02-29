@@ -1,4 +1,5 @@
 class RecordSetsController < ApplicationController
+  respond_to :html, :json
   # GET /record_sets
   # GET /record_sets.json
   def index
@@ -14,7 +15,7 @@ class RecordSetsController < ApplicationController
   # GET /record_sets/1.json
   def show
     @record_set = RecordSet.find(params[:id])
-
+    @record = Record.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @record_set }
@@ -59,16 +60,8 @@ class RecordSetsController < ApplicationController
   # PUT /record_sets/1.json
   def update
     @record_set = RecordSet.find(params[:id])
-
-    respond_to do |format|
-      if @record_set.update_attributes(params[:record_set])
-        format.html { redirect_to @record_set, notice: 'Record set was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @record_set.errors, status: :unprocessable_entity }
-      end
-    end
+    @record_set.update_attributes(params[:record_set])
+    respond_with @record_set
   end
 
   # DELETE /record_sets/1
