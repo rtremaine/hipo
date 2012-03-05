@@ -19,6 +19,7 @@ class PatientsController < ApplicationController
   # GET /patients/1.json
   def show
     @patient = Patient.find(params[:id])
+    @record_set = RecordSet.new
 
     respond_to do |format|
       format.html # show.html.erb

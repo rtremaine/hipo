@@ -1,14 +1,15 @@
 class RecordsController < ApplicationController
+  respond_to :html, :json
   # GET /records
   # GET /records.json
   def index
     #TODO add security here
-    record_set = RecordSet.find_by_id(params[:record_set_id].to_i)
+    @record_set = RecordSet.find_by_id(params[:record_set_id].to_i)
     records = Record.find_all_by_record_set_id(record_set.id)
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: records.collect {|r| r.to_jq_upload }.to_json }
+      format.json { render json: records.collect {|r| r.to_jq_record }.to_json }
     end
   end
 
@@ -48,9 +49,9 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.json { render :json => [ @record.to_jq_upload ].to_json }
+        format.json { render :json => [ @record.to_jq_record ].to_json }
       else
-        format.json { render :json => [ @record.to_jq_upload.merge({ :error => "custom_failure" }) ].to_json }
+        format.json { render :json => [ @record.to_jq_record.merge({ :error => "custom_failure" }) ].to_json }
       end
     end
   end

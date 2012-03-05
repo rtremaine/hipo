@@ -1,5 +1,13 @@
 <script id="template-record-set" type="text/x-tmpl">
+  {% for(var i=0, recordSets=o.record_sets, l=recordSets.length, recordSet=recordSets[0]; i<l; recordSet=recordSets[++i]) { %}
   <tr class="fade in">
-    <td>This is a template test</td>
+    <td>{%=recordSet.name%}</td>
+    <td>{%=recordSet.description%}</td>
+    <td>tetet</td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
+  {% } %}
 </script>
+

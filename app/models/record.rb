@@ -5,8 +5,8 @@ class Record < ActiveRecord::Base
 
   mount_uploader :record, RecordUploader
 
-  #one convenient method to pass jq_upload the necessary information
-  def to_jq_upload
+  #convenience method to pass jq_upload the necessary information
+  def to_jq_record
   {
     "id" => read_attribute(:id),
     "description" => read_attribute(:description),

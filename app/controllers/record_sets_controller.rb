@@ -3,6 +3,7 @@ class RecordSetsController < ApplicationController
   # GET /record_sets
   # GET /record_sets.json
   def index
+    #TODO: add security check
     @record_sets = RecordSet.all
 
     respond_to do |format|
