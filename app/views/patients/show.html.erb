@@ -54,15 +54,15 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     $('#add_button').hide();
   }
 
-  function createRecordSet() {
+  function createRecordSet($name, $description) {
     $form = $('#new_record_set');
-    $name = $form.find('.record_set_name');
-    $name.attr('value', 'test');
+    $rs_name = $form.find('.record_set_name');
+    $rs_name.val($name.val());
 
     $desc = $form.find('.record_set_description');
-    $desc.attr('value', 'test');
+    $desc.val($description.val());
 
-    $form.bind('ajax:success', function(arg1, arg2) { alert('success'); })
+    //$form.bind('ajax:success', function(arg1, arg2) { alert('success'); })
     $.rails.handleRemote($form);
   }
 </script>
