@@ -19,10 +19,9 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
       <th># of Records</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
-  <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">
+  <tbody class="record_sets" data-toggle="modal-gallery" data-target="#modal-gallery">
 <% @patient.record_sets.each do|record_set| %>
   <tr class="template-download fade in">
     <td class="name"><%= record_set.name %></td>
@@ -30,7 +29,6 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     <td class="date"><%= record_set.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
     <td><%= record_set.records.count %></td>
     <td><%= link_to 'Show', record_set, :class => 'btn btn-success start' %></td>
-    <td><%#= link_to 'Edit', edit_record_set_path(record_set), :class => 'btn btn-primary start' %></td>
     <td><%= link_to 'Destroy', record_set, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger delete' %></td>
   </tr>
 <% end %>
@@ -48,22 +46,34 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     //test(); 
     });
 
-  function test() {
-    var template = tmpl('template-record-set');
+  function addRow() {
+    var template = tmpl('template-record-set-create');
     var html = template();
 
-    $('#foo').prepend(html);
-    //children[0].toggleClass('in');
+    $('.record_sets').prepend(html);
+    $('#add_button').hide();
+  }
+
+  function createRecordSet() {
+    $form = $('#new_record_set');
+    $name = $form.find('.record_set_name');
+    $name.attr('value', 'test');
+
+    $desc = $form.find('.record_set_description');
+    $desc.attr('value', 'test');
+
+    $form.bind('ajax:success', function(arg1, arg2) { alert('success'); })
+    $.rails.handleRemote($form);
   }
 </script>
 
-<button type="submit" onclick="test(); return false;">test</button>
+<%= form_for(@record_set, :html => {:style => 'display: none;'}) do |f| %>
+  <%= hidden_field 'format', :value => 'json' %>
+  <%= f.hidden_field :patient_id, :value => @patient.id %>
+  <%= f.text_field :name, :class=>'record_set_name' %>
+  <%= f.text_field :description, :class => 'record_set_description' %>
+<% end %>
+<button id="add_button" class="btn btn-primary start" type="submit" onclick="addRow(); return false;">test</button>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>column</th>
-    </tr> 
-  </thead> 
-  <tbody id="foo" class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+<%= render :partial => "record_sets/template-record-set-create" %>
 <%= render :partial => "record_sets/template-record-set" %>
