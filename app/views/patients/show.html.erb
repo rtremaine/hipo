@@ -62,13 +62,14 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     $desc = $form.find('.record_set_description');
     $desc.val($description.val());
 
-    //$form.bind('ajax:success', function(arg1, arg2) { alert('success'); })
+    $form.live('ajax:success', function(e) {
+          
+    });
     $.rails.handleRemote($form);
   }
 </script>
 
 <%= form_for(@record_set, :html => {:style => 'display: none;'}) do |f| %>
-  <%= hidden_field 'format', :value => 'json' %>
   <%= f.hidden_field :patient_id, :value => @patient.id %>
   <%= f.text_field :name, :class=>'record_set_name' %>
   <%= f.text_field :description, :class => 'record_set_description' %>
