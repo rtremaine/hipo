@@ -5,9 +5,11 @@
     <td>{%=recordSet.description%}</td>
     <td>{%=recordSet.created_at%}</td>
     <td>0</td>
-    <td></td>
-    <td></td>
-  </tr>
+    <td>
+      <a class="btn btn-success" href="{%=recordSet.show_url%}">Show</td>
+    <td>
+      <a class="btn btn-danger delete" data-type="{%=recordSet.delete_type%}" href="{%=recordSet.delete_url%}" rel="nofollow" data-confirm="Are you sure?">Destroy</td>
+    </tr>
   {% } %}
 </script>
 

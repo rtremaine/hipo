@@ -49,7 +49,7 @@ class RecordSetsController < ApplicationController
     respond_to do |format|
       if @record_set.save
         format.html { redirect_to @record_set, notice: 'Record set was successfully created.' }
-        format.json { render json: @record_set, status: :created, location: @record_set }
+        format.json { render json: [ @record_set.to_jq_record_set ].to_json }
       else
         format.html { render action: "new" }
         format.json { render json: @record_set.errors, status: :unprocessable_entity }
