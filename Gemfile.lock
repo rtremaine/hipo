@@ -50,6 +50,9 @@ GEM
       xpath (~> 0.1.4)
     carrierwave (0.5.8)
       activesupport (~> 3.0)
+    carrierwave_securefile (0.2.3)
+      carrierwave (~> 0.5.8)
+      crypt19 (= 1.2.1)
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
@@ -60,7 +63,7 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     columnize (0.3.6)
-    crypt (1.1.4)
+    crypt19 (1.2.1)
     devise (2.0.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -181,8 +184,8 @@ DEPENDENCIES
   best_in_place!
   capybara
   carrierwave
+  carrierwave_securefile
   coffee-rails (~> 3.2.1)
-  crypt
   devise
   growl
   guard

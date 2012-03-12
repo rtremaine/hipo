@@ -24,6 +24,12 @@ class RecordsController < ApplicationController
     end
   end
 
+  def record
+    decrypted_file = CarrierWave::SecureFile::Downloader.call(RecordUploader, Record.find(params[:id]), :record)
+    send_file decrypted_file[:file], :content_type => decrypted_file[:content_type]
+    File.unlink decrypted_file[:file]
+  end
+
   # GET /records/new
   # GET /records/new.json
   def new

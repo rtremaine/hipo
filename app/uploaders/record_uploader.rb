@@ -5,6 +5,7 @@ class RecordUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  #process :secure_file
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -16,6 +17,9 @@ class RecordUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def secure_file
+    CarrierWave::SecureFile::Uploader.secure_file( model, self.to_s )
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
