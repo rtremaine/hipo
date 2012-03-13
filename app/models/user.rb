@@ -1,13 +1,21 @@
 class User < ActiveRecord::Base
+  include Gravtastic
+  gravtastic
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_one :subscription
+  has_one     :subscription
+  belongs_to  :company
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :stripe_customer_token
+    :remember_me, :stripe_customer_token, :name
+
+  def username
+    self.name ? self.name : self.email
+  end
 
   def active_subscription
     Subscription.where(:user_id => self.id, :active => true).first

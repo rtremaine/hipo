@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120227225317) do
+ActiveRecord::Schema.define(:version => 20120313215441) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20120227225317) do
     t.integer  "company_id"
     t.string   "stripe_customer_token"
     t.boolean  "is_admin",                              :default => false
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

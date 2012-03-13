@@ -43,6 +43,8 @@ gem 'stripe'
 gem 'mini_magick'
 gem "best_in_place", :git => 'git://github.com/proton/best_in_place.git'
 #gem 'crypt'
+gem 'formtastic-bootstrap'
+gem 'gravtastic'
 
 group :development, :testing do
   gem 'capybara'

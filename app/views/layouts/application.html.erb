@@ -22,9 +22,6 @@
             <a class='brand' href="#" >Hippo</a>
           </li>
           <li>
-            <%= link_to 'Dentists', :dentists %>
-          </li>
-          <li>
             <%= link_to 'Patients', :patients %>
           </li>
           <% if current_user and current_user.is_admin %>
@@ -34,13 +31,15 @@
           <% end %>
         </ul>
         <ul class='nav pull-right'>
-          <% if current_user %>
-            <li><%=  link_to current_user.email, current_user %></li>
-            <li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
-          <% else %>
-            <li><%= link_to("Sign in", new_user_session_path ) %></li>
-          <% end %>
-        </ul>
+          <li>
+            <%= image_tag current_user.gravatar_url, :width => '50' %>
+            <% if current_user %>
+              <li><%=  link_to current_user.username, current_user %></li>
+              <li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
+            <% else %>
+              <li><%= link_to("Sign in", new_user_session_path ) %></li>
+            <% end %>
+          </ul>
         </ul>
       </div>
     </div>
