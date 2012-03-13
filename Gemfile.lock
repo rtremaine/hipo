@@ -7,7 +7,6 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://gems.gemfury.com/8n1rdTK8pezvcsyVmmgJ/
   specs:
     actionmailer (3.2.1)
       actionpack (= 3.2.1)
@@ -37,7 +36,6 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.7)
-    archive-tar-minitar (0.5.2)
     arel (3.0.0)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -62,7 +60,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    columnize (0.3.6)
     crypt19 (1.2.1)
     devise (2.0.1)
       bcrypt-ruby (~> 3.0)
@@ -90,8 +87,6 @@ GEM
     launchy (2.0.5)
       addressable (~> 2.2.6)
     libv8 (3.3.10.4)
-    linecache19 (0.5.13)
-      ruby_core_source (>= 0.1.4)
     mail (2.4.1)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -131,16 +126,6 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    ruby-debug-base19 (0.11.26)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby_core_source (>= 0.1.4)
-    ruby-debug19 (0.11.6)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby-debug-base19 (>= 0.11.19)
-    ruby_core_source (0.1.5)
-      archive-tar-minitar (>= 0.5.2)
     ruby_gntp (0.3.4)
     rubyzip (0.9.5)
     sass (3.1.15)
@@ -192,12 +177,9 @@ DEPENDENCIES
   guard-rake
   jquery-rails
   launchy
-  linecache19 (>= 0.5.13)
   mini_magick
   mysql2
   rails (= 3.2.1)
-  ruby-debug-base19 (>= 0.11.26)
-  ruby-debug19
   ruby_gntp
   sass-rails (~> 3.2.3)
   stripe

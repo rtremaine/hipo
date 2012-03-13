@@ -15,12 +15,16 @@ puts u.to_yaml
 u = User.find_or_initialize_by_email('thealey@gmail.com');
 u.password = 'bondaxe'
 u.password_confirmation = 'bondaxe'
-u.save!
-puts u.to_yaml
+if false
+  u.save!
+  puts u.to_yaml
+end
 
 p = Patient.first
-puts p.to_yaml
-p.record_sets = [RecordSet.new({:patient_id => p.id, :name => 'Test 1', :description => 'This is a test'}), 
-  RecordSet.new({:patient_id => p.id, :name => 'Test 2', :description => 'This is a test'}),
-  RecordSet.new({:patient_id => p.id, :name => 'Test 3', :description => 'This is a test'})]
-p.save!
+if p
+  puts p.to_yaml
+  p.record_sets = [RecordSet.new({:patient_id => p.id, :name => 'Test 1', :description => 'This is a test'}), 
+    RecordSet.new({:patient_id => p.id, :name => 'Test 2', :description => 'This is a test'}),
+    RecordSet.new({:patient_id => p.id, :name => 'Test 3', :description => 'This is a test'})]
+  p.save!
+end
