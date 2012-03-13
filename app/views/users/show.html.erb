@@ -4,11 +4,13 @@
   </h1>
 </center>
 
-<%= render 'subscriptions/user' %>
+<div class='well'>
+  <%= render 'subscriptions/user' %>
+</div>
 
 <% if @user.active_subscription %>
   <%= link_to 'Cancel subscription', cancel_user_path %>
 <% else %>
   <%= link_to 'Subscribe', new_subscription_path %>
-<% end %>
+<% end %> | <%= link_to 'Edit user information', edit_user_path %>
 
