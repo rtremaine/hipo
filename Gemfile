@@ -53,6 +53,8 @@ group :development, :testing do
   gem 'growl'
   gem 'launchy'
   gem 'ruby_gntp' 
+  gem 'turn'
+  gem 'minitest'
 end
 
 # for all you ruby-debug haters out there
