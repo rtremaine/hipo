@@ -2,6 +2,8 @@ require 'test_helper'
 
 class RecordSetsControllerTest < ActionController::TestCase
   setup do
+    @user = users(:one)
+    sign_in @user 
     @record_set = record_sets(:one)
   end
 

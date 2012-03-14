@@ -1,19 +1,26 @@
 <h2>
-  <%= @dentist.first %> <%= @dentist.middle %> <%= @dentist.last %>, <%= @dentist.title %>
+  <%= image_tag @dentist.gravatar_url, :width => '50' %>
+  <%= @dentist.first %> <%= @dentist.last %> 
+  <%= ', ' + @dentist.title if @dentist.title and @dentist.title.size > 0 %>
 </h2>
-<%= @dentist.address1 %>
-<%= @dentist.address2 %>
-<%= @dentist.email %>
-<%= @dentist.city %>, <%= @dentist.state %> <%= @dentist.zip %>
+
+<div class='well'>
+  <%= @dentist.email %>
+  <%= @dentist.address1 %>
+  <%= @dentist.address2 %>
+  <%= @dentist.city %>
+  <%= @dentist.state %>
+  <%= @dentist.zip %>
+</div>
 
 <p>
   <%= link_to 'Edit', edit_dentist_path(@dentist) %> |
   <%= link_to 'Back', dentists_path %>
 </p>
 
-<h2>
+<h3>
   <%= pluralize @dentist.patients.size.to_s, 'patient' %>
-</h2>
+</h3>
 
 <% if @dentist.patients.size > 0 %>
   <table>

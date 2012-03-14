@@ -1,6 +1,9 @@
 class Dentist < ActiveRecord::Base
+  include Gravtastic
+  gravtastic
   require 'csv'
   has_many    :patients
+  validates_presence_of :first, :last, :email
 
   def name
     self.last + ', ' + self.first + ' ' + self.title
