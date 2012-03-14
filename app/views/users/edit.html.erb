@@ -1,16 +1,7 @@
-<%= semantic_form_for [current_user, Company.new] do |f| %>
+<%= semantic_form_for current_user do |f| %>
   <%= f.inputs do %>
     <%= f.input :email, :input_html => { :disabled => true } %>
     <%= f.input :name, :input_html => { :size => 50 } %>
-    <% if current_user.company %>
-      <% f.input :company, :as => :string, 
-        :input_html => { :disabled => true, :size => 50 } %> 
-      <% end %>
-      <%= f.semantic_fields_for :company do |company| %>
-      <%= company.inputs :first_name, :last_name, :name => "Author" %>
-      
-    <% end %>
   <% end %>
   <%= f.buttons %>
 <% end %>
-

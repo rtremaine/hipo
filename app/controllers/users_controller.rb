@@ -8,6 +8,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    @user.company = Company.new unless @user.company
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
   def update
     @user = User.find(params[:id])
 

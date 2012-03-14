@@ -4,6 +4,18 @@
   </h1>
 </center>
 
+<h3>
+  Company / Practice: <%= link_to @user.company.name, 
+    @user.company if @user.company %>
+</h3>
+<h3>
+  Email: <%= @user.email %>
+</h3>
+
+<p>
+  &nbsp;
+</p>
+
 <div class='well'>
   <%= render 'subscriptions/user' %>
 </div>
@@ -12,5 +24,7 @@
   <%= link_to 'Cancel subscription', cancel_user_path %>
 <% else %>
   <%= link_to 'Subscribe', new_subscription_path %>
-<% end %> | <%= link_to 'Edit user information', edit_user_path %>
+<% end %> | <%= link_to 'Edit user information', edit_user_path %> |
+<%= link_to 'Create Company / Practice', new_company_path %>
+
 

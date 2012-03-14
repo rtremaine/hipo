@@ -8,10 +8,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_one     :subscription
   belongs_to  :company
+  accepts_nested_attributes_for :company
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :stripe_customer_token, :name
+    :remember_me, :stripe_customer_token, :name, :company_attributes
 
   def username
     self.name ? self.name : self.email
