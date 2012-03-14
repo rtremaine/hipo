@@ -3,68 +3,111 @@
     <%= link_to @record_set.patient.name, @record_set.patient %>
   </h1>
 
-  <% if @record_set.patient.dentist %>
-    <h2>
-      <small>
-        Patient of: <%= link_to @record_set.patient.dentist.name, @record_set.patient.dentist %> 
-      </small>
-    </h2>
-  <% end %>
-
-  <h2>
-    <small>
-      Records: <%= best_in_place @record_set, :name %> - Created <%= @record_set.created_at.to_s(:long) %>
-    </small>
-  </h2>
-
-  <p>
-    Description: 
-    <%= best_in_place @record_set, :description, :type => :textarea %>
-  </p>
-</center>
-
-
-<%= form_for @record, :html=> { :multipart => true, :id => 'fileupload' } do |f| %>
-  <%= f.hidden_field :record_set_id, :value => @record_set.id %>
-  <% if @record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
-
-      <ul>
-        <% @record.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+  <div class='row'>
+    <div class='span4'>
+      <div class='well'>
+        <%= semantic_form_for @share do |f| %>
+          <%= f.inputs do %>
+            <%= f.input :recipient, :collection => Contact.where(:created_by => current_user.id) %>
+            <%= f.input :sender_id, :value => current_user.id, :as => :hidden %>
+            <%= f.input :record_set_id, :value => @record_set.id, :as => :hidden %>
+          <% end %>
+          <%= f.buttons do %>
+            <%= f.button :share, :class => 'btn btn-primary btn-large' %>
+          <% end %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <br />
-  <div class="row fileupload-buttonbar">
-    <div id="span7">
-      <label class="btn btn-success fileinput-button">
-        <span><i class="icon-plus icon-white"></i> add files...</span>
-        <%= f.file_field :record %>
-      </label>
-      <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
-      <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
-      <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
-      <input type="checkbox" class="toggle">
-    </div>
-    <div class="span5">
-      <!-- The global progress bar -->
-      <div class="progress progress-success progress-striped active fade">
-        <div class="bar" style="width:0%;"></div>
       </div>
+      <div class='well'>
+        <h4>
+          Shares of these records
+        </h4>
+        <%= raw '<small>No shares</small>' if @shares.size == 0 %>
+        <table>
+          <% @shares.each do |share| %>
+            <tr>
+              <td>
+                <%= share.recipient.name %>
+              </td>
+              <td>
+                <%= share.created_at.to_s(:short) %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class='well'>
+        <% if @record_set.patient.dentist %>
+          <h2>
+            <small>
+              Patient of: <%= link_to @record_set.patient.dentist.name, @record_set.patient.dentist %> 
+            </small>
+          </h2>
+        <% end %>
+
+        <h2>
+          <small>
+            Records: <%= best_in_place @record_set, :name %>
+          </small>
+        </h2>
+
+        <h4>
+          <small>
+            Created <%= @record_set.created_at.to_s(:long) %>
+          </small>
+        </h4>
+
+        <h3>
+          <small>
+            Description
+          </small>
+        </h3>
+        <%= best_in_place @record_set, :description, :type => :textarea %>
+      </p>
     </div>
   </div>
-  <!-- The loading indicator is shown during image processing -->
-  <div class="fileupload-loading"></div>
-  <br>
-  <!-- The table listing the files available for upload/download -->
-  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
-<% end %>
-<%= render :partial => "/records/template-upload" %>
-<%= render :partial => "/records/template-download" %>
+  <div class='offset2 span6'>
+    <%= form_for @record, :html=> { :multipart => true, :id => 'fileupload' } do |f| %>
+      <%= f.hidden_field :record_set_id, :value => @record_set.id %>
+      <% if @record.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
 
-<%= link_to 'Edit', edit_record_set_path(@record_set) %> |
-<%= link_to 'Back', record_sets_path %>
+          <ul>
+            <% @record.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <br />
+      <div class="row fileupload-buttonbar">
+        <div id="span7">
+          <label class="btn btn-success fileinput-button">
+            <span><i class="icon-plus icon-white"></i> add files...</span>
+            <%= f.file_field :record %>
+          </label>
+          <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
+          <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
+          <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
+          <input type="checkbox" class="toggle">
+        </div>
+        <div class="span5">
+          <!-- The global progress bar -->
+          <div class="progress progress-success progress-striped active fade">
+            <div class="bar" style="width:0%;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- The loading indicator is shown during image processing -->
+      <div class="fileupload-loading"></div>
+      <br>
+      <!-- The table listing the files available for upload/download -->
+      <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+    <% end %>
+    <%= render :partial => "/records/template-upload" %>
+    <%= render :partial => "/records/template-download" %>
+
+    <%= link_to 'Edit', edit_record_set_path(@record_set) %> |
+    <%= link_to 'Back', record_sets_path %>
+  </div>

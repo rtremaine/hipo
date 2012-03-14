@@ -1,4 +1,4 @@
-<%= semantic_form_for current_user do |f| %>
+<%= semantic_form_for @user do |f| %>
   <%= f.inputs do %>
     <%= f.input :email, :input_html => { :disabled => true } %>
     <%= f.input :name, :input_html => { :size => 50 } %>

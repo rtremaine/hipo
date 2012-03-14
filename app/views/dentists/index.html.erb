@@ -15,7 +15,7 @@
 
 <% @dentists.each do |dentist| %>
   <tr>
-    <td><%= link_to dentist.last + ', ' + dentist.first + ' ' + dentist.middle + 
+    <td><%= link_to dentist.last + ', ' + dentist.first + 
       ', ' + dentist.title, dentist %></td>
     <td><%= dentist.patients.size.to_s %></td>
     <td><%= dentist.address1 %></td>

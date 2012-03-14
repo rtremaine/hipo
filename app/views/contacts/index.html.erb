@@ -1,0 +1,17 @@
+<h1>Contacts</h1>
+
+<table>
+  <tr>
+    <th></th>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr>
+    <td><%= link_to contact.user.username, contact %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contact', new_contact_path %>

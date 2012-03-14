@@ -1,0 +1,6 @@
+<%= semantic_form_for @share do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :recipient, :collection => Contact.where(:created_by => current_user.id) %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

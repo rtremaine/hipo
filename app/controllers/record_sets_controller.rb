@@ -17,6 +17,9 @@ class RecordSetsController < ApplicationController
   def show
     @record_set = RecordSet.find(params[:id])
     @record = Record.new
+    @share = Share.new
+    @shares = Share.where(:record_set_id => @record_set.id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @record_set }

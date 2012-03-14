@@ -1,0 +1,70 @@
+<table width='90%'>
+  <tr>
+    <td> 
+      <h2>
+        On
+      </h2>
+    </td>
+    <td>
+      <h1>
+        <%= @share.created_at.to_s(:long) %> 
+      </h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h2>
+        You shared the records called
+      </h2>
+    </td>
+    <td>
+      <h1>
+        <%= @share.record_set.name %>
+      </h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h2>
+        On behalf of
+      </h2>
+    </td>
+    <td>
+      <h1>
+        <%= @share.record_set.patient.name %>
+      </h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h2>
+        With
+      </h2>
+    </td>
+    <td>
+      <h1>
+        <%= @share.recipient.name %>
+      </h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h2>
+        Who
+      </h2>
+    </td>
+    <td>
+      <h1>
+        <% if @share.received_date %>
+          Received them <%= @share.received_date.to_s(:long) %>
+        <% else %>
+          Has yet to pick up these records
+        <% end %>
+      </h1>
+    </td>
+  </tr>
+</table>
+
+
+<%= link_to 'Edit', edit_share_path(@share) %> |
+<%= link_to 'Back', shares_path %>

@@ -22,6 +22,9 @@
             <a class='brand' href="#" >Hippo</a>
           </li>
           <li>
+            <%= link_to 'Contacts', :contacts %>
+          </li>
+          <li>
             <%= link_to 'Patients', :patients %>
           </li>
           <% if current_user and current_user.is_admin %>
