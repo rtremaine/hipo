@@ -29,18 +29,18 @@
         <% end %>
       </div>
       <div class='well'>
-        <h4>
+        <p>
           Shares of these records
-        </h4>
+        </p>
         <%= raw '<small>No shares</small>' if @shares.size == 0 %>
         <table>
           <% @shares.each do |share| %>
             <tr>
               <td>
-                <%= share.recipient.user.username %>
+                <%= link_to share.recipient.user.username, share.recipient %>
                 <br />
                 <small>
-                  <%= share.created_at.to_s(:short) %>
+                  Sent <%= link_to share.created_at.to_s(:short), share %>
                 </small>
               </td>
             </tr>
@@ -56,23 +56,23 @@
           </h2>
         <% end %>
 
-        <h2>
+        <p>
           <small>
             Records: <%= best_in_place @record_set, :name %>
           </small>
-        </h2>
+        </p>
 
-        <h4>
+        <p>
           <small>
             Created <%= @record_set.created_at.to_s(:long) %>
           </small>
-        </h4>
+        </p>
 
-        <h3>
+        <p>
           <small>
             Description
           </small>
-        </h3>
+        </p>
         <%= best_in_place @record_set, :description, :type => :textarea %>
       </p>
     </div>

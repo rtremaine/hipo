@@ -22,10 +22,13 @@
             <a class='brand' href="/" >Hippo</a>
           </li>
           <li>
-            <%= link_to 'Contacts', :contacts %>
+            <%= link_to 'Address Book', :contacts %>
           </li>
           <li>
             <%= link_to 'Patients', :patients %>
+          </li>
+          <li>
+            <%= link_to 'Shares', :shares %>
           </li>
           <% if current_user and current_user.is_admin %>
             <li>

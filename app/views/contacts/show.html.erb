@@ -2,5 +2,44 @@
   <%= @contact.user.username %>
 </h2>
 
+<div class='well'>
+  <h3>
+    Record shares
+  </h3>
+  <table width='80%'>
+    <tr>
+      <th>
+        Patient
+      </th>
+      <th>
+        Records
+      </th>
+      <th>
+        Sent
+      </th>
+      <th>
+        Received
+      </th>
+    </tr>
+    <% @shares.each do |share| %>
+      <tr>
+        <td>
+          <%= link_to share.record_set.patient.name, share.record_set.patient %>
+        </td>
+        <td>
+          <%= link_to share.record_set.name, share.record_set %>
+        </td>
+        <td>
+          <%= share.created_at.to_s(:short) %>
+        </td>
+        <td>
+          <%= share.received_date ? share.received_date.to_s(:short) : '-' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+
 <%= link_to 'Delete', @contact, confirm: 'Are you sure?', method: :delete %> |
 <%= link_to 'Back', contacts_path %>

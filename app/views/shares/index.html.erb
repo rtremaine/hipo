@@ -7,21 +7,15 @@
     <th>Patient</th>
     <th>Record set</th>
     <th>Received date</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @shares.each do |share| %>
   <tr>
-    <td><%= share.recipient.user.username %></td>
-    <td><%= share.created_at.to_s(:short) %></td>
-    <td><%= share.record_set.patient.name %></td>
+    <td><%= link_to share.recipient.user.username, share.recipient.user %></td>
+    <td><%= link_to share.created_at.to_s(:short), share %></td>
+    <td><%= link_to share.record_set.patient.name, share.record_set.patient %></td>
     <td><%= link_to share.record_set.name, share.record_set %></td>
     <td><%= share.received_date || '-' %></td>
-    <td><%= link_to 'Show', share %></td>
-    <td><%= link_to 'Edit', edit_share_path(share) %></td>
-    <td><%= link_to 'Destroy', share, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
