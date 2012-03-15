@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
   def index
     #TODO add security here
     @record_set = RecordSet.find_by_id(params[:record_set_id].to_i)
-    records = Record.find_all_by_record_set_id(record_set.id)
+    records = Record.find_all_by_record_set_id(@record_set.id)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -24,11 +24,11 @@ class RecordsController < ApplicationController
     end
   end
 
-  def record
-    decrypted_file = CarrierWave::SecureFile::Downloader.call(RecordUploader, Record.find(params[:id]), :record)
-    send_file decrypted_file[:file], :content_type => decrypted_file[:content_type]
-    File.unlink decrypted_file[:file]
-  end
+  #def record
+  #  decrypted_file = CarrierWave::SecureFile::Downloader.call(RecordUploader, Record.find(params[:id]), :record)
+  #  send_file decrypted_file[:file], :content_type => decrypted_file[:content_type]
+  #  File.unlink decrypted_file[:file]
+  #end
 
   # GET /records/new
   # GET /records/new.json
@@ -52,7 +52,7 @@ class RecordsController < ApplicationController
     @record = Record.new(params[:record])
     record_set = RecordSet.find_by_id(params[:record][:record_set_id])
     @record.patient_id = record_set.patient_id
-
+#debugger
     respond_to do |format|
       if @record.save
         format.json { render :json => [ @record.to_jq_record ].to_json }
