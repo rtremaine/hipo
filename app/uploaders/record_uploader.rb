@@ -5,7 +5,7 @@ class RecordUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-  #process :secure_file
+  include CarrierWave::Uploader::Callbacks
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -55,10 +55,25 @@ class RecordUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [80, 80]
   end
   
-  version :medium, :if => :image? do
-    process :resize_to_fit => [200, 200]
+  #version :medium, :if => :image? do
+  #  process :resize_to_fit => [200, 200]
+  #end
+
+  #included do
+  before :store, :foo!
+  #end
+
+  def foo!(new_file)
+    puts '#########  this is me ##########################'
+    #debugger
+    #secure_file
+    if (self.url && self.thumb)
+      secure_file
+    end
   end
  
+  #process :secure_file
+  
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end 
