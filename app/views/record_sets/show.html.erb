@@ -9,8 +9,8 @@
         <%= semantic_form_for @share do |f| %>
           <%= f.inputs do %>
             <%= f.input :recipient, :collection => Contact.where(:created_by => current_user.id) %>
-            <%= f.input :sender_id, :value => current_user.id, :as => :hidden %>
-            <%= f.input :record_set_id, :value => @record_set.id, :as => :hidden %>
+            <%= f.input :sender_id, :as => :hidden, :value => current_user.id, :label => false %>
+            <%= f.input :record_set_id, :value => @record_set.id, :as => :hidden, :label => false %>
           <% end %>
           <%= f.buttons do %>
             <%= f.button :share, :class => 'btn btn-primary btn-large' %>
