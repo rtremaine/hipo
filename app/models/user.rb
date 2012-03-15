@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_one     :subscription
   belongs_to  :company
   accepts_nested_attributes_for :company
@@ -17,6 +18,19 @@ class User < ActiveRecord::Base
   def username
     self.name ? self.name : self.email
   end
+
+  #TODO: I dont know how to do this properly obviously
+  def self.sharing_model name
+    case name
+    when 'CONFIRM_NEVER'
+      return 1
+    when 'CONFIRM_ALWAYS'
+      return 2
+    else #CONFIRM_FIRST
+      return 3
+    end
+  end 
+
 
   def active_subscription
     Subscription.where(:user_id => self.id, :active => true).first
@@ -58,6 +72,6 @@ class User < ActiveRecord::Base
         has_more = false
       end
     end
-      invoices
+    invoices
   end
 end

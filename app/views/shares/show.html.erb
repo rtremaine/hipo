@@ -1,6 +1,6 @@
 <table width='90%'>
   <tr>
-    <td halign='bottom'> 
+    <td> 
         On
     </td>
     <td>
@@ -11,7 +11,7 @@
   </tr>
   <tr>
     <td>
-        You shared the records called
+        Sharing the records called
     </td>
     <td>
       <h1>
@@ -65,9 +65,18 @@
 </table>
 
 <% unless @share.recipient.confirmed %>
-  <h2>
-    Note: <%= @share.recipient.user.username %> is not yet a confirmed contact of yours.
-  </h2>
+  <center>
+    <div class='well'>
+      <h2>
+        Note: <%= @share.recipient.user.username %> is not yet a confirmed contact of yours.
+      </h2>
+      <br>
+      <strong>You will need to share the confirmation code above</strong> with 
+      <%= @share.recipient.user.username %> before the records can be retreived.
+      </br>
+      You can modify this behavior in your <%= link_to 'user preferences', current_user %>.
+    </div>
+  </center>
 <% end %>
 
 <center>
