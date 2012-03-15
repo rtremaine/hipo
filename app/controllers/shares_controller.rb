@@ -11,6 +11,9 @@ class SharesController < ApplicationController
       format.json { render json: @shares }
     end
   end
+  
+  def send_new_share_email
+  end
 
   # GET /shares/1
   # GET /shares/1.json

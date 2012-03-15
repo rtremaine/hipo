@@ -30,7 +30,7 @@
           <%= link_to share.record_set.name, share.record_set %>
         </td>
         <td>
-          <%= share.created_at.to_s(:short) %>
+          <%= link_to share.created_at.to_s(:short), share %>
         </td>
         <td>
           <%= share.received_date ? share.received_date.to_s(:short) : '-' %>
