@@ -1,4 +1,6 @@
 class SharesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /shares
   # GET /shares.json
   def index
