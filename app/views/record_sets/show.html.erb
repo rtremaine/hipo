@@ -8,13 +8,24 @@
       <div class='well'>
         <%= semantic_form_for @share do |f| %>
           <%= f.inputs do %>
-            <%= f.input :recipient, :collection => Contact.where(:created_by => current_user.id) %>
+            <%= f.input :recipient, :label => 'Share with Recipient',
+              :collection => Contact.where(:created_by => current_user.id) %>
             <%= f.input :sender_id, :as => :hidden, :value => current_user.id, :label => false %>
             <%= f.input :record_set_id, :value => @record_set.id, :as => :hidden, :label => false %>
           <% end %>
           <%= f.buttons do %>
             <%= f.button :share, :class => 'btn btn-primary btn-large' %>
           <% end %>
+        <% end %>
+      </div>
+      <div class='well'>
+        <%= form_tag(create_contact_and_share_path, :method => "post", 
+                     :class => 'form-horizontal') do %>
+          <%= label_tag(:email, 'Share with new contact (email)') %>
+          <%= text_field_tag(:email) %>
+          <%= hidden_field_tag 'sender_id', current_user.id %>
+          <%= hidden_field_tag 'record_set_id', @record_set.id %>
+          <%= submit_tag("Share", :class => 'btn btn-primary') %>
         <% end %>
       </div>
       <div class='well'>
@@ -26,10 +37,11 @@
           <% @shares.each do |share| %>
             <tr>
               <td>
-                <%= share.recipient.name %>
-              </td>
-              <td>
-                <%= share.created_at.to_s(:short) %>
+                <%= share.recipient.user.username %>
+                <br />
+                <small>
+                  <%= share.created_at.to_s(:short) %>
+                </small>
               </td>
             </tr>
           <% end %>

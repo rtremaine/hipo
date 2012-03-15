@@ -40,16 +40,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(:created_by => current_user.id)
-    @user = User.find_by_email(params[:email])
-
-    if @user
-      @contact.user_id = @user.id
-    else
-      u = User.new(:email => params[:email], :password => rand(10**10).to_s)
-      u.save
-      @contact.user_id = u.id
-    end
+    @contact = Contact.create_with_user(params[:email], current_user)
 
     respond_to do |format|
       if @contact.save

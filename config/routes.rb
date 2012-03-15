@@ -1,25 +1,24 @@
 Hippo::Application.routes.draw do
-
   resources :shares
-
   resources :contacts
-
   resources :record_sets
-
   resources :plans
   resources :subscriptions
   resources :records
   resources :patients
-  match "searchall" => "dentists#searchall"
   resources :dentists
   resources :companies
+
   devise_for :users
-  #
+
   resources :users do
     member do
       get 'cancel'
     end
   end
+
+  match "searchall" => "dentists#searchall"
+  match 'create_contact_and_share' => 'shares#create_contact_and_share'
 
   #match "cancel" => "users#cancel_subscription"
   resources :users, :only => [:show]

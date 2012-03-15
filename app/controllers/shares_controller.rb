@@ -37,6 +37,28 @@ class SharesController < ApplicationController
     @share = Share.find(params[:id])
   end
 
+  def create_contact_and_share
+    user = User.find(params[:sender_id])
+    rset = RecordSet.find(params[:record_set_id])
+    contact = Contact.create_with_user(params[:email], user)
+
+    if user and rset and contact.save
+      @share = Share.new(:sender_id => user.id,
+                         :recipient_id => contact.id,
+                         :record_set_id => rset.id)
+    end
+
+    respond_to do |format|
+      if @share.save
+        format.html { redirect_to @share, notice: 'Share was successfully created.' }
+        format.json { render json: @share, status: :created, location: @share }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @share.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /shares
   # POST /shares.json
   def create
