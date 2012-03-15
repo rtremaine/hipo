@@ -2,6 +2,8 @@ require 'test_helper'
 
 class SharesControllerTest < ActionController::TestCase
   setup do
+    @user = users(:one)
+    sign_in @user 
     @share = shares(:one)
   end
 

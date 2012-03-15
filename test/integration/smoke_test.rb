@@ -4,7 +4,7 @@ class SmokeTest < ActionController::IntegrationTest
   require 'capybara/rails'
   #Capybara.default_driver = :selenium
 
-  test '1 sign up and subscribe' do
+  test 'sign up and subscribe' do
     visit '/users/sign_up'
     assert page.has_content?('Forgot your password?')
     fill_in "user_email", :with=> "thealey@gmail.com"
@@ -18,9 +18,12 @@ class SmokeTest < ActionController::IntegrationTest
     assert page.has_content?('No active subscription')
     visit '/subscriptions'
     assert page.has_content?('You must be an administrator to access this section')
+    visit '/patients'
+    click_link 'MyString, MyString'
+    assert page.has_content?('Record Sets')
   end
 
-  test '2 subscribe with stripe' do
+  test 'subscribe with stripe' do
     if false
       assert page.has_content?('Subscribe')
       click_link 'Subscribe'
