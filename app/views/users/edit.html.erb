@@ -2,7 +2,7 @@
   <%= f.inputs do %>
     <%= f.input :email, :input_html => { :disabled => true } %>
     <%= f.input :name, :input_html => { :size => 50 } %>
-    <%= f.input :sharing_mode %>
+    <%= f.input :sharing_mode %> #TODO need to get names from collection and humanize em
   <% end %>
   <%= f.buttons do %>
     <% f.button :label => 'Update' %>
@@ -14,25 +14,14 @@
     Sharing Modes
   </h2>
   <ul>
-    <li>
-      <strong>Confirm Once</strong> (Default)
-      <br>
-      The first time you share records with someone, you need to call or email that person to give them a confirmation code. This ensures they are who you think they are, and that you don't have the wrong email address. After this first time you can share any record with this person without needing to exchange any codes ever again.
-      </br>
-    </li>
-    <p />
+    <% SharingMode.all.each do |sm| %>
       <li>
-        <strong>Confirm Always</strong>
-        <br>Every time you share anything with anyone, you need to tell them the confirmation code for them to enter to get the records. This is the most secure option.
-        </br>
+        <strong><%= sm.name %></strong>
+        <p>
+        <%= sm.description %>
+        </p>
       </li>
-      <p />
-        <li>
-          <strong>Confirm Never</strong>
-          <br>
-          Never require anyone you sent to, to supply a confirmation code. This is the least secure option.
-          </br>
-        </li>
-      </ul>
-    </div>
+    <% end %>
+  </ul>
+</div>
 

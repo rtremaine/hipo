@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316011939) do
+ActiveRecord::Schema.define(:version => 20120316105740) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -85,12 +85,14 @@ ActiveRecord::Schema.define(:version => 20120316011939) do
     t.datetime "received_date"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.datetime "emailed_date"
   end
 
   create_table "sharing_modes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "subscriptions", :force => true do |t|

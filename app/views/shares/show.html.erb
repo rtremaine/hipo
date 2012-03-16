@@ -1,12 +1,12 @@
 <table width='90%'>
   <tr>
     <td> 
-        On
+        Created
     </td>
     <td>
-      <h1>
+      <h2>
         <%= @share.created_at.to_s(:long) %> 
-      </h1>
+      </h2>
     </td>
   </tr>
   <tr>
@@ -14,9 +14,9 @@
         Sharing the records called
     </td>
     <td>
-      <h1>
+      <h2>
         <%= @share.record_set.name %>
-      </h1>
+      </h2>
     </td>
   </tr>
   <tr>
@@ -24,32 +24,38 @@
         On behalf of
     </td>
     <td>
-      <h1>
+      <h2>
         <%= @share.record_set.patient.name %>
-      </h1>
+      </h2>
     </td>
   </tr>
   <tr>
     <td>
         With
     <td>
-      <h1>
+      <h2>
         <%= @share.recipient.user.username %>
-      </h1>
+      </h2>
     </td>
   </tr>
   <tr>
     <td>
-        Who
+        Email sent on
     </td>
     <td>
-      <h1>
-        <% if @share.received_date %>
-          Received them <%= @share.received_date.to_s(:long) %>
-        <% else %>
-          Has yet to pick up these records
-        <% end %>
-      </h1>
+      <h2>
+        <%= @share.emailed_date? ? @share_emailed.date.to_s(:long) : '-' %>
+      </h2>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        Received on
+    </td>
+    <td>
+      <h2>
+        <%= @share.received_date? ? @share_received.date.to_s(:long) : '-' %>
+      </h2>
     </td>
   </tr>
   <tr>
@@ -57,9 +63,9 @@
       Confirmation code
     </td>
     <td>
-      <h1>
+      <h2>
         <%= @share.token %>
-      </h1>
+      </h2>
     </td>
   </tr>
 </table>
@@ -67,26 +73,34 @@
 <% unless @share.recipient.confirmed %>
   <center>
     <div class='well'>
-      <h2>
+      <h3>
         Note: <%= @share.recipient.user.username %> is not yet a confirmed contact of yours.
-      </h2>
+      </h3>
       <br>
       <strong>You will need to share the confirmation code above</strong> with 
       <%= @share.recipient.user.username %> before the records can be retreived.
       </br>
+      <br>
+      Your account is set to <strong><%= current_user.sharing_mode.name.humanize %></strong>. 
+      </br>
+      <br>
+      <%= current_user.sharing_mode.description %>
+      </br>
+      <br>
       You can modify this behavior in your <%= link_to 'user preferences', 
         :controller => 'users', :action => 'edit', :id => current_user.id %>.
+        </br>
+      </div>
+    </center>
+  <% end %>
+
+  <center>
+    <div class='well'>
+      <%= link_to 'Confirm and send email', send_new_share_email_path, :class => 'btn btn-primary btn-large' %>
     </div>
   </center>
-<% end %>
-
-<center>
-  <div class='well'>
-    <%= link_to 'Confirm', send_new_share_email_path, :class => 'btn btn-primary btn-large' %>
-  </div>
-</center>
 
 
-<%= link_to 'Edit', edit_share_path(@share) %> |
-<%= link_to 'Destroy', @share, confirm: 'Are you sure?', method: :delete %> |
-<%= link_to 'Back', shares_path %>
+  <%= link_to 'Edit', edit_share_path(@share) %> |
+  <%= link_to 'Destroy', @share, confirm: 'Are you sure?', method: :delete %> |
+  <%= link_to 'Back', shares_path %>
