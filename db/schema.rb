@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315212750) do
+ActiveRecord::Schema.define(:version => 20120316011939) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(:version => 20120315212750) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "sharing_modes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "active"
@@ -119,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20120315212750) do
     t.string   "stripe_customer_token"
     t.boolean  "is_admin",                              :default => false
     t.string   "name"
+    t.integer  "sharing_mode_id",                       :default => 1
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

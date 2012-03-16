@@ -8,29 +8,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one     :subscription
+  belongs_to  :sharing_mode
   belongs_to  :company
+
   accepts_nested_attributes_for :company
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :stripe_customer_token, :name, :company_attributes
 
   def username
     self.name ? self.name : self.email
   end
-
-  #TODO: I dont know how to do this properly obviously
-  def self.sharing_model name
-    case name
-    when 'CONFIRM_NEVER'
-      return 1
-    when 'CONFIRM_ALWAYS'
-      return 2
-    else #CONFIRM_FIRST
-      return 3
-    end
-  end 
-
 
   def active_subscription
     Subscription.where(:user_id => self.id, :active => true).first
@@ -75,3 +63,4 @@ class User < ActiveRecord::Base
     invoices
   end
 end
+
