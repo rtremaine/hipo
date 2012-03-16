@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :company
 
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :stripe_customer_token, :name, :company_attributes
+    :remember_me, :stripe_customer_token, :name, 
+    :company_attributes, :sharing_mode_id
 
   def username
     self.name ? self.name : self.email

@@ -11,6 +11,9 @@
 <h3>
   Email: <%= @user.email %>
 </h3>
+<h3>
+  Sharing mode: <%= link_to @user.sharing_mode.name.humanize, edit_user_path %>
+</h3>
 
 <p>
   &nbsp;

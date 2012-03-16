@@ -4,7 +4,9 @@
     <%= f.input :name, :input_html => { :size => 50 } %>
     <%= f.input :sharing_mode %>
   <% end %>
-  <%= f.buttons %>
+  <%= f.buttons do %>
+    <% f.button :label => 'Update' %>
+  <% end %>
 <% end %>
 
 <div class='well'>
@@ -13,16 +15,24 @@
   </h2>
   <ul>
     <li>
-      <strong>Confirm Once</strong> (Default): The first time you share records with someone, you need to call or email that person to give them a confirmation code. This ensures they are who you think they are, and that you don't have the wrong email address. After this first time you can share any record with this person without needing to exchange any codes ever again.
+      <strong>Confirm Once</strong> (Default)
+      <br>
+      The first time you share records with someone, you need to call or email that person to give them a confirmation code. This ensures they are who you think they are, and that you don't have the wrong email address. After this first time you can share any record with this person without needing to exchange any codes ever again.
+      </br>
     </li>
     <p />
-    <li>
-      <strong>Confirm Always</strong> Every time you share anything with anyone, you need to tell them the confirmation code for them to enter to get the records. This is the most secure option. 
-    </li>
-    <p />
-    <li>
-      <strong>Confirm Never</strong> Never require anyone you sent to, to supply a confirmation code. This is the least secure option.
-    </li>
-  </ul>
-</div>
+      <li>
+        <strong>Confirm Always</strong>
+        <br>Every time you share anything with anyone, you need to tell them the confirmation code for them to enter to get the records. This is the most secure option.
+        </br>
+      </li>
+      <p />
+        <li>
+          <strong>Confirm Never</strong>
+          <br>
+          Never require anyone you sent to, to supply a confirmation code. This is the least secure option.
+          </br>
+        </li>
+      </ul>
+    </div>
 
