@@ -9,7 +9,7 @@ class Share < ActiveRecord::Base
     len = 8
     token = self.id.to_s
     token = token + self.sha
-    token = token[0..8]
+    token = token[0..6]
   end
 
   #This is just too damn long.
