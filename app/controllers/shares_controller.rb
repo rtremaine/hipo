@@ -13,6 +13,7 @@ class SharesController < ApplicationController
   end
   
   def send_new_share_email
+    redirect_to shares_path, notice: 'Record sharing email sent (not)'
   end
 
   # GET /shares/1
