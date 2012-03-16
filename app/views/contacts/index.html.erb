@@ -1,13 +1,15 @@
 <h1>Contacts</h1>
 
-<table>
+<table width='60%'>
   <tr>
-    <th></th>
+    <th>Contact</th>
+    <th>Confirmed</th>
   </tr>
 
 <% @contacts.each do |contact| %>
   <tr>
     <td><%= link_to contact.user.username, contact %></td>
+    <td><%= contact.confirmed.to_s %></td>
   </tr>
 <% end %>
 </table>

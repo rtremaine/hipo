@@ -6,13 +6,16 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_one     :subscription
+  belongs_to  :sharing_mode
   belongs_to  :company
+
   accepts_nested_attributes_for :company
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :stripe_customer_token, :name, :company_attributes
+    :remember_me, :stripe_customer_token, :name, 
+    :company_attributes, :sharing_mode_id
 
   def username
     self.name ? self.name : self.email
@@ -58,6 +61,7 @@ class User < ActiveRecord::Base
         has_more = false
       end
     end
-      invoices
+    invoices
   end
 end
+

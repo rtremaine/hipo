@@ -1,4 +1,6 @@
 class SharesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /shares
   # GET /shares.json
   def index
@@ -8,6 +10,10 @@ class SharesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @shares }
     end
+  end
+  
+  def send_new_share_email
+    redirect_to shares_path, notice: 'Record sharing email sent (not)'
   end
 
   # GET /shares/1

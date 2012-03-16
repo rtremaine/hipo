@@ -1,4 +1,4 @@
 clear
-rake test:integration
+rake test
 sleep 10
 ./smoketest.sh

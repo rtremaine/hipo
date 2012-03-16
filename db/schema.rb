@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314175501) do
+ActiveRecord::Schema.define(:version => 20120316105740) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20120314175501) do
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "created_by"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "confirmed",  :default => false
   end
 
   create_table "dentists", :force => true do |t|
@@ -84,6 +85,14 @@ ActiveRecord::Schema.define(:version => 20120314175501) do
     t.datetime "received_date"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.datetime "emailed_date"
+  end
+
+  create_table "sharing_modes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -118,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20120314175501) do
     t.string   "stripe_customer_token"
     t.boolean  "is_admin",                              :default => false
     t.string   "name"
+    t.integer  "sharing_mode_id",                       :default => 1
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

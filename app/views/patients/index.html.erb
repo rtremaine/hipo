@@ -9,7 +9,7 @@
 
 <% @patients.each do |patient| %>
   <tr>
-    <td><%= link_to patient.first + ', ' + patient.last, patient %></td>
+    <td><%= link_to patient.name, patient %></td>
     <td><%= patient.ssn %></td>
     <td><%= link_to patient.dentist.name, patient.dentist if patient.dentist %></td>
   </tr>

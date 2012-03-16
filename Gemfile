@@ -55,6 +55,7 @@ group :development, :testing do
   gem 'ruby_gntp' 
   gem 'turn'
   gem 'minitest'
+  gem 'mail_safe'
 end
 
 # for all you ruby-debug haters out there

@@ -3,7 +3,7 @@ require 'test_helper'
 class CompaniesControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
-    #sign_in @user 
+    sign_in @user 
     #sign_out @user 
 
     @company = companies(:one)
@@ -26,9 +26,7 @@ class CompaniesControllerTest < ActionController::TestCase
 
   test "should create company" do
     assert_difference('Company.count') do
-      sign_in @user 
-      post :create, company: @company.attributes
-      sign_out @user 
+      post :create, company: Company.new(:name => 'name').attributes
     end
 
     assert_redirected_to company_path(assigns(:company))
