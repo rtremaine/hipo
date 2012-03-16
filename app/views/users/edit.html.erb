@@ -2,7 +2,8 @@
   <%= f.inputs do %>
     <%= f.input :email, :input_html => { :disabled => true } %>
     <%= f.input :name, :input_html => { :size => 50 } %>
-    <%= f.input :sharing_mode %> #TODO need to get names from collection and humanize em
+    <%= f.input :sharing_mode #TODO need to get names from collection and humanize em 
+  %>
   <% end %>
   <%= f.buttons do %>
     <% f.button :label => 'Update' %>
