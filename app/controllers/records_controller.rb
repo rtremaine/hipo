@@ -41,6 +41,9 @@ class RecordsController < ApplicationController
   end
 
   def thumbnail
+    #TODO security
+    record = Record.find(params[:id])
+    send_file record.record.thumb.url
   end
 
   # GET /records/new
