@@ -30,15 +30,20 @@ class RecordsController < ApplicationController
     uri = record.record.to_s
     
     uploader = RecordUploader.new
-    FileUtils.cp('public/uploads/record/record/129/robots.txt', 'public/uploads/record/record/129/robots.txt.x1')
+    FileUtils.cp(uri, uri + '.x1')
     configuration = CarrierWave::SecureFile.configuration
     bf = CarrierWave::SecureFile.cryptable.new(configuration.cypher)
-    bf.decrypt_file('public/uploads/record/record/129/robots.txt.x1', 'public/uploads/record/record/129/robots.txt.x2')
-    send_file 'public/uploads/record/record/129/robots.txt.x2', :content_type => record[:content_type]
-    File.unlink 'public/uploads/record/record/129/robots.txt.x2'
+    bf.decrypt_file(uri + '.x1', uri + '.x2')
+    send_file uri + '.x2', 
+      :content_type => record[:content_type],
+      :filename => File.basename(uri) 
+    File.unlink uri + '.x2'
   end
 
   def thumbnail
+    #TODO security
+    record = Record.find(params[:id])
+    send_file record.record.thumb.url
   end
 
   # GET /records/new
