@@ -10,7 +10,8 @@ Hippo::Application.routes.draw do
   resources :companies
 
   devise_for :users
-
+  resources :token_authentications, :only => [:create, :destroy]
+ 
   resources :users do
     member do
       get 'cancel'

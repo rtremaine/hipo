@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316105740) do
+ActiveRecord::Schema.define(:version => 20120317162615) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20120316105740) do
     t.boolean  "is_admin",                              :default => false
     t.string   "name"
     t.integer  "sharing_mode_id",                       :default => 1
+    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
