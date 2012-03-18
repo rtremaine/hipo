@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
     :remember_me, :stripe_customer_token, :name, 
     :company_attributes, :sharing_mode_id
 
+  def get_token
+    self.reset_authentication_token! unless self.authentication_token
+    return self.authentication_token
+  end
+
   def username
     self.name ? self.name : self.email
   end

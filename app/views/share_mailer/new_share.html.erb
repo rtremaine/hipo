@@ -18,6 +18,7 @@
       <%= link_to 'this link.',{ :host => 'hippo.flunkyism.com', 
         :controller => 'shares',
         :action => 'show',
+        :auth_token => @recipient.user.get_token,
         :id => @share.id } %>
       </p>
       <p>Thanks and have a great day!</p>
