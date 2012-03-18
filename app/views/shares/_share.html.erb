@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to share.sender.username, share.recipient.user %></td>
+  <td><%= link_to share.recipient.user.username, share.recipient.user %></td>
+  <td><%= link_to share.created_at.to_s(:short), share %></td>
+  <td><%= link_to share.record_set.patient.name, share.record_set.patient %></td>
+  <td><%= link_to share.record_set.name, share.record_set %></td>
+  <td><center><%= share.token %></center></td>
+  <td><%= share.received_date || '-' %></td>
+</tr>
+

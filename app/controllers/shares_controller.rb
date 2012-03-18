@@ -1,10 +1,17 @@
 class SharesController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /shares
-  # GET /shares.json
   def index
-    @shares = Share.all
+    @shares = Share.where(:sender_id => current_user.id).order('created_at desc')
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @shares }
+    end
+  end
+  
+  def inbox
+    @shares = Share.where(:recipient_id => current_user.id).order('created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb

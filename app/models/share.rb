@@ -1,5 +1,6 @@
 class Share < ActiveRecord::Base
   belongs_to  :recipient, :class_name => 'Contact'
+  belongs_to  :sender, :class_name => 'User'
   belongs_to  :record_set
 
   validates_presence_of :record_set
