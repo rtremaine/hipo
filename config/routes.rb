@@ -21,6 +21,7 @@ Hippo::Application.routes.draw do
   match "searchall" => "dentists#searchall"
   match 'send_new_share_email' => 'shares#send_new_share_email'
   match 'create_contact_and_share' => 'shares#create_contact_and_share'
+  match 'download_record' => 'records#record'
 
   #match "cancel" => "users#cancel_subscription"
   resources :users, :only => [:show]

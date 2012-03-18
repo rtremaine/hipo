@@ -59,21 +59,16 @@ class RecordUploader < CarrierWave::Uploader::Base
   #  process :resize_to_fit => [200, 200]
   #end
 
-  #included do
   before :store, :foo!
-  #end
-
   def foo!(new_file)
-    puts '#########  this is me ##########################'
-    #debugger
-    #secure_file
+    # TODO this is horrible but not yet sure of the correct way to do this. As far as I can tell
+    # when it's the original both of these fields have a value. We only want to encrypt the
+    # original.
     if (self.url && self.thumb)
       secure_file
     end
   end
  
-  #process :secure_file
-  
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end 

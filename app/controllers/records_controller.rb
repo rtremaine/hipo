@@ -24,11 +24,22 @@ class RecordsController < ApplicationController
     end
   end
 
-  #def record
-  #  decrypted_file = CarrierWave::SecureFile::Downloader.call(RecordUploader, Record.find(params[:id]), :record)
-  #  send_file decrypted_file[:file], :content_type => decrypted_file[:content_type]
-  #  File.unlink decrypted_file[:file]
-  #end
+  def record
+    #TODO security
+    record = Record.find(params[:id])
+    uri = record.record.to_s
+    
+    uploader = RecordUploader.new
+    FileUtils.cp('public/uploads/record/record/129/robots.txt', 'public/uploads/record/record/129/robots.txt.x1')
+    configuration = CarrierWave::SecureFile.configuration
+    bf = CarrierWave::SecureFile.cryptable.new(configuration.cypher)
+    bf.decrypt_file('public/uploads/record/record/129/robots.txt.x1', 'public/uploads/record/record/129/robots.txt.x2')
+    send_file 'public/uploads/record/record/129/robots.txt.x2', :content_type => record[:content_type]
+    File.unlink 'public/uploads/record/record/129/robots.txt.x2'
+  end
+
+  def thumbnail
+  end
 
   # GET /records/new
   # GET /records/new.json
