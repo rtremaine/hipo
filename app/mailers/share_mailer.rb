@@ -1,10 +1,11 @@
 class ShareMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "admin@hippo.flunkyism.com"
 
   def new_share share
     @sender = User.find share.sender_id
     @recipient = Contact.find share.recipient_id
+    @share = share
 
-    mail(:to => @sender.email, :subject => @sender.name + ' would like to share records with you')
+    mail(:to => @sender.email, :subject => @sender.username + ' would like to share records with you')
   end
 end

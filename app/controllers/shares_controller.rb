@@ -13,7 +13,17 @@ class SharesController < ApplicationController
   end
   
   def send_new_share_email
-    redirect_to shares_path, notice: 'Record sharing email sent (not)'
+    @share = Share.find params[:id]
+    msg = 'Share not found'
+
+    if @share   
+      ShareMailer.new_share(@share).deliver
+      @share.emailed_date = Time.now
+      @share.save
+      msg = 'Record sharing email sent'
+    end
+
+    redirect_to shares_path, notice: msg
   end
 
   # GET /shares/1
