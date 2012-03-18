@@ -12,7 +12,7 @@ class Record < ActiveRecord::Base
     "description" => read_attribute(:description),
     "name" => read_attribute(:record),
     "size" => record.size,
-    "url" => record.url,
+    "url" => '/download_record?id=' + read_attribute(:id).to_s,
     "thumbnail_url" => is_image? ? '/thumbnail?id=' + read_attribute(:id).to_s : "/assets/icon_file_lock_24.png",
     "delete_url" => records_path.to_s + "/" + self.id.to_s,
     "delete_type" => "DELETE" 
