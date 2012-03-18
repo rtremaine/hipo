@@ -10,17 +10,25 @@
       Hippo
     </strong>
   </p>
-    <h1>
-      <%= @sender.username %> would like to share records with you.
-    </h1>
+  <h1>
+    <%= @sender.username %> would like to share records with you.
+  </h1>
+  <% if @share.comment %>
     <p>
-      To retreive them, just follow  
-      <%= link_to 'this link.',{ :host => 'hippo.flunkyism.com', 
-        :controller => 'shares',
-        :action => 'show',
-        :auth_token => @recipient.user.get_token,
-        :id => @share.id } %>
-      </p>
-      <p>Thanks and have a great day!</p>
-    </body>
-  </html>
+      <h2>
+        Comment from <%= @sender.username %>:<br />
+        <%= @share.comment %>
+      </h2>
+    </p>
+  <% end %>
+  <p>
+    To retreive them, just follow  
+    <%= link_to 'this link.',{ :host => 'hippo.flunkyism.com', 
+      :controller => 'shares',
+      :action => 'show',
+      :auth_token => @recipient.user.get_token,
+      :id => @share.id } %>
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

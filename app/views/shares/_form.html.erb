@@ -1,6 +1,9 @@
 <%= semantic_form_for @share do |f| %>
   <%= f.inputs do %>
     <%= f.input :recipient, :collection => Contact.where(:created_by => current_user.id) %>
+    <%= f.input :comment, 
+      :label => 'Comment (optional)',
+      :input_html => { :class => 'autogrow', :rows => 10, :cols => 80 } %>
   <% end %>
   <%= f.buttons %>
 <% end %>
