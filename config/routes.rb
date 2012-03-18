@@ -10,7 +10,8 @@ Hippo::Application.routes.draw do
   resources :companies
 
   devise_for :users
-
+  resources :token_authentications, :only => [:create, :destroy]
+ 
   resources :users do
     member do
       get 'cancel'
@@ -20,6 +21,7 @@ Hippo::Application.routes.draw do
   match "searchall" => "dentists#searchall"
   match 'send_new_share_email' => 'shares#send_new_share_email'
   match 'create_contact_and_share' => 'shares#create_contact_and_share'
+  match 'download_record' => 'records#record'
 
   #match "cancel" => "users#cancel_subscription"
   resources :users, :only => [:show]

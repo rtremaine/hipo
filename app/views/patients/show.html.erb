@@ -26,7 +26,7 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
   <tbody class="record_sets" data-toggle="modal-gallery" data-target="#modal-gallery">
 <% @patient.record_sets.each do|record_set| %>
   <tr class="template-download fade in">
-    <td class="name"><%= record_set.name %></td>
+    <td class="name"><%= link_to record_set.name, record_set %></td>
     <td class="description"><%= record_set.description %></td>
     <td class="date"><%= record_set.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
     <td><%= record_set.records.count %></td>

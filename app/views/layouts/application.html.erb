@@ -30,6 +30,9 @@
           <li>
             <%= link_to 'Shares', :shares %>
           </li>
+          <li>
+          <% link_to 'token', 'http://localhost:3991/contacts?auth_token=w1CtTyhCHFnVvFifRQpU'%>
+          </li>
           <% if current_user and current_user.is_admin %>
             <li>
               <%= link_to 'Subscriptions', :subscriptions %>

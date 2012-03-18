@@ -2,14 +2,14 @@ require 'integration_test_helper'
 
 class SmokeTest < ActionController::IntegrationTest
   require 'capybara/rails'
-  #Capybara.default_driver = :selenium
+  Capybara.default_driver = :selenium
 
   test 'sign up and subscribe' do
     visit '/users/sign_up'
     assert page.has_content?('Forgot your password?')
-    fill_in "user_email", :with=> "thealey@gmail.com"
-    fill_in "user_password", :with=> "bondaxe"
-    fill_in "user_password_confirmation", :with=> "bondaxe"
+    fill_in "user_email", :with => "thealey@gmail.com"
+    fill_in "user_password", :with => "bondaxe"
+    fill_in "user_password_confirmation", :with => "bondaxe"
     click_button "Sign up"
     assert page.has_content?('Welcome! You have signed up successfully.')
     assert page.has_content?('thealey@gmail.com')
@@ -21,6 +21,13 @@ class SmokeTest < ActionController::IntegrationTest
     visit '/patients'
     click_link 'MyString, MyString'
     assert page.has_content?('Record Sets')
+    click_button 'New Record Set'
+    fill_in 'record_set_name', :with => xrays = 'X-Rays Auto Test'
+    click_button 'Create'
+    assert page.has_content?(xrays)
+    #click_link xrays
+    #TODO: Not clickable in ajax div, only when refreshed
+    #Plus should just go to the page I think. better.
   end
 
   test 'subscribe with stripe' do
