@@ -12,6 +12,7 @@ class SharesController < ApplicationController
   
   def inbox
     @shares = Share.where(:recipient_id => current_user.id).order('created_at desc')
+    @shares = Share.joins('join contacts c on shares.recipient_id = c.id join users u on c.user_id = u.id')
 
     respond_to do |format|
       format.html # index.html.erb

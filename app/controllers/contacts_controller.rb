@@ -1,10 +1,8 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /contacts
-  # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.where(:created_by => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb

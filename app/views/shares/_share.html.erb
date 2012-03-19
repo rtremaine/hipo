@@ -4,7 +4,11 @@
   <td><%= link_to share.created_at.to_s(:short), share %></td>
   <td><%= link_to share.record_set.patient.name, share.record_set.patient %></td>
   <td><%= link_to share.record_set.name, share.record_set %></td>
-  <td><center><%= share.token %></center></td>
+  <td>
+    <center>
+      <%= raw '<i class=\'icon-lock\'></i>' if share.needs_confirm %>
+    </center>
+  </td>
   <td><%= share.received_date || '-' %></td>
 </tr>
 

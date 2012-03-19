@@ -9,7 +9,7 @@
 <% @contacts.each do |contact| %>
   <tr>
     <td><%= link_to contact.user.username, contact %></td>
-    <td><%= contact.confirmed.to_s %></td>
+    <td><%= contact.confirmed ? 'yes' : 'no' %></td>
   </tr>
 <% end %>
 </table>
