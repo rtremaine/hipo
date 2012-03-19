@@ -60,6 +60,12 @@
 
         <p>
           <small>
+            Created by: <%= @record_set.user.username %>
+          </small>
+        </p>
+
+        <p>
+          <small>
             Records: <%= best_in_place @record_set, :name %>
           </small>
         </p>

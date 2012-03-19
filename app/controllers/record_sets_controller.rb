@@ -49,10 +49,9 @@ class RecordSetsController < ApplicationController
     @record = Record.new
   end
 
-  # POST /record_sets
-  # POST /record_sets.json
   def create
     @record_set = RecordSet.new(params[:record_set])
+    @record_set.user_id = current_user.id
 
     respond_to do |format|
       if @record_set.save

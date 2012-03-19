@@ -78,7 +78,6 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
 <%= form_for(@record_set, :format => :json, :html => {:style => 'display: none;'}) do |f| %>
   <%= f.hidden_field :patient_id, :value => @patient.id %>
   <%= f.text_field :name, :class=>'record_set_name' %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.text_field :description, :class => 'record_set_description' %>
 <% end %>
 
