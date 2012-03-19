@@ -1,3 +1,14 @@
+<%= semantic_form_for @record_set do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+  %>
+  <% end %>
+  <%= f.buttons do %>
+    <% f.button %>
+  <% end %>
+<% end %>
+
 <%= form_for(@record_set) do |f| %>
   <% if @record_set.errors.any? %>
     <div id="error_explanation">

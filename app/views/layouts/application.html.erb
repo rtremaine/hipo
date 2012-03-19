@@ -35,7 +35,7 @@
           </li>
           <li>
             <%= link_to 'Login as t@t.com', 'localhost:3991/inbox?authorization_token=' +
-              User.find_by_email('t@t.com').get_token %>
+              User.find_by_email('t@t.com').get_token if User.find_by_email('t@t.com') %>
           </li>
           <li>
           <% link_to 'token', 'http://localhost:3991/contacts?auth_token=w1CtTyhCHFnVvFifRQpU'%>
