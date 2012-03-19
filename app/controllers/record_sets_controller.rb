@@ -12,8 +12,15 @@ class RecordSetsController < ApplicationController
     end
   end
 
-  # GET /record_sets/1
-  # GET /record_sets/1.json
+  def view
+    @record_set = RecordSet.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @record_set }
+    end
+  end
+
   def show
     @record_set = RecordSet.find(params[:id])
     @record = Record.new
@@ -26,8 +33,6 @@ class RecordSetsController < ApplicationController
     end
   end
 
-  # GET /record_sets/new
-  # GET /record_sets/new.json
   def new
     @record_set = RecordSet.new
     @record = Record.new

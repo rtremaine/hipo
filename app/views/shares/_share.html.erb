@@ -1,14 +1,11 @@
 <tr>
+  <td>
+      <%= raw '<i class=\'icon-lock\'></i>' if share.needs_confirm %>
+      <%= link_to share.record_set.patient.name + ' - ' + share.record_set.name, share.record_set %>
+    </td>
   <td><%= link_to share.sender.username, share.recipient.user %></td>
   <td><%= link_to share.recipient.user.username, share.recipient.user %></td>
-  <td><%= link_to share.created_at.to_s(:short), share %></td>
-  <td><%= link_to share.record_set.patient.name, share.record_set.patient %></td>
-  <td><%= link_to share.record_set.name, share.record_set %></td>
-  <td>
-    <center>
-      <%= raw '<i class=\'icon-lock\'></i>' if share.needs_confirm %>
-    </center>
-  </td>
+  <td><%= share.created_at.to_s(:short) + ' - (' + time_ago_in_words(share.created_at) + ')' %></td>
   <td><%= share.received_date || '-' %></td>
 </tr>
 
