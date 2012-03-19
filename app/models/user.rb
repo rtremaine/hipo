@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_one     :subscription
   belongs_to  :sharing_mode
   belongs_to  :company
+  has_many    :contacts
 
   accepts_nested_attributes_for :company
 
