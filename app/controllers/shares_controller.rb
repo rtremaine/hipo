@@ -24,7 +24,7 @@ class SharesController < ApplicationController
     msg = 'Share not found'
 
     if @share   
-      ShareMailer.new_share(@share).deliver
+      ShareMailer.new_share(@share).deliver if false #TODO
       @share.emailed_date = Time.now
       @share.save
       msg = 'Record sharing email sent'
@@ -82,8 +82,6 @@ class SharesController < ApplicationController
     end
   end
 
-  # POST /shares
-  # POST /shares.json
   def create
     @share = Share.new(params[:share])
 
