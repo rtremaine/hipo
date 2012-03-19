@@ -1,7 +1,10 @@
 <script id="template-record-set-create" type="text/x-tmpl">
   <tr class="record-set-create fade in">
     <td><%= text_field 'record_set', 'name' %></td>
-    <td><%= text_field 'record_set', 'description' %></td>
+    <td>
+      <%= hidden_field 'record_set', 'user_id' %>
+      <%= text_field 'record_set', 'description' %>
+    </td>
     <td></td>
     <td></td>
     <td><button id="create_button" class="btn btn-primary start" type="submit" onclick="createRecordSet($('#record_set_name'), $('#record_set_description')); return false;">Create</button></td>

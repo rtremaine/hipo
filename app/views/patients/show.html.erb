@@ -56,10 +56,13 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     $('#add_button').hide();
   }
 
-  function createRecordSet($name, $description) {
+  function createRecordSet($name, $description, $user_id) {
     $form = $('#new_record_set');
     $rs_name = $form.find('.record_set_name');
     $rs_name.val($name.val());
+
+    $desc = $form.find('.record_set_user_id');
+    $desc.val($user_idc.val());
 
     $desc = $form.find('.record_set_description');
     $desc.val($description.val());
@@ -78,6 +81,7 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
 <%= form_for(@record_set, :format => :json, :html => {:style => 'display: none;'}) do |f| %>
   <%= f.hidden_field :patient_id, :value => @patient.id %>
   <%= f.text_field :name, :class=>'record_set_name' %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.text_field :description, :class => 'record_set_description' %>
 <% end %>
 

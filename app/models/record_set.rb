@@ -2,6 +2,11 @@ class RecordSet < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   has_many    :records
   belongs_to  :patient
+  validates_presence_of :user_id
+
+  def can_see
+    return true if self
+  end
 
   def to_jq_record_set
     {
