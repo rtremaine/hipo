@@ -17,3 +17,4 @@ web.sh
 Gemfile
 Gemfile.lock
 public/uploads
+private/
