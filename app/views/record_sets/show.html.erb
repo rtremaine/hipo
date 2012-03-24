@@ -1,7 +1,10 @@
 <center>
   <h1>
     <%= link_to @record_set.patient.name, @record_set.patient %>
-    <%= link_to @record_set.name, @record_set.patient %>
+    - 
+    <small>
+      <%= link_to @record_set.name, @record_set.patient %>
+    </small>
   </h1>
   <div class='row'>
     <div class='span4'>
