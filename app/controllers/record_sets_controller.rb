@@ -1,4 +1,5 @@
 class RecordSetsController < ApplicationController
+
   respond_to :html, :json
   # GET /record_sets
   # GET /record_sets.json
@@ -16,6 +17,7 @@ class RecordSetsController < ApplicationController
     @record_set = RecordSet.find(params[:id])
 
     respond_to do |format|
+
       format.html # show.html.erb
       format.json { render json: @record_set }
     end

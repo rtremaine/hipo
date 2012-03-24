@@ -1,1 +1,36 @@
-confirm
+<h2>Confirm record share</h2>
+
+<table width='90%'>
+    <tr>
+      <td> 
+        From
+      </td>
+    <td>
+      <h2>
+        <%= @share.sender.username %> 
+      </h2>
+    </td>
+  </tr>
+    <tr>
+      <td> 
+        Created
+      </td>
+    <td>
+      <h2>
+        <%= @share.created_at.to_s(:long) %> 
+      </h2>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Input Confirmation Code
+    </td>
+    <td>
+      <%= form_tag(shares_confirm_code_path, :method => "post", :class => 'form-horizontal') do %>
+        <%= text_field_tag(:confirm_code) %>
+        <%= hidden_field_tag 'share_id', @share.id %>
+        <%= submit_tag("Confirm", :class => 'btn btn-primary') %>
+      <% end %>
+    </td>
+  </tr>
+</table>

@@ -65,7 +65,6 @@ Dentist: <%= link_to @patient.dentist.name, @patient.dentist if @patient.dentist
     $desc.val($description.val());
 
     $form.live('ajax:success', function(data, status, xhr) {
-
         var json = {record_sets: status};
         var html = tmpl('template-record-set', json);
         $('.record-set-create').replaceWith(html);

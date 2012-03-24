@@ -10,6 +10,29 @@ class SharesController < ApplicationController
     end
   end
   
+  def confirm
+    @share = Share.find params[:id]
+  end
+
+  def confirm_share
+    code = params[:confirm_code]
+    @share = Share.find params[:share_id]
+
+    if code = @share.token
+      @share.:e ap  
+    end
+
+    respond_to do |format|
+      if @share.save
+        format.html { redirect_to @share, notice: 'Share was successfully created.' }
+        format.json { render json: @share, status: :created, location: @share }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @share.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def inbox
     @shares = Share.joins('join contacts c on shares.recipient_id = c.id join users u on c.user_id = u.id')
 

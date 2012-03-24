@@ -1,4 +1,7 @@
 Hippo::Application.routes.draw do
+  match 'shares/confirm_code' => 'shares#confirm_code'
+  match 'shares/confirm/:id' => 'shares#confirm', :as => :confirm
+  match 'record_sets/views/:id' => 'record_sets#view'
   resources :shares
   resources :contacts
   resources :record_sets
@@ -26,7 +29,6 @@ Hippo::Application.routes.draw do
   match 'download_record' => 'records#record'
   match 'thumbnail' => 'records#thumbnail'
   match 'confirm' => 'shares#confirm'
-  match 'record_set_views/views/:id' => 'record_sets#view'
 
   #match "cancel" => "users#cancel_subscription"
   resources :users, :only => [:show]
