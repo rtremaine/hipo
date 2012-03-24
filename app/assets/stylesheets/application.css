@@ -295,3 +295,8 @@ ul.sortable li {
   text-indent: -9999px;
   background: url("/images/close-button.gif") no-repeat;
 }
+
+.border-dashed {
+  border-style: dashed; 
+  border-width: 5px;
+}
