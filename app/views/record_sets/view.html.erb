@@ -1,1 +1,60 @@
-view
+<center>
+  <div class='row'>
+    <div class='span4'>
+      <div class='well'>
+        <% if @record_set.patient.dentist %>
+          <h2>
+            <small>
+              Patient of: <%= link_to @record_set.patient.dentist.name, @record_set.patient.dentist %> 
+            </small>
+          </h2>
+        <% end %>
+        <p>
+          <small>
+            Created by: <%= @record_set.user.username %>
+          </small>
+        </p>
+
+        <p>
+          <small>
+            Records: <%= best_in_place @record_set, :name %>
+          </small>
+        </p>
+
+        <p>
+          <small>
+            Created <%= @record_set.created_at.to_s(:long) %>
+          </small>
+        </p>
+
+        <p>
+          <small>
+            Description
+          </small>
+        </p>
+        <%= best_in_place @record_set, :description, :type => :textarea %>
+      </p>
+    </div>
+  </div>
+  <div class='offset2 span6'>
+    <%= render 'header' %>
+    <table class='table-striped' width='100%'>
+      <% @record_set.records.each do |record| %>
+        <tr>
+          <td>
+            <%= link_to image_tag(record.to_jq_record['thumbnail_url']), record.to_jq_record['url'] %>
+          </td>
+          <td>
+            <%= link_to record.to_jq_record['name'], record.to_jq_record['url'] %>
+          </td>
+          <td>
+            <%= number_to_human_size record.to_jq_record['size'] %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <br style='padding-top: 40px;'>
+    <%= link_to 'Edit', edit_record_set_path(@record_set) %> |
+    <%= link_to 'Back', record_sets_path %>
+    <br/>
+  </div>
