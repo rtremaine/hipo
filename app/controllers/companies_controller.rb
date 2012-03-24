@@ -12,8 +12,19 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
+  def invite_new_user
+    @user = User.new(:email => params[:email])
+    @user.company_id = current_user.company.id
+
+    respond_to do |format|
+    if @user.save!
+      # send email
+      format.html { redirect_to @company, notice: 'User was successfully invited.' }
+    else
+      format.html { redirect_to @company, notice: 'User was successfully invited.' }
+    end
+  end
+
   def show
     @company = Company.find(params[:id])
 

@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     self.stripe_customer.delete
   end
 
+  def self.fake_password
+      rand(10**10).to_s
+  end
+
   def stripe_invoices
     invoices = Array.new
     count = 10
