@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20120324130023) do
     t.string   "name"
     t.integer  "sharing_mode_id",                       :default => 1
     t.string   "authentication_token"
-    t.string   "company"
+    t.string   "company_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

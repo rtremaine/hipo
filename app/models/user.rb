@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :stripe_customer_token, :name, 
-    :company_attributes, :sharing_mode_id
+    :company_attributes, :sharing_mode_id, :company_name
 
   def get_token
     self.reset_authentication_token! unless self.authentication_token

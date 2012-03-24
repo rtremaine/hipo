@@ -14,6 +14,7 @@ class AdminTest < ActionController::IntegrationTest
       visit '/users/sign_up'
       assert page.has_content?('Forgot your password?')
       fill_in "user_email", :with=> 'admin@g.com'
+      fill_in "user_company_attributes_name", :with=> "AdminFirm"
       fill_in "user_password", :with=> "bondaxe"
       fill_in "user_password_confirmation", :with=> "bondaxe"
       click_button "Sign up"
@@ -33,6 +34,7 @@ class AdminTest < ActionController::IntegrationTest
     visit '/users/sign_up'
     assert page.has_content?('Forgot your password?')
     fill_in "user_email", :with=> 'user@g.com'
+    fill_in "user_company_attributes_name", :with=> "SubFirm"
     fill_in "user_password", :with=> "bondaxe"
     fill_in "user_password_confirmation", :with=> "bondaxe"
     click_button "Sign up"
