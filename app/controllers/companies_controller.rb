@@ -12,8 +12,20 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
+  def invite_new_user
+    @user = User.new(:email => params[:email], :password => User.fake_password)
+    @user.company_id = current_user.company.id
+    @user.invited_by_id = current_user.id
+    @company = current_user.company
+
+    if @user.save!
+      UserMailer.new_invite(@user).deliver
+      redirect_to @company, notice: 'User was successfully invited.'
+    else
+      redirect_to @company, notice: 'User could not be invited.'
+    end
+  end
+
   def show
     @company = Company.find(params[:id])
 

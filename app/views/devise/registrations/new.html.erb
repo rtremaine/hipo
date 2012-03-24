@@ -8,6 +8,16 @@
       <div><%= f.label :email %><br />
         <%= f.email_field :email %></div>
 
+      <% resource.company = Company.new %>
+
+      <%= f.fields_for :company do |cf| %>
+        <div>
+          <%= cf.label :company %>
+          <br />
+          <%= cf.text_field :name %>
+        </div>
+      <% end %> 
+
       <div><%= f.label :password %><br />
         <%= f.password_field :password %></div>
 

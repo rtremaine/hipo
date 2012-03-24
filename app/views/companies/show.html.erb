@@ -6,19 +6,34 @@
   &nbsp;
 </p>
 
-<h2>
-  Staff
-</h2>
+<div class='row'>
+  <div class='span4'>
+    <div class='well'>
+      <%= form_tag(invite_path, :method => "post", :class => 'form-horizontal') do %>
+        <%= label_tag(:email, 'Invite a coworker (email)') %>
+        <%= text_field_tag(:email) %>
+        <%= hidden_field_tag 'inviter_id', current_user.id %>
+        <%= submit_tag("Share", :class => 'btn btn-primary') %>
+      <% end %>
+    </div>
+  </div>
 
-<ul>
-  <% @company.users.each do |user| %>
-    <li><%= link_to user.username, user %></li>
-  <% end %>
-</ul>
+  <div class='span8'>
+    <h2>
+      Staff
+    </h2>
 
-<p>
-  &nbsp;
-</p>
+    <ul>
+      <% @company.users.each do |user| %>
+        <li><%= link_to user.username, user %></li>
+      <% end %>
+    </ul>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+    <p>
+      &nbsp;
+    </p>
+
+    <%= link_to 'Edit', edit_company_path(@company) %> |
+    <%= link_to 'Back', companies_path %>
+  </div>
+</div>

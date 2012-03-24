@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <p style="font-size:64px; color:#d44413; font-family: 'Allura', cursive;">
+    <strong>
+      Hippo
+    </strong>
+  </p>
+  <h1>
+    <%= @inviter.username %> has invited you to join Hippo.
+  </h1>
+  <p>
+    To join, just follow  
+    <%= link_to 'this link.',{ :host => 'hippo.flunkyism.com', 
+      :controller => 'users',
+      :action => 'edit',
+      :auth_token => @user.get_token,
+      :id => @user.id } %>
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

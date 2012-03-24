@@ -11,9 +11,21 @@ class SmokeTest < ActionController::IntegrationTest
     fill_in "user_password", :with => "bondaxe"
     fill_in "user_password_confirmation", :with => "bondaxe"
     click_button "Sign up"
+    assert page.has_content?('Company name can\'t be blank')
+    fill_in "user_email", :with => "thealey@gmail.com"
+    fill_in "user_company_attributes_name", :with => "NewFirm"
+    fill_in "user_password", :with => "bondaxe"
+    fill_in "user_password_confirmation", :with => "bondaxe"
+    click_button "Sign up"
+
     assert page.has_content?('Welcome! You have signed up successfully.')
     assert page.has_content?('thealey@gmail.com')
     u = User.find_by_email 'thealey@gmail.com'
+    visit '/users/' + u.id.to_s
+    assert page.has_content?('NewFirm')
+    click_link 'NewFirm'
+    assert page.has_content?('Staff')
+
     visit '/users/' + u.id.to_s
     assert page.has_content?('No active subscription')
     visit '/subscriptions'
