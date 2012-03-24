@@ -1,29 +1,8 @@
-<%= form_for(@patient) do |f| %>
-  <% if @patient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-
-      <ul>
-      <% @patient.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= semantic_form_for(@patient) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :first %>
+    <%= f.input :last %>
+    <%= f.input :ssn %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first %><br />
-    <%= f.text_field :first %>
-  </div>
-  <div class="field">
-    <%= f.label :last %><br />
-    <%= f.text_field :last %>
-  </div>
-  <div class="field">
-    <%= f.label :ssn %><br />
-    <%= f.text_field :ssn %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.buttons %>
 <% end %>

@@ -25,7 +25,11 @@ class User < ActiveRecord::Base
   end
 
   def username
-    self.name ? self.name : self.email
+    if self.name and self.name.size > 0
+      return self.name
+    else 
+      return self.email
+    end
   end
 
   def active_subscription

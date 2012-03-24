@@ -17,7 +17,7 @@
   <ul>
     <% SharingMode.all.each do |sm| %>
       <li>
-        <strong><%= sm.name %></strong>
+        <strong><%= sm.name.humanize %></strong>
         <p>
         <%= sm.description %>
         </p>
