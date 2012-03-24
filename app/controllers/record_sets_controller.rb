@@ -1,5 +1,4 @@
 class RecordSetsController < ApplicationController
-  load_and_authorize_resource
 
   respond_to :html, :json
   # GET /record_sets
