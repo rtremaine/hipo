@@ -38,13 +38,11 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
-#gem 'carrierwave_securefile'
 gem 'stripe'
 gem 'mini_magick'
 gem "best_in_place", :git => 'git://github.com/proton/best_in_place.git'
 gem 'formtastic-bootstrap'
 gem 'gravtastic'
-gem 'openssl-extensions'
 
 group :development, :testing do
   gem 'capybara'
