@@ -4,16 +4,16 @@
   </h1>
 </center>
 
-<h3>
+<p>
   Company / Practice: <%= link_to @user.company.name, 
     @user.company if @user.company %>
-</h3>
-<h3>
+</p>
+<p>
   Email: <%= @user.email %>
-</h3>
-<h3>
+</p>
+<p>
   Sharing mode: <%= link_to @user.sharing_mode.name.humanize, edit_user_path %>
-</h3>
+</p>
 
 <p>
   &nbsp;
@@ -27,7 +27,6 @@
   <%= link_to 'Cancel subscription', cancel_user_path %>
 <% else %>
   <%= link_to 'Subscribe', new_subscription_path %>
-<% end %> | <%= link_to 'Edit user information', edit_user_path %> |
-<%= link_to 'Create Company / Practice', new_company_path %>
+<% end %> | <%= link_to 'Edit user information', edit_user_path %>
 
 
