@@ -1,7 +1,7 @@
 <script id="template-record-set" type="text/x-tmpl">
   {% for(var i=0, recordSets=o.record_sets, l=recordSets.length, recordSet=recordSets[0]; i<l; recordSet=recordSets[++i]) { %}
   <tr class="record-set fade in">
-    <td>{%=recordSet.name%}</td>
+    <td><a href="{%=recordSet.show_url%}">{%=recordSet.name%}</td>
     <td>{%=recordSet.description%}</td>
     <td>{%=recordSet.created_at%}</td>
     <td>0</td>
