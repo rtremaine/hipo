@@ -41,9 +41,11 @@
                 <% link_to 'token', 'http://localhost:3991/contacts?auth_token=w1CtTyhCHFnVvFifRQpU'%>
               </li>
               <% if current_user %>
-                <li>
-                  <%= link_to current_user.company.name, current_user.company %>
-                </li>
+                <% if current_user.company %>
+                  <li>
+                    <%= link_to current_user.company.name, current_user.company %>
+                  </li>
+                <% end %>
                 <% if current_user.is_admin %>
                   <li>
                     <%= link_to 'Subscriptions', :subscriptions %>
