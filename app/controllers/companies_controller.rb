@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
     @company = current_user.company
 
     if @user.save!
-      # send email
+      UserMailer.new_invite(@user).deliver!
       redirect_to @company, notice: 'User was successfully invited.'
     else
       redirect_to @company, notice: 'User could not be invited.'
