@@ -25,6 +25,9 @@ $(function () {
         )
     );
 
+    $('#fileupload').fileupload('option', {
+      autoUpload: true,
+    });
 //    if (window.location.hostname === 'blueimp.github.com') {
 //        // Demo settings:
 //        $('#fileupload').fileupload('option', {
