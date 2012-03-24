@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324130023) do
+ActiveRecord::Schema.define(:version => 20120324152035) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20120324130023) do
     t.integer  "sharing_mode_id",                       :default => 1
     t.string   "authentication_token"
     t.string   "company_name"
+    t.integer  "invited_by_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

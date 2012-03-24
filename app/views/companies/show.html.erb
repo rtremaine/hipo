@@ -6,29 +6,34 @@
   &nbsp;
 </p>
 
-<h2>
-  Staff
-</h2>
+<div class='row'>
+  <div class='span4'>
+    <div class='well'>
+      <%= form_tag(invite_path, :method => "post", :class => 'form-horizontal') do %>
+        <%= label_tag(:email, 'Invite a coworker (email)') %>
+        <%= text_field_tag(:email) %>
+        <%= hidden_field_tag 'inviter_id', current_user.id %>
+        <%= submit_tag("Share", :class => 'btn btn-primary') %>
+      <% end %>
+    </div>
+  </div>
 
-<div class='well'>
-  <%= form_tag(create_contact_and_share_path, :method => "post", :class => 'form-horizontal') do %>
-    <%= label_tag(:email, 'Share with new contact (email)') %>
-    <%= text_field_tag(:email) %>
-    <%= hidden_field_tag 'sender_id', current_user.id %>
-    <%= hidden_field_tag 'record_set_id', @record_set.id %>
-    <%= submit_tag("Share", :class => 'btn btn-primary') %>
-  <% end %>
+  <div class='span8'>
+    <h2>
+      Staff
+    </h2>
+
+    <ul>
+      <% @company.users.each do |user| %>
+        <li><%= link_to user.username, user %></li>
+      <% end %>
+    </ul>
+
+    <p>
+      &nbsp;
+    </p>
+
+    <%= link_to 'Edit', edit_company_path(@company) %> |
+    <%= link_to 'Back', companies_path %>
+  </div>
 </div>
-
-<ul>
-  <% @company.users.each do |user| %>
-    <li><%= link_to user.username, user %></li>
-  <% end %>
-</ul>
-
-<p>
-  &nbsp;
-</p>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>

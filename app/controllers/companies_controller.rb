@@ -13,15 +13,16 @@ class CompaniesController < ApplicationController
   end
 
   def invite_new_user
-    @user = User.new(:email => params[:email])
+    @user = User.new(:email => params[:email], :password => User.fake_password)
     @user.company_id = current_user.company.id
+    @user.invited_by_id = current_user.id
+    @company = current_user.company
 
-    respond_to do |format|
     if @user.save!
       # send email
-      format.html { redirect_to @company, notice: 'User was successfully invited.' }
+      redirect_to @company, notice: 'User was successfully invited.'
     else
-      format.html { redirect_to @company, notice: 'User was successfully invited.' }
+      redirect_to @company, notice: 'User could not be invited.'
     end
   end
 
