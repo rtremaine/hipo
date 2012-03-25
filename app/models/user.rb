@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   belongs_to  :sharing_mode
   belongs_to  :company
   has_many    :contacts
+  has_many    :record_sets
 
   accepts_nested_attributes_for :company
 

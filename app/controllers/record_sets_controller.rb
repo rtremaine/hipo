@@ -5,8 +5,7 @@ class RecordSetsController < ApplicationController
   # GET /record_sets
   # GET /record_sets.json
   def index
-    #TODO: add security check
-    @record_sets = RecordSet.all
+    @record_sets = Company.find(current_user.company_id).record_sets
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,13 +26,8 @@ class RecordSetsController < ApplicationController
     @shares = Share.where(:record_set_id => @record_set.id)
 
     respond_to do |format|
-      if @record_set.user_id == current_user.id
-        format.html # show.html.erb
-        format.json { render json: @record_set }
-      else
-        format.html { redirect_to inbox_path, :notice => 'Insuffient permissions' }
-        format.json { redirect_to inbox_path, :notice => 'Insuffient permissions' }
-      end
+      format.html # show.html.erb
+      format.json { render json: @record_set }
     end
   end
 
