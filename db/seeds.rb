@@ -6,23 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-SharingMode.new(:name => 'Confirm_Once').save!
-SharingMode.new(:name => 'Confirm_Always').save!
-SharingMode.new(:name => 'Confirm_Never').save!
-
-sm1 = SharingMode.find_by_name 'Confirm_Once'
+sm1 = SharingMode.find_or_initialize_by_name 'Confirm_Once'
 sm1.description = 'Confirm once means that the first time you share records with someone, ' +
   'you need to call or email that person to give them a confirmation code. ' + 
   'This ensures they are who you think they are, and that you don\'t have the wrong email address. ' +
   'After this first time you can share any record with this person without needing to exchange any codes ever again.'
 sm1.save
 
-sm2 = SharingMode.find_by_name 'Confirm_Always'
+sm2 = SharingMode.find_or_initialize_by_name 'Confirm_Always'
 sm2.description = 'Confirm always means each contact will always need to input a unique confirmation code before getting records. ' +
   'This the most secure option.'
 sm2.save
 
-sm = SharingMode.find_by_name('Confirm_Never')
+sm = SharingMode.find_or_initialize_by_name('Confirm_Never')
 sm.description = 'Confirm never means no confirmation code is ever needed to download records. ' +
   'This is the least secure option.'
 sm.save!
@@ -30,12 +26,21 @@ sm.save!
 u = User.find_or_initialize_by_email('ryan.trem@gmail.com');
 u.password = 'bondaxe'
 u.password_confirmation = 'bondaxe'
+u.company = Company.find_or_initialize_by_name 'RT Inc.'
+u.save!
+puts u.to_yaml
+
+u = User.find_or_initialize_by_email('ryan.tremaine@yahoo.com');
+u.password = 'bondaxe'
+u.password_confirmation = 'bondaxe'
+u.company = Company.find_or_initialize_by_name 'Tremaine Ltd.'
 u.save!
 puts u.to_yaml
 
 u = User.find_or_initialize_by_email('thealey@gmail.com');
 u.password = 'bondaxe'
 u.password_confirmation = 'bondaxe'
+u.company = Company.find_or_initialize_by_name 'TH Inc.'
 if false
   u.save!
   puts u.to_yaml
