@@ -20,6 +20,16 @@ class SmokeTest < ActionController::IntegrationTest
 
     assert page.has_content?('Welcome! You have signed up successfully.')
     assert page.has_content?('thealey@gmail.com')
+
+    click_link 'Sign out'
+    assert page.has_content?('You need to sign in or sign up before continuing.')
+    click_link 'Patients'
+    assert page.has_content?('You need to sign in or sign up before continuing.')
+    fill_in "user_email", :with => "thealey@gmail.com"
+    fill_in "user_password", :with => "bondaxe"
+    click_button "Sign in"
+    assert page.has_content?('Signed in successfully.')
+
     u = User.find_by_email 'thealey@gmail.com'
     visit '/users/' + u.id.to_s
     assert page.has_content?('NewFirm')
@@ -80,13 +90,48 @@ class SmokeTest < ActionController::IntegrationTest
     click_link xrays
 
     assert page.has_content?('Share with new contact')
-    fill_in 'email', :with => 'autotest@testauto.com'
+    fill_in 'email', :with => (recipient = 'autotest@testauto.com')
     click_button 'Share'
     assert page.has_content?('Share was successfully created')
     assert page.has_content?(I18n.translate :sharing_records_called)
 
+    s = Share.last
+    assert !s.recipient.confirmed
+    assert s.token
 
+    assert page.has_content?(xrays)
+    assert page.has_content?(recipient + ' is not a confirmed contact of yours')
+    click_link 'Confirm and send email'
+    assert page.has_content?('Record sharing email sent')
+    click_link recipient
+    assert page.has_content?('Record shares')
+    assert page.has_content?('Received')
+    assert page.has_content?('-')
 
+    click_link 'Sign out'
+    assert page.has_content?('You need to sign in or sign up before continuing.')
+
+    visit '/users/sign_up'
+    assert page.has_content?('Forgot your password?')
+    fill_in "user_email", :with => recipient
+    fill_in "user_password", :with => "bondaxe"
+    fill_in "user_password_confirmation", :with => "bondaxe"
+    click_button "Sign up"
+    assert page.has_content?('Company name can\'t be blank')
+    fill_in "user_email", :with => recipient
+    fill_in "user_company_attributes_name", :with => "NewFirm"
+    fill_in "user_password", :with => "bondaxe"
+    fill_in "user_password_confirmation", :with => "bondaxe"
+    click_button "Sign up"
+    assert page.has_content?('Company name has already been taken')
+    fill_in "user_email", :with => recipient
+    fill_in "user_company_attributes_name", :with => "NewFirm2"
+    fill_in "user_password", :with => "bondaxe"
+    fill_in "user_password_confirmation", :with => "bondaxe"
+    click_button "Sign up"
+
+    assert page.has_content?('Welcome! You have signed up successfully.')
+    assert page.has_content?(recipient)
   end
 
   test 'subscribe with stripe' do
