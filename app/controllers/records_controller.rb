@@ -6,9 +6,9 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    #TODO add security here
     @record_set = RecordSet.find_by_id(params[:record_set_id].to_i)
-    records = Record.find_all_by_record_set_id(@record_set.id)
+    can? :read, @record_set
+    @records = Record.find_all_by_record_set_id(@record_set.id)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -28,8 +28,6 @@ class RecordsController < ApplicationController
   end
 
   def record
-    #TODO security
-    #record = Record.find(params[:id])
     uri = @record.record.to_s
     file = Hippo::EncDec.decrypt_file(uri)
     send_file file, 
@@ -39,8 +37,6 @@ class RecordsController < ApplicationController
   end
 
   def thumbnail
-    #TODO security
-    #record = Record.find(params[:id])
     send_file record.record.thumb.url
   end
 
@@ -57,7 +53,6 @@ class RecordsController < ApplicationController
 
   # GET /records/1/edit
   def edit
-    #@record = Record.find(params[:id])
   end
 
   # POST /records
@@ -79,8 +74,6 @@ class RecordsController < ApplicationController
   # PUT /records/1
   # PUT /records/1.json
   def update
-    #@record = Record.find(params[:id])
-
     respond_to do |format|
       if @record.update_attributes(params[:record])
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
@@ -95,9 +88,7 @@ class RecordsController < ApplicationController
   # DELETE /records/1
   # DELETE /records/1.json
   def destroy
-    #@record = Record.find(params[:id])
     @record.destroy
-
     respond_to do |format|
       format.html { redirect_to records_url }
       format.json { render :json => true }
