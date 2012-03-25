@@ -1,5 +1,5 @@
 class Patient < ActiveRecord::Base
-  belongs_to    :dentist
+  belongs_to    :company
   has_many      :record_sets
   validates_presence_of   :first, :last
 

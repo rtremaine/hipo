@@ -28,12 +28,13 @@ class Ability
     # guest user
     user ||= User.new
 
-    #if user.is_admin?
+    if user.is_admin?
       can :manage, :all 
-    #else
-    #  can :read, RecordSet do |record_set|
-    #    record_set.user.company == user.company
-    #  end 
-    #end
+    else
+      can :read, RecordSet do |record_set|
+        record_set.user.company == user.company
+      end 
+      can :create, RecordSet
+    end
   end
 end
