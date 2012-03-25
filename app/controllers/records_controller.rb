@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  load_and_authorize_resource
+
   require 'encdec'
   respond_to :html, :json
   # GET /records
@@ -17,7 +19,7 @@ class RecordsController < ApplicationController
   # GET /records/1
   # GET /records/1.json
   def show
-    @record = Record.find(params[:id])
+    #@record = Record.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,18 +29,18 @@ class RecordsController < ApplicationController
 
   def record
     #TODO security
-    record = Record.find(params[:id])
-    uri = record.record.to_s
+    #record = Record.find(params[:id])
+    uri = @record.record.to_s
     file = Hippo::EncDec.decrypt_file(uri)
     send_file file, 
-      :content_type => record[:content_type],
+      :content_type => @record[:content_type],
       :filename => File.basename(uri) 
     File.unlink file
   end
 
   def thumbnail
     #TODO security
-    record = Record.find(params[:id])
+    #record = Record.find(params[:id])
     send_file record.record.thumb.url
   end
 
@@ -55,7 +57,7 @@ class RecordsController < ApplicationController
 
   # GET /records/1/edit
   def edit
-    @record = Record.find(params[:id])
+    #@record = Record.find(params[:id])
   end
 
   # POST /records
@@ -64,7 +66,7 @@ class RecordsController < ApplicationController
     @record = Record.new(params[:record])
     record_set = RecordSet.find_by_id(params[:record][:record_set_id])
     @record.patient_id = record_set.patient_id
-#debugger
+
     respond_to do |format|
       if @record.save
         format.json { render :json => [ @record.to_jq_record ].to_json }
@@ -77,7 +79,7 @@ class RecordsController < ApplicationController
   # PUT /records/1
   # PUT /records/1.json
   def update
-    @record = Record.find(params[:id])
+    #@record = Record.find(params[:id])
 
     respond_to do |format|
       if @record.update_attributes(params[:record])
@@ -93,7 +95,7 @@ class RecordsController < ApplicationController
   # DELETE /records/1
   # DELETE /records/1.json
   def destroy
-    @record = Record.find(params[:id])
+    #@record = Record.find(params[:id])
     @record.destroy
 
     respond_to do |format|

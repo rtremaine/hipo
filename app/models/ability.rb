@@ -31,10 +31,15 @@ class Ability
     if user.is_admin?
       can :manage, :all 
     else
-      can :read, RecordSet do |record_set|
+      can :manage, RecordSet do |record_set|
         record_set.user.company == user.company
       end 
-      can :create, RecordSet
+      #can :create, RecordSet
+
+      can :manage, Record do |record|
+        record.record_set.user.company == user.company 
+      end
+      #can :create, Record
     end
   end
 end
