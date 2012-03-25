@@ -9,6 +9,10 @@ class RecordSet < ActiveRecord::Base
     return true if self
   end
 
+  def check_permission user
+    return true if self.user_id = user.id
+  end
+
   def to_jq_record_set
     {
       'id' => read_attribute(:id),

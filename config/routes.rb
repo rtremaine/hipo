@@ -1,7 +1,7 @@
 Hippo::Application.routes.draw do
   match 'shares/confirm_code' => 'shares#confirm_code'
   match 'shares/confirm/:id' => 'shares#confirm', :as => :confirm
-  match 'record_sets/views/:id' => 'record_sets#view'
+  match 'record_sets/views/:id' => 'record_sets#view', :as => :record_set_views
   resources :shares
   resources :contacts
   resources :record_sets
