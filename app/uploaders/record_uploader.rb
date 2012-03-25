@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class RecordUploader < CarrierWave::Uploader::Base
-
+  require 'encdec'
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -17,32 +17,7 @@ class RecordUploader < CarrierWave::Uploader::Base
   end
 
   def secure_file
-    Record.encrypt_file(self.to_s)
-#    file = self.to_s
-#    ext_file = file + ".x1"
-#    File.rename(file, ext_file)
-#
-#    key = "1234567890123456"
-#    alg = "bf"
-#    iv = "6543210987654321"
-#
-#    blow = OpenSSL::Cipher::Cipher.new alg
-#    blow.encrypt
-#    blow.key = key
-#    blow.iv = iv
-#    File.open(file,'wb') do |enc|
-#      File.open(ext_file) do |f|
-#        loop do
-#          r = f.read(4096)
-#          break unless r
-#          cipher = blow.update(r)
-#          enc << cipher
-#        end
-#      end
-#
-#      enc << blow.final
-#    end
-#    File.unlink(ext_file)
+    Hippo::EncDec.encrypt_file(self.to_s)
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

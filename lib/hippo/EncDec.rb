@@ -1,4 +1,4 @@
-#module Hippo
+module Hippo
   module EncDec
     def self.encrypt_file(file)
       #file = self.to_s
@@ -56,4 +56,4 @@
       return file + '.x2'
     end
   end
-#end
+end

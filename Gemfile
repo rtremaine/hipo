@@ -33,18 +33,15 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
-#gem 'carrierwave_securefile'
 gem 'stripe'
 gem 'mini_magick'
 gem "best_in_place", :git => 'git://github.com/proton/best_in_place.git'
 gem 'formtastic-bootstrap'
 gem 'gravtastic'
-gem 'openssl-extensions'
+gem 'cancan'
 
 group :development, :testing do
   gem 'capybara'

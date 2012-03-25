@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  require 'encdec'
   respond_to :html, :json
   # GET /records
   # GET /records.json
@@ -28,31 +29,7 @@ class RecordsController < ApplicationController
     #TODO security
     record = Record.find(params[:id])
     uri = record.record.to_s
-    #uploader = RecordUploader.new
-#    FileUtils.cp(uri, uri + '.x1')
-#    
-#    key = "1234567890123456"
-#    alg = "bf"
-#    iv = "6543210987654321"
-#
-#    blow = OpenSSL::Cipher::Cipher.new alg
-#    blow.decrypt
-#    blow.key = key
-#    blow.iv = iv
-#
-#    File.open(uri + '.x2','wb') do |dec|
-#      File.open(uri + '.x1', 'rb') do |f|
-#        loop do
-#          r = f.read(4096)
-#          break unless r
-#          cipher = blow.update(r)
-#          dec << cipher
-#        end
-#      end
-#
-#      dec << blow.final
-#    end
-    file = Record.decrypt_file(uri)
+    file = Hippo::EncDec.decrypt_file(uri)
     send_file file, 
       :content_type => record[:content_type],
       :filename => File.basename(uri) 

@@ -1,4 +1,5 @@
 class RecordSetsController < ApplicationController
+  load_and_authorize_resource
 
   respond_to :html, :json
   # GET /record_sets
@@ -14,7 +15,7 @@ class RecordSetsController < ApplicationController
   end
 
   def view
-    @record_set = RecordSet.find(params[:id])
+    #@record_set = RecordSet.find(params[:id])
 
     respond_to do |format|
 
@@ -24,7 +25,7 @@ class RecordSetsController < ApplicationController
   end
 
   def show
-    @record_set = RecordSet.find(params[:id])
+    #@record_set = RecordSet.find(params[:id])
     @record = Record.new
     @share = Share.new
     @shares = Share.where(:record_set_id => @record_set.id)
@@ -52,12 +53,12 @@ class RecordSetsController < ApplicationController
 
   # GET /record_sets/1/edit
   def edit
-    @record_set = RecordSet.find(params[:id])
+    #@record_set = RecordSet.find(params[:id])
     @record = Record.new
   end
 
   def create
-    @record_set = RecordSet.new(params[:record_set])
+    #@record_set = RecordSet.new(params[:record_set])
     @record_set.user_id = current_user.id
 
     respond_to do |format|
@@ -74,7 +75,7 @@ class RecordSetsController < ApplicationController
   # PUT /record_sets/1
   # PUT /record_sets/1.json
   def update
-    @record_set = RecordSet.find(params[:id])
+    #@record_set = RecordSet.find(params[:id])
     @record_set.update_attributes(params[:record_set])
     respond_with @record_set
   end
@@ -82,7 +83,7 @@ class RecordSetsController < ApplicationController
   # DELETE /record_sets/1
   # DELETE /record_sets/1.json
   def destroy
-    @record_set = RecordSet.find(params[:id])
+    #@record_set = RecordSet.find(params[:id])
     @record_set.destroy
 
     respond_to do |format|
