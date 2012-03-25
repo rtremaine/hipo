@@ -40,6 +40,10 @@ class Ability
         record.record_set.user.company == user.company 
       end
       #can :create, Record
+
+      can :manage, Patient do |patient|
+        patient.company == user.company
+      end
     end
   end
 end

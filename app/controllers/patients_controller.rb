@@ -1,14 +1,16 @@
 class PatientsController < ApplicationController
+  load_and_authorize_resource
+
   respond_to :html, :json
   before_filter :authenticate_user!
 
   # GET /patients
   # GET /patients.json
   def index
+    #TODO: authorize
     @patients = Patient.all
     @patients = Patient.order('last asc').paginate(:page => params[:page],
                                                    :per_page => 15)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @patients }
@@ -18,7 +20,7 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
-    @patient = Patient.find(params[:id])
+    #@patient = Patient.find(params[:id])
     @record_set = RecordSet.new
 
     respond_to do |format|
@@ -40,7 +42,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
-    @patient = Patient.find(params[:id])
+    #@patient = Patient.find(params[:id])
   end
 
   # POST /patients
@@ -62,7 +64,7 @@ class PatientsController < ApplicationController
   # PUT /patients/1
   # PUT /patients/1.json
   def update
-    @patient = Patient.find(params[:id])
+    #@patient = Patient.find(params[:id])
     @patient.update_attributes(params[:patient])
     respond_with @patient
   end
@@ -70,7 +72,7 @@ class PatientsController < ApplicationController
   # DELETE /patients/1
   # DELETE /patients/1.json
   def destroy
-    @patient = Patient.find(params[:id])
+    #@patient = Patient.find(params[:id])
     @patient.destroy
 
     respond_to do |format|
