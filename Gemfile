@@ -33,8 +33,6 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
