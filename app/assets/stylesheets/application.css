@@ -10,12 +10,10 @@ body{
 }
 
 a.brand, .brand {
-  font-family: 'Allura', cursive;
   font-size: 120%;
 }
 
 .brandbig {
-  font-family: 'Allura', cursive;
   font-size: 360%;
 }
 

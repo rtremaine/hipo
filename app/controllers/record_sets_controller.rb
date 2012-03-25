@@ -27,8 +27,13 @@ class RecordSetsController < ApplicationController
     @shares = Share.where(:record_set_id => @record_set.id)
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @record_set }
+      if @record_set.user_id == current_user.id
+        format.html # show.html.erb
+        format.json { render json: @record_set }
+      else
+        format.html { redirect_to inbox_path, :notice => 'Insuffient permissions' }
+        format.json { redirect_to inbox_path, :notice => 'Insuffient permissions' }
+      end
     end
   end
 

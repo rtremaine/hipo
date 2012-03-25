@@ -3,6 +3,8 @@
     <% if share.needs_confirm %>
       <%= raw '<i class=\'icon-lock\'></i>' %>
       <%= link_to share.record_set.patient.name + ' - ' + share.record_set.name,  confirm_path(share.id) %>
+      <%= link_to share.record_set.patient.name + ' - ' + share.record_set.name, :controller => 'record_sets', :action => 'view', :id => share.record_set.id %>
+      <%= link_to share.record_set.patient.name + ' - ' + share.record_set.name, share.record_set %>
     <% else %>
       <%= link_to share.record_set.patient.name + ' - ' + share.record_set.name, :controller => 'record_sets', :action => 'view', :id => share.record_set.id %>
     <% end %>

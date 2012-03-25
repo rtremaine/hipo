@@ -14,17 +14,20 @@ class SharesController < ApplicationController
     @share = Share.find params[:id]
   end
 
-  def confirm_share
+  def confirm_code
     code = params[:confirm_code]
     @share = Share.find params[:share_id]
 
+    confirmed = false
+
     if code = @share.token
-      @share.:e ap  
+      @share.recipient.confirmed = true
+      confirmed = @share.recipient.save!
     end
 
     respond_to do |format|
-      if @share.save
-        format.html { redirect_to @share, notice: 'Share was successfully created.' }
+      if confirmed
+        format.html { redirect_to record_set_views_path(@share.record_set.id), notice: 'Share was successfully confirmed.' }
         format.json { render json: @share, status: :created, location: @share }
       else
         format.html { render action: "new" }
@@ -62,8 +65,13 @@ class SharesController < ApplicationController
     @share = Share.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @share }
+      if @share.sender_id == current_user.id
+        format.html { render }
+        format.json { render json: @share, status: :created, location: @share }
+      else
+        format.html { redirect_to inbox_path, :notice => 'Shares are only viewable by their creator.'}
+        format.json { render json: @share.errors, status: :unprocessable_entity }
+      end
     end
   end
 
