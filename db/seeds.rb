@@ -30,7 +30,7 @@ u.company = Company.find_or_initialize_by_name 'RT Inc.'
 u.save!
 puts u.to_yaml
 
-u = User.find_or_initialize_by_email('ryan.tremaine@yahoo.com');
+u = User.find_or_initialize_by_email('ryan_tremaine@yahoo.com');
 u.password = 'bondaxe'
 u.password_confirmation = 'bondaxe'
 u.company = Company.find_or_initialize_by_name 'Tremaine Ltd.'
