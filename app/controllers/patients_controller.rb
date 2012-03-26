@@ -7,9 +7,8 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    #TODO: authorize
-    @patients = Patient.all
-    @patients = Patient.order('last asc').paginate(:page => params[:page],
+    @patients = Patient.where :company_id => current_user.company_id
+    @patients = @patients.order('last asc').paginate(:page => params[:page],
                                                    :per_page => 15)
     respond_to do |format|
       format.html # index.html.erb
