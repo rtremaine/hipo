@@ -44,6 +44,8 @@ class Ability
       can :manage, Patient do |patient|
         patient.company == user.company
       end
+
+      can :manage, Company, :id => user.company_id
     end
   end
 end

@@ -1,11 +1,16 @@
 class CompaniesController < ApplicationController
+  load_and_authorize_resource
+
   before_filter :authenticate_user!
 
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
-
+    if current_user.is_admin?
+      @companies = Company.all
+    else
+      @companies = Company.where(:id => current_user.company_id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @companies }
@@ -27,8 +32,6 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @company }
@@ -48,7 +51,6 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
-    @company = Company.find(params[:id])
   end
 
   # POST /companies
@@ -72,8 +74,6 @@ class CompaniesController < ApplicationController
   # PUT /companies/1
   # PUT /companies/1.json
   def update
-    @company = Company.find(params[:id])
-
     respond_to do |format|
       if @company.update_attributes(params[:company])
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
@@ -88,9 +88,7 @@ class CompaniesController < ApplicationController
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy
-    @company = Company.find(params[:id])
     @company.destroy
-
     respond_to do |format|
       format.html { redirect_to companies_url }
       format.json { head :no_content }
