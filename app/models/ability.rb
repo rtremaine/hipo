@@ -34,12 +34,12 @@ class Ability
       can :manage, RecordSet do |record_set|
         record_set.user.company == user.company
       end 
-      #can :create, RecordSet
+      can :create, RecordSet
 
       can :manage, Record do |record|
         record.record_set.user.company == user.company 
       end
-      #can :create, Record
+      can :create, Record
 
       can :manage, Patient do |patient|
         patient.company == user.company
