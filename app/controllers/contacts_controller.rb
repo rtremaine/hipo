@@ -1,8 +1,10 @@
 class ContactsController < ApplicationController
+  load_and_authorize_resource
+
   before_filter :authenticate_user!
 
   def index
-    @contacts = Contact.where(:created_by => current_user.id)
+    @contacts = Contact.where(:company_id => current_user.company_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,6 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
-    @contact = Contact.find(params[:id])
     @shares = Share.where(:recipient_id => @contact.id).order('created_at desc')
 
     respond_to do |format|
@@ -42,6 +43,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.create_with_user(params[:email], current_user)
+    @contact.company_id = current_user.company_id
 
     respond_to do |format|
       if @contact.save
@@ -57,8 +59,6 @@ class ContactsController < ApplicationController
   # PUT /contacts/1
   # PUT /contacts/1.json
   def update
-    @contact = Contact.find(params[:id])
-
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
         format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
@@ -73,9 +73,7 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy
-    @contact = Contact.find(params[:id])
     @contact.destroy
-
     respond_to do |format|
       format.html { redirect_to contacts_url }
       format.json { head :no_content }
