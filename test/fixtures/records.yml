@@ -3,9 +3,11 @@
 one:
   id: 1
   patient_id: 1
+  record_set_id: 1
   description: MyString
 
 two:
   id: 2
   patient_id: 1
+  record_set_id: 1
   description: MyString

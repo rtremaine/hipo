@@ -1,5 +1,5 @@
 <h2>
-<%= best_in_place @patient, :last %>, <%= best_in_place @patient, :first %>
+  <%= best_in_place @patient, :last %>, <%= best_in_place @patient, :first %>
 </h2>
 
 <p>
@@ -22,19 +22,18 @@
     </tr>
   </thead>
   <tbody class="record_sets" data-toggle="modal-gallery" data-target="#modal-gallery">
-<% @patient.record_sets.each do|record_set| %>
-  <tr class="template-download fade in">
-    <td class="name"><%= link_to record_set.name, record_set %></td>
-    <td class="description"><%= record_set.description %></td>
-    <td class="date"><%= record_set.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
-    <td><%= record_set.records.count %></td>
-    <td><%= link_to 'Show', record_set, :class => 'btn btn-success start' %></td>
-    <td><%= link_to 'Destroy', record_set, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger delete' %></td>
-  </tr>
-<% end %>
+    <% @patient.record_sets.each do|record_set| %>
+      <tr class="template-download fade in">
+        <td class="name"><%= link_to record_set.name, record_set %></td>
+        <td class="description"><%= record_set.description %></td>
+        <td class="date"><%= record_set.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+        <td><%= record_set.records.count %></td>
+        <td><%= link_to 'Show', record_set, :class => 'btn btn-success start' %></td>
+        <td><%= link_to 'Destroy', record_set, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger delete' %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
 
 <p>
   <%= link_to 'Edit', edit_patient_path(@patient) %> |
@@ -43,33 +42,39 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    //test(); 
-    });
+      //test(); 
+      });
 
-  function addRow() {
-    var template = tmpl('template-record-set-create');
-    var html = template();
+function addRow() {
+  var template = tmpl('template-record-set-create');
+  var html = template();
 
-    $('.record_sets').prepend(html);
-    $('#add_button').hide();
-  }
+  $('.record_sets').prepend(html);
+  $('#add_button').hide();
+}
 
-  function createRecordSet($name, $description) {
-    $form = $('#new_record_set');
-    $rs_name = $form.find('.record_set_name');
-    $rs_name.val($name.val());
+function createRecordSet($name, $description) {
+  $form = $('#new_record_set');
+  $rs_name = $form.find('.record_set_name');
+  $rs_name.val($name.val());
 
-    $desc = $form.find('.record_set_description');
-    $desc.val($description.val());
+  $desc = $form.find('.record_set_description');
+  $desc.val($description.val());
 
-    $form.live('ajax:success', function(data, status, xhr) {
-        var json = {record_sets: status};
-        var html = tmpl('template-record-set', json);
-        $('.record-set-create').replaceWith(html);
-        $('#add_button').show();
-    });
-    $.rails.handleRemote($form);
-  }
+  $form.live('ajax:error', function(data, status, xhr) {
+      alert('error!')
+      $('.record-set-create').replaceWith(status);
+      $('#add_button').show();
+      });
+
+  $form.live('ajax:success', function(data, status, xhr) {
+      var json = {record_sets: status};
+      var html = tmpl('template-record-set', json);
+      $('.record-set-create').replaceWith(html);
+      $('#add_button').show();
+      });
+  $.rails.handleRemote($form);
+}
 </script>
 
 <%= form_for(@record_set, :format => :json, :html => {:style => 'display: none;'}) do |f| %>

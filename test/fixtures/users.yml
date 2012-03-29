@@ -7,15 +7,19 @@
 one:
   id: 1
   email: t@t.com
+  company_id: 1
 
 two:
   id: 2
   email: g@g.com
+  company_id: 1
 
 user:
   id: 4
   email: user123@g.com
+  company_id: 2
 
 admin:
   id: 5
   email: admin@g.com
+  company_id: 1
