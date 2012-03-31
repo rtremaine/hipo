@@ -50,6 +50,7 @@ class Ability
       can :manage, Company, :id => user.company_id
 
       can :manage, Contact, :company_id => user.company_id
+      can :manage, Contact, :created_by => user.id
     end
   end
 end
