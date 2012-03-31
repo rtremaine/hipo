@@ -71,6 +71,7 @@ class SmokeTest < ActionController::IntegrationTest
 
     if (test_stripe = true)
       click_button "Subscribe"
+      sleep 20
       assert page.has_content?('Subscription was successfully created.')
       assert page.has_content?('Subscription is active')
       #assert page.has_content?((Time.now + 14.days).to_date.to_s(:long)) TODO no works for some reason
