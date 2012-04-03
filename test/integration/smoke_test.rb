@@ -18,6 +18,9 @@ class SmokeTest < ActionController::IntegrationTest
     select "2015", :from=> 'card_year'
     click_button "Subscribe"
     sleep 20
+
+    sleep 20 unless page.has_content?('Subscription was successfully created.')
+
     assert page.has_content?('Subscription was successfully created.')
     assert page.has_content?('Subscription is active')
   end
@@ -99,7 +102,7 @@ class SmokeTest < ActionController::IntegrationTest
 
     num_users = User.count
     assert page.has_content?('Share with new contact')
-    fill_in 'email', :with => (recipient = 'autotest@testauto.com')
+    fill_in 'email', :with => (recipient = '9@9.com')
     click_button 'Share'
     assert page.has_content?('Share was successfully created')
     assert User.count > num_users

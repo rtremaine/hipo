@@ -37,7 +37,8 @@ class SharesController < ApplicationController
   end
 
   def inbox
-    @shares = Share.joins('join contacts c on shares.recipient_id = c.id join users u on c.user_id = u.id')
+    #@shares = Share.joins('join contacts c on shares.recipient_id = c.id join users u on c.user_id = u.id')
+    @shares = Share.joins('join contacts c on shares.recipient_id = c.id join users u on c.user_id = u.id and u.id = ' + current_user.id.to_s) 
 
     respond_to do |format|
       format.html # index.html.erb

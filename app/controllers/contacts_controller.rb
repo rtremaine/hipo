@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @contacts = Contact.where(:company_id => current_user.company_id)
+    @contacts = Contact.where(:created_by => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
