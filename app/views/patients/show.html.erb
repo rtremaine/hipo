@@ -1,10 +1,10 @@
 <h2>
-  <%= best_in_place @patient, :last %>, <%= best_in_place @patient, :first %>
+  <%= @patient.name %>
 </h2>
 
 <p>
   <b>Ssn:</b>
-  <%= best_in_place @patient, :ssn %>
+  <%= @patient.ssn %>
 </p>
 
 <button id="add_button" class="btn btn-primary start" type="submit" onclick="addRow(); return false;">New Record Set</button>
