@@ -12,7 +12,7 @@ class RecordsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: records.collect {|r| r.to_jq_record }.to_json }
+      format.json { render json: @records.collect {|r| r.to_jq_record }.to_json }
     end
   end
 
@@ -37,7 +37,7 @@ class RecordsController < ApplicationController
   end
 
   def thumbnail
-    send_file record.record.thumb.url
+    send_file @record.record.thumb.url
   end
 
   # GET /records/new
