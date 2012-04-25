@@ -73,6 +73,8 @@ function createRecordSet($name, $description) {
       var html = tmpl('template-record-set', json);
       $('.record-set-create').replaceWith(html);
       $('#add_button').show();
+      // redirect to new record_set
+      window.location.href = "/record_sets/" + json['record_sets'][0].id
       });
   $.rails.handleRemote($form);
 }
