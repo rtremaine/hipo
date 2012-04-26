@@ -5,12 +5,24 @@ class RecordSet < ActiveRecord::Base
   belongs_to  :user
   validates_presence_of :user_id
 
+  STATUS_VISIBLE = 0
+  STATUS_DELETED = 1
+
+  before_create do
+    self.status = STATUS_VISIBLE
+  end
+
   def can_see
     return true if self
   end
 
   def check_permission user
     return true if self.user_id = user.id
+  end
+
+  def destroy
+    self.status = STATUS_DELETED
+    self.save!
   end
 
   def to_jq_record_set

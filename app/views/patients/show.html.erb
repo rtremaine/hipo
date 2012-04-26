@@ -23,7 +23,7 @@
   </thead>
   <tbody class="record_sets" data-toggle="modal-gallery" data-target="#modal-gallery">
     <%
-      @patient.record_sets.each do|record_set| %>
+      @patient.record_sets.where(:status => RecordSet::STATUS_VISIBLE).each do|record_set| %>
       <tr class="template-download fade in">
         <td class="name"><%= link_to record_set.name, record_set %></td>
         <td class="description"><%= record_set.description %></td>
