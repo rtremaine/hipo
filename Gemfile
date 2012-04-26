@@ -55,9 +55,9 @@ group :development, :testing do
 end
 
 # for all you ruby-debug haters out there
+# to enable follow this woderful tutorial http://blog.ryantremaine.com/2012/04/conditionally-load-ruby-debug-gem.html
 begin
   if (Gem::Specification::find_by_name "ruby-debug-base19", ">= 0.11.26")
-    source 'https://gems.gemfury.com/8n1rdTK8pezvcsyVmmgJ/'
     gem 'linecache19',       '>= 0.5.13'
     gem 'ruby-debug-base19', '>= 0.11.26'
     gem 'ruby-debug19'

@@ -2,7 +2,11 @@ class SharesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @shares = Share.where(:sender_id => current_user.id).order('created_at desc')
+    if params[:patient_id]
+      @shares = current_user.company.patient_shares params[:patient_id].to_i
+    else
+      @shares = current_user.company.shares
+    end
 
     respond_to do |format|
       format.html # index.html.erb
