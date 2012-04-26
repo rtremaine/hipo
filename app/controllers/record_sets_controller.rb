@@ -5,7 +5,7 @@ class RecordSetsController < ApplicationController
   # GET /record_sets
   # GET /record_sets.json
   def index
-    @record_sets = Company.find(current_user.company_id).record_sets#.where(:status => RecordSet::STATUS_VISIBLE)
+    @record_sets = Company.find(current_user.company_id).record_sets.where(:status => RecordSet::STATUS_VISIBLE)
 
     respond_to do |format|
       format.html # index.html.erb
