@@ -41,6 +41,7 @@ gem 'mini_magick'
 gem 'formtastic-bootstrap'
 gem 'gravtastic'
 gem 'cancan'
+gem 'comma'
 
 group :development, :testing do
   gem 'capybara'
