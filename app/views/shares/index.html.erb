@@ -6,4 +6,9 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Export', shares_path, :class => 'btn btn-info info', :title => 'View a list of all shared records for this patient' %>
+<%
+  qs = '?format=csv'
+  qs = qs + "&patient_id=#{params[:patient_id]}" if params[:patient_id]
+%>
+
+<%= link_to 'Export', shares_path + qs, :class => 'btn btn-info info', :title => 'View a list of all shared records for this patient' %>

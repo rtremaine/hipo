@@ -11,6 +11,7 @@ class SharesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @shares }
+      format.csv { render :csv => @shares }
     end
   end
   

@@ -6,6 +6,16 @@ class Share < ActiveRecord::Base
 
   validates_presence_of :record_set
 
+  #csv export
+  comma do
+    record_set 'Patient' do |record_set| record_set.patient.name end 
+    record_set :name => 'Record Set Name'
+    sender :username => 'Sender'
+    recipient 'Recipient' do |recipient| recipient.user.username end
+    created_at 'Created' do |created_at| created_at.to_s(:short) end
+    received_date 'Received' do |received_date| received_date || '-' end
+  end
+
   def confirm_status_icon
     return 'icon-lock'
   end
@@ -38,4 +48,5 @@ class Share < ActiveRecord::Base
       end
     end
   end
+
 end
