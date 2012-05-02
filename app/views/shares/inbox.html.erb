@@ -1,8 +1,6 @@
 <h1>Shared Records</h1>
-
-<%= render 'share_header' %>
-
-<% @shares.each do |share| %>
-  <%= render :partial => 'view', :locals => { :share => share } %>
+<%= render :layout => 'share_header' do %>
+  <% @shares.each do |share| %>
+    <%= render :partial => 'view', :locals => { :share => share } %>
+  <% end %>
 <% end %>
-</table>

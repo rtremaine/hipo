@@ -1,8 +1,7 @@
 <h1>Shares</h1>
 
-<%= render 'share_header' %>
-
-<% @shares.each do |share| %>
-  <%= render share %>
+<%= render :layout => 'share_header' do %>
+  <% @shares.each do |share| %>
+    <%= render share %>
+  <% end %>
 <% end %>
-</table>
