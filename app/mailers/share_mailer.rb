@@ -5,6 +5,6 @@ class ShareMailer < ActionMailer::Base
     @sender = User.find share.sender_id
     @recipient = Contact.find share.recipient_id
     @share = share
-    mail(:to => @sender.email, :subject => @sender.username + ' would like to share records with you')
+    mail(:to => @recipient.email, :subject => @sender.username + ' would like to share records with you')
   end
 end
