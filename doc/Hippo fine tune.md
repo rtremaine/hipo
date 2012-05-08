@@ -15,13 +15,13 @@
 * http://localhost:3991/record_sets/1 dropdown protects email
 * http://localhost:3991/record_sets/1 dates are different on every page
 * change name, get domain - robyn might have it already
-* 13026b
 * Share rset, login as contact, put in conf code, cancan prevents your seeing rset
 * put rails admin on there
 * put exceptional on there
 * pick a different theme
-* 
+* hippa, talk with the dental consultant
+* put stripe in real not test mode
+* check stripe every share
 
 ##out of scope
 * import contacts
-* 
