@@ -44,7 +44,7 @@
       </td>
       <td>
         <h2>
-          -
+          <%= @share.emailed_date ? @share.emailed_date.to_s(:long) : 'Not sent'%>
         </h2>
       </td>
     </tr>
@@ -54,7 +54,7 @@
       </td>
       <td>
         <h2>
-          -
+          <%= @share.received_date ? @share.received_date.to_s(:long) : 'Not received'%>
         </h2>
       </td>
     </tr>
