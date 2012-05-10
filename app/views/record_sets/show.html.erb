@@ -83,10 +83,10 @@
             <span><i class="icon-plus icon-white"></i> add files...</span>
             <%= f.file_field :record %>
           </label>
-          <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
+          <!--button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
           <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
           <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
-          <input type="checkbox" class="toggle">
+          <input type="checkbox" class="toggle"-->
         </div>
         <div class="span5">
           <!-- The global progress bar -->
@@ -97,9 +97,15 @@
       </div>
       <div class="alert alert-info border-dashed">
         <center>
+        <% if supports_dnd then%>
           <small>
-            You can drag files onto this web page to enqueue them for uploading
+            You can drag files onto this web page to upload 
           </small>
+        <% else %>
+          <small>
+            Your browser does not support drag and drop. We recommed upgrading to Firefox, Chrome, or IE 10
+          </small>
+        <% end %>
         </center>
       </div>
       <!-- The loading indicator is shown during image processing -->
