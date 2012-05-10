@@ -1,6 +1,5 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-//= require best_in_place
 //= require tmpl.min.js
 //= require canvas-to-blob.min.js
 //= require load-image.min.js
