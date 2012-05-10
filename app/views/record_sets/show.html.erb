@@ -76,18 +76,9 @@
           </ul>
         </div>
       <% end %>
-      <br />
+      <%= f.file_field :record %>
       <div class="row fileupload-buttonbar">
-        <div id="span7">
-          <label class="btn btn-success fileinput-button">
-            <span><i class="icon-plus icon-white"></i> add files...</span>
-            <%= f.file_field :record %>
-          </label>
-          <button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white"></i> start upload</button>
-          <button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i> cancel upload</button>
-          <button type="button" class="btn btn-danger delete"><i class="icon-trash icon-white"></i> delete files</button>
-          <input type="checkbox" class="toggle">
-        </div>
+      <% render 'buttonbar' %>
         <div class="span5">
           <!-- The global progress bar -->
           <div class="progress progress-success progress-striped active fade">
