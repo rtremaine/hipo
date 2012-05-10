@@ -89,14 +89,16 @@
           <input type="checkbox" class="toggle"-->
         </div>
       <%# render 'buttonbar' %>
-        <div class="span5">
+        <% if supports_dnd %>
+        <div class="span7">
           <!-- The global progress bar -->
           <div class="progress progress-success progress-striped active fade">
             <div class="bar" style="width:0%;"></div>
           </div>
         </div>
+      <% end %>
       </div>
-      <div class="alert alert-info border-dashed">
+      <div class="row alert alert-info border-dashed">
         <center>
         <% if supports_dnd then%>
           <small>
