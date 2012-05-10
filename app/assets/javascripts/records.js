@@ -27,14 +27,6 @@ $(function () {
     $('#fileupload').fileupload('option', {
       autoUpload: true,
     });
-//    if (window.location.hostname === 'blueimp.github.com') {
-//        // Demo settings:
-//        $('#fileupload').fileupload('option', {
-//            url: '//jquery-file-upload.appspot.com/',
-//            maxFileSize: 5000000,
-//            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-//            //resizeMaxWidth: 1920,
-//            //resizeMaxHeight: 1200
 //        });
 //        // Upload server status check for browsers with CORS support:
 //        if ($.ajaxSettings.xhr().withCredentials !== undefined) {
