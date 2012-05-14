@@ -43,6 +43,7 @@ gem 'gravtastic'
 gem 'cancan'
 gem 'comma'
 gem 'browser'
+gem 'exception_notifier'
 
 group :development, :testing do
   gem 'capybara'

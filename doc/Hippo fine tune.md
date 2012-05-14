@@ -17,7 +17,7 @@
 * change name, get domain - robyn might have it already
 * Share rset, login as contact, put in conf code, cancan prevents your seeing rset
 * put rails admin on there
-* put exceptional on there
+* DONE put exception_notifier on there [RT]
 * pick a different theme
 * hippa, talk with the dental consultant
 * put stripe in real not test mode

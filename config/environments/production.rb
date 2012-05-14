@@ -67,3 +67,8 @@ Hippo::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
 end
+
+Hippo::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Error:Hippo] ",
+  :sender_address => %{"notifier" <notifier@hippo.com>},
+  :exception_recipients => %w{ryan.trem@gmail.com, thealey@gmail.com}
