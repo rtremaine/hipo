@@ -22,6 +22,7 @@
 * hippa, talk with the dental consultant
 * put stripe in real not test mode
 * check stripe every share
+* DONE Handle IE. Recommend different browser. [RT]
 
 ##out of scope
 * import contacts
