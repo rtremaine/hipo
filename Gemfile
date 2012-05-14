@@ -42,6 +42,7 @@ gem 'formtastic-bootstrap'
 gem 'gravtastic'
 gem 'cancan'
 gem 'comma'
+gem 'browser'
 
 group :development, :testing do
   gem 'capybara'
