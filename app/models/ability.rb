@@ -42,6 +42,7 @@ class Ability
 
       can :manage, Record do |record|
         record.record_set.user.company == user.company 
+        record.record_set.check_shared(user)
       end
       can :create, Record
 
