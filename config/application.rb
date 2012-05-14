@@ -62,3 +62,9 @@ ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
     :address  => "localhost"
 }
+
+Time::DATE_FORMATS[:longnotime] = "%b %d, %Y"
+Time::DATE_FORMATS[:todo] = "%m-%d-%Y"
+Time::DATE_FORMATS[:short] = "%m-%d-%Y"
+Time::DATE_FORMATS[:long] = "%b %d, %Y %I:%M %p"
+Time::DATE_FORMATS[:longs] = "%b %d, %Y %I:%M:%S %p"

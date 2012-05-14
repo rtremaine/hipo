@@ -2,13 +2,6 @@
   <div class='row'>
     <div class='span4'>
       <div class='well'>
-        <% if @record_set.patient.dentist %>
-          <h2>
-            <small>
-              Patient of: <%= link_to @record_set.patient.dentist.name, @record_set.patient.dentist %> 
-            </small>
-          </h2>
-        <% end %>
         <p>
           <small>
             Created by: <%= @record_set.user.username %>
@@ -17,7 +10,7 @@
 
         <p>
           <small>
-            Records: <%= best_in_place @record_set, :name %>
+            Records: <%= @record_set.name %>
           </small>
         </p>
 
@@ -32,7 +25,7 @@
             Description
           </small>
         </p>
-        <%= best_in_place @record_set, :description, :type => :textarea %>
+        <%= @record_set.description %> 
       </p>
     </div>
   </div>

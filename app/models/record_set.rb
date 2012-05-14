@@ -20,6 +20,14 @@ class RecordSet < ActiveRecord::Base
     return true if self.user_id = user.id
   end
 
+  def check_shared user
+    shares = Share.where(:record_set_id => self.id)
+    shares.each do |share|
+      return true if share.recipient.id == user.id 
+    end
+    return false
+  end
+
   def destroy
     self.status = STATUS_DELETED
     self.save!
