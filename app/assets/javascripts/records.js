@@ -15,6 +15,7 @@ $(function () {
 
   $('#fileupload').fileupload('option', {
     autoUpload: true,
+    forceIframeTransport: true
   });
   // Load existing files:
   $('#fileupload').each(function () {

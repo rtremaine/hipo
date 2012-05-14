@@ -65,6 +65,7 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.save
         format.json { render :json => [ @record.to_jq_record ].to_json }
+        format.html { render :json => [ @record.to_jq_record ].to_json }
       else
         format.json { render :json => [ @record.to_jq_record.merge({ :error => "custom_failure" }) ].to_json }
       end
