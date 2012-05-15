@@ -43,8 +43,9 @@ gem 'gravtastic'
 gem 'cancan'
 gem 'comma'
 gem 'browser'
-gem 'exception_notifier'
-gem 'rails_admin'
+gem 'exception_notification'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'bootstrap-sass'
 
 group :development, :testing do
   gem 'capybara'
