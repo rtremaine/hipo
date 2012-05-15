@@ -44,6 +44,7 @@ gem 'cancan'
 gem 'comma'
 gem 'browser'
 gem 'exception_notifier'
+gem 'rails_admin'
 
 group :development, :testing do
   gem 'capybara'
