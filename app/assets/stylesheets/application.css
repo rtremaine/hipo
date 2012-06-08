@@ -14,8 +14,9 @@ body{
 }
 
 a.brand, .brand {
-  font-size: 120%;
+  font-size: 140%;
   text-decoration: none;
+  font-weight: bold;
 }
 
 a.btn {
@@ -33,6 +34,42 @@ a.btn {
 .navbar .nav > li > a {
   border-right: none;
   border-left: none;
+}
+.navbar .navbar-inner .nav > li > a {
+text-shadow: none;
+padding: 13px 15px;
+font-size: 16px;
+}
+.navbar .nav > li > a {
+float: none;
+padding: 10px 10px 11px;
+line-height: 19px;
+color: #999;
+text-decoration: none;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.navbar .nav > li > a:hover {
+  background-color: transparent;
+  color: #000000;
+  text-decoration: none;
+}
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #222222;
+}
+.navbar .navbar-inner {
+  background: white;
+  color: black;
+  padding-top: 5px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  text-shadow: none;
 }
 
 .headersub {
