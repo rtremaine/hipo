@@ -1,3 +1,7 @@
+html {
+  background: #f1f1f1 url('/assets/bg-noise.jpeg');
+}
+
 a {
   text-decoration: underline;
   color: black;
@@ -11,6 +15,7 @@ body{
 
 a.brand, .brand {
   font-size: 120%;
+  text-decoration: none;
 }
 
 a.btn {
