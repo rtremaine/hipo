@@ -44,10 +44,18 @@
                 <% end %>
               <% end %>
             </ul>
-            <ul class="nav pull-right" style="margin-right:30px;">
+            <ul class="nav pull-right">
+              <li class="dropdown">
               <% if current_user %>
-                <li><%= link_to current_user.username, current_user %></li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  test
+                  <%#= link_to current_user.username, current_user %>
+                </a>
+                <b class="caret"></b>
+              <ul class="dropdown-menu"
                 <li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
+              </ul>
+              </li>
               <% else %>
                 <li><%= link_to("Sign in", new_user_session_path ) %></li>
               <% end %>

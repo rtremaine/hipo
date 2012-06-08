@@ -13,10 +13,11 @@ body{
   padding-right: 80px;
 }
 
-a.brand, .brand {
-  font-size: 140%;
+a.brand, .brand, .navbar .brand {
+  font-size: 28px;
   text-decoration: none;
   font-weight: bold;
+  color: #d33c00;
 }
 
 a.btn {
