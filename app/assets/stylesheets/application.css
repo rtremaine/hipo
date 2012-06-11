@@ -333,3 +333,7 @@ ul.sortable li {
   border-style: dashed; 
   border-width: 5px;
 }
+
+.splash {
+  background: url("/assets/splash.jpg") no-repeat;
+}
