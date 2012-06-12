@@ -84,11 +84,6 @@ border-bottom-color: black;
   font-size: 160%;
 }
 
-.brandheader {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
 .alert-message.success {
   text-shadow: none;
   line-height:2;
@@ -336,4 +331,26 @@ ul.sortable li {
 
 .splash {
   background: url("/assets/splash.jpg") no-repeat;
+}
+
+.signup {
+  background: rgb(1,1,1);
+  background: rgba(255,255,255,0.6);
+  padding: 10px;
+}
+
+.brandheader
+{
+  background: rgb(1,1,1);
+  background: rgba(255,255,255,0.6);
+  padding: 50px;
+}
+
+.brandheader > div {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.row {
+  margin-left: -60px;
 }

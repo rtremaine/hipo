@@ -13,38 +13,13 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
   </head>
 
-  <body>
-
+  <body class="splash">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class='brand' href="/" >Hippo</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li>
-                <%= link_to 'Inbox', '/inbox' %>
-              </li>
-              <li>
-                <%= link_to 'Contacts', :contacts %>
-              </li>
-              <li>
-                <%= link_to 'Patients', :patients %>
-              </li>
-              <li>
-                <%= link_to 'Shares', :shares %>
-              </li>
-              <% if current_user %>
-                <% if current_user.company %>
-                  <li>
-                    <%= link_to current_user.company.name, current_user.company %>
-                  </li>
-                <% end %>
-                <% if current_user.is_admin %>
-                  <li>
-                    <%= link_to 'Subscriptions', :subscriptions %>
-                  </li>
-                <% end %>
-              <% end %>
             </ul>
             <ul class="nav pull-right">
               <li class="dropdown">
@@ -67,7 +42,7 @@
       </div>  
     </div>
 
-    <div class="container" style="padding-top:100px;padding-bottom:50px;">
+    <div class="container" style="padding-top:80px;padding-bottom:50px;">
       <% flash.each do |key, msg| %>
         <div id="msg" class="alert">
           <%= msg %>
